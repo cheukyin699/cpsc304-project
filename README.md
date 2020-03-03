@@ -1,5 +1,7 @@
 # Genetic Disorders Prognosis Diagnosis
 
+[![Build Status](https://travis-ci.com/cheukyin699/wii-remote-tt.svg?branch=master)](https://travis-ci.com/cheukyin699/wii-remote-tt)
+
 ## Setup
 
 We recommend you use Intellij IDEA to develop, but not having that is fine
