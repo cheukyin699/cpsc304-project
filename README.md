@@ -18,6 +18,9 @@ to type in your password every single time.
 ssh -l username -L localhost:1522:dbhost.students.cs.ubc.ca:1522 remote.students.cs.ubc.ca
 ```
 
+If you don't want to do it via command line, [here's a nice
+tutorial][run-own-machine] on how to run it from your own machine with SSH.
+
 After all the oracle stuff to your machine, we can open up a separate terminal
 and build this project:
 
@@ -38,3 +41,5 @@ To find out what else you can do, check the tasks:
 ```bash
 ./gradlew tasks
 ```
+
+[run-own-machine]: https://www.students.cs.ubc.ca/~cs-304/resources/jdbc-oracle-resources/jdbc-java-setup.html#running-code-from-own-machine
