@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/")
 public class TestController {
 
-    @Autowired
+    @Autowired          // Auto-initialize this variable
     private DatabaseConnectionHandler dbHandler;
 
     @RequestMapping(method = RequestMethod.GET)
