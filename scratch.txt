@@ -1,0 +1,63 @@
+API
+===
+
+Validate user login
+/login
+- gives the user a cookie
+
+Add new users
+/user
+
+Search for diseases by symptoms
+/search
+
+{
+    "symptoms": "arsiotniearnsoitr",
+    "name": "arst",
+    "pre": ""
+}
+
+{
+    [
+        {
+            "Name": "arst",
+            "Prev": "dias",
+        },
+        {
+            "Name": "arst",
+            "Prev": "dias",
+        },
+    ]
+}
+
+Add different datas
+Needs a cookie from /login to verify
+POST PUT DELETE
+/disease
+/trial
+/treatment
+/diagnostic-test
+/patient
+/medical-records
+
+FRONT END
+=========
+
+Login page/Register page
+/login
+/register
+
+Index page that redirects if you are not logged in
+/
+- used for searching
+
+Adds page
+/add-new-diseases
+
+MVP
+===
+
+- login
+- searching
+- displaying
+- adding
