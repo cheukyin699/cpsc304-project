@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Hello Everybody!</title>
@@ -7,6 +7,10 @@
 <body>
     <p>
         Hello everyone, how are you all doing on this fine summer evening? I know I'm doing fine.
+    </p>
+
+    <p>
+        Oracle database version: <span th:text="${version}"></span>
     </p>
 </body>
 </html>
