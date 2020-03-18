@@ -1,4 +1,4 @@
-package org.cpsc304.bigdata.controller;
+package org.cpsc304.bigdata.db;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +37,7 @@ public class DatabaseConnectionHandler implements DataSource {
                 logger.error("Could not connect to oracle with " + user + " and " + pwd);
             } else {
                 logger.info("Connected to remote oracle database");
+                DatabaseInitializer.initDatabase(connection);
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
@@ -59,7 +60,7 @@ public class DatabaseConnectionHandler implements DataSource {
      * Get version information of Oracle database as a string
      * @return Database version information
      */
-    String getVersion() {
+    public String getVersion() {
         if (connection == null) {
             return "Not connected to database.";
         }

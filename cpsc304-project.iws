@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34291d3d-6ac2-489c-bf8a-0d11bb85a088" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/cpsc304-project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DisordersPrognosis.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DisordersPrognosis.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DisordersPrognosis.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cpsc304-project.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/db/DatabaseInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpsc304-project.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/cpsc304-project.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpsc304-project.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cpsc304-project.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/ApplicationMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/ApplicationMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/controller/DatabaseConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/controller/DatabaseConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/controller/DatabaseConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/db/DatabaseConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/controller/TestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,16 +60,29 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ZJ6E4EOMWzMX8c5RPkvkIbu78x" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CPSC 210" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RunManager">
@@ -127,21 +136,25 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="695" y="215" width="517" height="534" key="EnvironmentVariablesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584512805326" />
-    <state width="1874" height="289" key="GridCell.Tab.0.bottom" timestamp="1584513281708">
+    <state width="1874" height="289" key="GridCell.Tab.0.bottom" timestamp="1584548014702">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281708" />
-    <state width="1874" height="289" key="GridCell.Tab.0.center" timestamp="1584513281707">
+    <state width="1874" height="289" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584548014702" />
+    <state width="1874" height="289" key="GridCell.Tab.0.center" timestamp="1584548014701">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281707" />
-    <state width="1874" height="289" key="GridCell.Tab.0.left" timestamp="1584513281707">
+    <state width="1874" height="289" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584548014701" />
+    <state width="1874" height="289" key="GridCell.Tab.0.left" timestamp="1584548014701">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281707" />
-    <state width="1874" height="289" key="GridCell.Tab.0.right" timestamp="1584513281708">
+    <state width="1874" height="289" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584548014701" />
+    <state width="1874" height="289" key="GridCell.Tab.0.right" timestamp="1584548014702">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281708" />
+    <state width="1874" height="289" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584548014702" />
+    <state x="620" y="333" key="com.intellij.ide.util.TipDialog" timestamp="1584544745165">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="620" y="333" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584544745165" />
   </component>
 </project>

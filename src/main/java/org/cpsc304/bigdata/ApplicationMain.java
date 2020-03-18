@@ -1,6 +1,6 @@
 package org.cpsc304.bigdata;
 
-import org.cpsc304.bigdata.controller.DatabaseConnectionHandler;
+import org.cpsc304.bigdata.db.DatabaseConnectionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
