@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="34291d3d-6ac2-489c-bf8a-0d11bb85a088" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/cpsc304-project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DisordersPrognosis.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DisordersPrognosis.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DisordersPrognosis.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cpsc304-project.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/ApplicationMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/ApplicationMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/controller/DatabaseConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpsc304/bigdata/controller/DatabaseConnectionHandler.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DisordersPrognosis" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DisordersPrognosis" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DisordersPrognosis" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DisordersPrognosis" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CPSC 210" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="PASS" value="a72357502" />
+            <entry key="USER" value="ora_cheukng" />
+          </map>
+        </option>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="passParentEnvs" value="false" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="bootRun" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34291d3d-6ac2-489c-bf8a-0d11bb85a088" name="Default Changelist" comment="" />
+      <created>1584500821027</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584500821027</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="417" y="163" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584512807760">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="417" y="163" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584512807760" />
+    <state x="764" y="169" width="376" height="564" key="#com.intellij.ide.util.MemberChooser" timestamp="1584512316219">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="764" y="169" width="376" height="564" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1584512316219" />
+    <state x="695" y="215" width="517" height="534" key="EnvironmentVariablesDialog" timestamp="1584512805326">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="695" y="215" width="517" height="534" key="EnvironmentVariablesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584512805326" />
+    <state width="1874" height="289" key="GridCell.Tab.0.bottom" timestamp="1584513281708">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281708" />
+    <state width="1874" height="289" key="GridCell.Tab.0.center" timestamp="1584513281707">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281707" />
+    <state width="1874" height="289" key="GridCell.Tab.0.left" timestamp="1584513281707">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281707" />
+    <state width="1874" height="289" key="GridCell.Tab.0.right" timestamp="1584513281708">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584513281708" />
+  </component>
+</project>

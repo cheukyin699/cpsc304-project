@@ -4,10 +4,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
+import javax.sql.DataSource;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 
 @Component
-public class DatabaseConnectionHandler {
+public class DatabaseConnectionHandler implements DataSource {
 
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1522:stu";
 
@@ -70,5 +77,50 @@ public class DatabaseConnectionHandler {
             logger.error(e.getMessage());
             return "SQL error: please view the logs.";
         }
+    }
+
+    @Override
+    public Connection getConnection() throws SQLException {
+        return connection;
+    }
+
+    @Override
+    public Connection getConnection(String s, String s1) throws SQLException {
+        return connection;
+    }
+
+    @Override
+    public <T> T unwrap(Class<T> aClass) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public boolean isWrapperFor(Class<?> aClass) throws SQLException {
+        return false;
+    }
+
+    @Override
+    public PrintWriter getLogWriter() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void setLogWriter(PrintWriter printWriter) throws SQLException {
+
+    }
+
+    @Override
+    public void setLoginTimeout(int i) throws SQLException {
+
+    }
+
+    @Override
+    public int getLoginTimeout() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return (java.util.logging.Logger) logger;
     }
 }
