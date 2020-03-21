@@ -38,13 +38,13 @@ public class DatabaseInitializer {
                     ")",
             "CREATE TABLE Physician (" +
                     "Username VARCHAR(20) PRIMARY KEY," +
-                    "Hospital VARCHAR(20)," +
+                    "Hospital VARCHAR(100)," +
                     "FOREIGN KEY (Username) REFERENCES User_Info(Username)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Researcher (" +
                     "Username VARCHAR(20) PRIMARY KEY," +
-                    "Institute VARCHAR(30)," +
+                    "Institute VARCHAR(100)," +
                     "NumOfPublications INTEGER," +
                     "FOREIGN KEY (Username) REFERENCES User_Info(Username)" +
                     "ON DELETE CASCADE" +
@@ -68,7 +68,7 @@ public class DatabaseInitializer {
                     "Prevalence INTEGER," +
                     "Symptoms VARCHAR(1000)," +
                     "ClinicalTrial VARCHAR(100)," +
-                    "FOREIGN KEY (ClinicalTrial) REFERENCES ClinicalTrial(TrialName)" +
+                    "FOREIGN KEY (ClinicalTrial) REFERENCES ClinicalTrial(TrialName)," +
                     "ON DELETE SET NULL," +
                     "CHECK (Prevalence <= 100 && Prevalence >= 0)" +
                     ")",
@@ -146,9 +146,9 @@ public class DatabaseInitializer {
                     "Duration INTEGER," +
                     "SeverityIndex FLOAT," +
                     "PRIMARY KEY (P_ID, D_Name)," +
-                    "FOREIGN KEY P_ID REFERENCES Patient" +
+                    "FOREIGN KEY P_ID REFERENCES Patient," +
                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name)" +
+                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name)," +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Treatment (" +
@@ -187,40 +187,31 @@ public class DatabaseInitializer {
     };
 
     private static final String TUPLE_USER_INFO[] = {
-            "INSERT INTO User_Info VALUES( A, A, 0, Molecular Oncology )",
-            "INSERT INTO User_Info VALUES(hbtaussig, Helen Brooke Taussig, 123456789, Molecular Oncology )",
-            "INSERT INTO User_Info VALUES(zjanzekovic, Zora Janzekovic, 111111111, Dentistry )",
-            "INSERT INTO User_Info VALUES( vapgar, Virginia Apgar, qwerty, Dentistry )"
+            "INSERT INTO User_Info VALUES(\'A\', \'A\', \'0\', \'Molecular Oncology\')",
+            "INSERT INTO User_Info VALUES(\'hbtaussig\', \'Helen Brooke Taussig\', \'123456789\', \'Molecular Oncology\')",
+            "INSERT INTO User_Info VALUES(\'zjanzekovic\', \'Zora Janzekovic\', \'111111111\', \'Dentistry\')",
+            "INSERT INTO User_Info VALUES(\'vapgar\',\'Virginia Apgar\', \'qwerty\', \'Dentistry\')",
+            "INSERT INTO User_Info VALUES(\'jhopps\', \'John Hopkins\', \'11dtg\', \'Molecular Oncology\')"
     };
 
     private static final String TUPLE_USER_DEPT[] = {
-            "INSERT INTO User_Dept VALUES( Molecular Oncology, Cancer Studies )",
-            "INSERT INTO User_Dept VALUES( Dentistry, Dentistry )"
+            "INSERT INTO User_Dept VALUES(\'Molecular Oncology\', \'Cancer Studies\')",
+            "INSERT INTO User_Dept VALUES(\'Dentistry\', \'Dentistry\')"
     };
 
     private static final String TUPLE_PHYSICIAN[] = {
-            "INSERT INTO Physician VALUES(hbtaussig, Johns Hopkins Hospital )",
-            "INSERT INTO Physician VALUES( zjanzekovic, General Hospital Maribor )"
+            "INSERT INTO Physician VALUES(\'hbtaussig\', \'John Hopkins Hospital\' )",
+            "INSERT INTO Physician VALUES(\'zjanzekovic\', \'General Hospital Maribor\' )"
     };
 
     private static final String TUPLE_RESEARCHER[] = {
-            "INSERT INTO Researcher VALUES(jhopps, Johns Hopkins Hospital 32 )",
-            "INSERT INTO Researcher VALUES( bwane, University of British Columbia 2 )"
+            "INSERT INTO Researcher VALUES(\'jhopps\', \'Johns Hopkins Hospital\', \'32\')",
+            "INSERT INTO Researcher VALUES(\'vapgar\', \'University of British Columbia\', \'2\')"
     };
 
     private static final String TUPLE_DISEASE[] = {
-            "INSERT INTO Disease VALUES(" +
-                    "Iron deficiency," +
-                    "50" +
-                    "Unusual tiredness, paleness, shortness of breath" +
-                    "Lactoferrin versus Ferrous Sulfate in Iron-deficiency During Pregnancy" +
-                    ")",
-            "INSERT INTO Disease VALUES(" +
-                    "Glaucoma," +
-                    "20" +
-                    "Blind spots in sides or central vision in both eyes" +
-                    "NULL" +
-                    ")"
+            //"INSERT INTO Disease VALUES(\'Iron deficiency\', \'50\', \'Unusual tiredness paleness shortness of breath\', \'Lactoferrin versus Ferrous Sulfate in Iron-deficiency During Pregnancy\')",
+            //"INSERT INTO Disease VALUES(\'Glaucoma\', \'20\', \'Blind spots in sides or central vision in both eyes\', \'NULL\')"
     };
 
     private static Logger logger = LoggerFactory.getLogger(DatabaseInitializer.class);
@@ -233,7 +224,21 @@ public class DatabaseInitializer {
 
     private static void initTables(final Connection connection) {
         deleteExistingTables(connection);
+        dropExistingTables(connection);
         createTables(connection);
+    }
+
+    private static void dropExistingTables(final Connection connection){
+        String tableName = "";
+        for (final String table : TABLES) {
+            try {
+                tableName = table;
+                PreparedStatement statement = connection.prepareStatement("DROP TABLE " + table);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                logger.warn(tableName + ": " + e.getMessage().replace("\n", ""));
+            }
+        }
     }
 
     private static void deleteExistingTables(final Connection connection) {
@@ -263,8 +268,8 @@ public class DatabaseInitializer {
     }
 
     private static void populateTables(final Connection connection) {
-        populateTableHelper(connection, TUPLE_USER_INFO);
         populateTableHelper(connection, TUPLE_USER_DEPT);
+        populateTableHelper(connection, TUPLE_USER_INFO);
         populateTableHelper(connection, TUPLE_PHYSICIAN);
         populateTableHelper(connection, TUPLE_RESEARCHER);
         populateTableHelper(connection, TUPLE_DISEASE);
