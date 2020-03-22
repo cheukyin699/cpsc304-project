@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Helper static class that initializes the database every single time the application is started if there is
@@ -21,7 +20,19 @@ public class DatabaseInitializer {
             "Patient", "MedicalRecord",
             "SuffersFrom",
             "Treatment", "ClinicalTrial",
-            "WorkOn", "DiagnosticTest", "DiagnosedBy"
+            "WorkOn", "DiagnosticTest", "DiagnosedBy",
+            "Disease_ClinicalTrail", "ClinicalTrail_Treatment"
+    };
+    private static final String DROP_TABLES[] = {
+            "ClinicalTrail_Treatment", "Disease_ClinicalTrail",
+            "DiagnosedBy", "DiagnosticTest", "WorkOn",
+            "ClinicalTrial", "Treatment",
+            "SuffersFrom",
+            "MedicalRecord", "Patient",
+            "Strain", "InfectiousOrganism",
+            "InfectiousDisease", "PhysiologicalDisease", "HereditaryDisease", "HPattern", "DeficiencyDisease", "Disease",
+            "Researcher", "Physician", "User_Info", "User_Dept"
+
     };
     private static final String CREATE_TABLES[] = {
             "CREATE TABLE User_Dept (" +
@@ -51,26 +62,25 @@ public class DatabaseInitializer {
                     ")",
             "CREATE TABLE ClinicalTrial (" +
                     "TrialName VARCHAR(100) PRIMARY KEY," +
-                    "Duration_Years FLOAT," +
+                    "Duration_Years INTEGER," +
                     "Type VARCHAR(100)," +
                     "Risks VARCHAR(100)," +
                     "Num_Participants INTEGER," +
-                    "IsComplete BOOLEAN," +
-                    "T_Name VARCHAR(20) NOT NULL," +
-                    "D_Name VARCHAR(100)," +
-                    "FOREIGN KEY (T_Name) REFERENCES Treatment(TreatmentName)" +
-                    "ON DELETE SET NULL," +
-                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name)" +
-                    "ON DELETE NO ACTION" +
+                    "IsComplete INTEGER," +
+                    "CHECK (IsComplete >= 0 AND IsComplete <= 1)" +
                     ")",
             "CREATE TABLE Disease (" +
-                    "Name VARCHAR(100) PRIMARY KEY," +
-                    "Prevalence INTEGER," +
-                    "Symptoms VARCHAR(1000)," +
-                    "ClinicalTrial VARCHAR(100)," +
-                    "FOREIGN KEY (ClinicalTrial) REFERENCES ClinicalTrial(TrialName)," +
-                    "ON DELETE SET NULL," +
-                    "CHECK (Prevalence <= 100 && Prevalence >= 0)" +
+                    "Name VARCHAR(100) PRIMARY KEY, " +
+                    "Prevalence INTEGER, " +
+                    "Symptoms VARCHAR(1000), " +
+                    "CHECK (Prevalence <= 100 AND Prevalence >= 0)" +
+                    ")",
+            "CREATE TABLE Disease_ClinicalTrail (" +
+                    "DName VARCHAR(100)," +
+                    "CTName VARCHAR (100), " +
+                    "PRIMARY KEY (DName, CTName), " +
+                    "FOREIGN KEY (DName) REFERENCES Disease(Name), " +
+                    "FOREIGN KEY (CTName) REFERENCES ClinicalTrial(TrialName)" +
                     ")",
             "CREATE TABLE DeficiencyDisease (" +
                     "Name VARCHAR(20) PRIMARY KEY," +
@@ -81,7 +91,7 @@ public class DatabaseInitializer {
             "CREATE TABLE HPattern (" +
                     "Pattern VARCHAR(20) PRIMARY KEY," +
                     "GenderAffected INTEGER," +
-                    "CHECK (GenderAffected < 5 && GenderAffected >= 0)" +
+                    "CHECK (GenderAffected < 5 AND GenderAffected >= 0)" +
                     ")",
             "CREATE TABLE HereditaryDisease (" +
                     "Name VARCHAR(100) PRIMARY KEY," +
@@ -123,9 +133,10 @@ public class DatabaseInitializer {
                     "Address VARCHAR(50)," +
                     "Family_History VARCHAR(100)," +
                     "Age INTEGER," +
-                    "Sex BOOLEAN," +
+                    "Sex INTEGER," +
                     "P_Username VARCHAR(20) NOT NULL," +
-                    "FOREIGN KEY (P_Username) REFERENCES Physician(Username)" +
+                    "FOREIGN KEY (P_Username) REFERENCES Physician(Username)," +
+                    "CHECK (Sex <= 1 AND Sex >= 0)" +
                     ")",
             "CREATE TABLE MedicalRecord (" +
                     "PatientID VARCHAR(20)," +
@@ -142,13 +153,13 @@ public class DatabaseInitializer {
                     ")",
             "CREATE TABLE SuffersFrom (" +
                     "P_ID VARCHAR(20)," +
-                    "D_Name VARCHAR(20)," +
+                    "D_Name VARCHAR(100)," +
                     "Duration INTEGER," +
                     "SeverityIndex FLOAT," +
                     "PRIMARY KEY (P_ID, D_Name)," +
-                    "FOREIGN KEY P_ID REFERENCES Patient," +
+                    "FOREIGN KEY (P_ID) REFERENCES Patient(ID)" +
                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name)," +
+                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Treatment (" +
@@ -156,10 +167,14 @@ public class DatabaseInitializer {
                     "Efficiency FLOAT," +
                     "Cost INTEGER," +
                     "Equipment VARCHAR(20)," +
-                    "Risks VARCHAR(100)," +
-                    "CT_Name VARCHAR(100)," +
-                    "FOREIGN KEY (CT_Name) REFERENCES ClinicalTrial(TrialName)" +
-                    "ON DELETE SET NULL" +
+                    "Risks VARCHAR(100)" +
+                    ")",
+            "CREATE TABLE ClinicalTrail_Treatment (" +
+                    "CTName VARCHAR(100)," +
+                    "TName VARCHAR(20)," +
+                    "PRIMARY KEY(CTName, TName)," +
+                    "FOREIGN KEY(CTName) REFERENCES ClinicalTrial(TrialName)," +
+                    "FOREIGN KEY(TName) REFERENCES Treatment(TreatmentName)" +
                     ")",
             "CREATE TABLE WorkOn (" +
                     "R_Username VARCHAR(20)," +
@@ -210,8 +225,8 @@ public class DatabaseInitializer {
     };
 
     private static final String TUPLE_DISEASE[] = {
-            //"INSERT INTO Disease VALUES(\'Iron deficiency\', \'50\', \'Unusual tiredness paleness shortness of breath\', \'Lactoferrin versus Ferrous Sulfate in Iron-deficiency During Pregnancy\')",
-            //"INSERT INTO Disease VALUES(\'Glaucoma\', \'20\', \'Blind spots in sides or central vision in both eyes\', \'NULL\')"
+            "INSERT INTO Disease VALUES(\'Iron deficiency\', \'50\', \'Unusual tiredness paleness shortness of breath\')",
+            "INSERT INTO Disease VALUES(\'Glaucoma\', \'20\', \'Blind spots in sides or central vision in both eyes\')"
     };
 
     private static Logger logger = LoggerFactory.getLogger(DatabaseInitializer.class);
@@ -223,14 +238,14 @@ public class DatabaseInitializer {
     }
 
     private static void initTables(final Connection connection) {
-        deleteExistingTables(connection);
+        //deleteExistingTables(connection);
         dropExistingTables(connection);
         createTables(connection);
     }
 
     private static void dropExistingTables(final Connection connection){
         String tableName = "";
-        for (final String table : TABLES) {
+        for (final String table : DROP_TABLES) {
             try {
                 tableName = table;
                 PreparedStatement statement = connection.prepareStatement("DROP TABLE " + table);
@@ -261,6 +276,9 @@ public class DatabaseInitializer {
                 tableName = stmt.split(" ")[2];
                 PreparedStatement statement = connection.prepareStatement(stmt);
                 statement.executeUpdate();
+                if(tableName == "Disease"){
+                    logger.warn(tableName + "!!!! is created");
+                }
             } catch (SQLException e) {
                 logger.warn(tableName + ": " + e.getMessage().replace("\n", ""));
             }
