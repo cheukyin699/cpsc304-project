@@ -62,7 +62,7 @@ public class DatabaseInitializer {
             "CREATE TABLE Disease (" +
                     "Name VARCHAR(100) PRIMARY KEY, " +
                     "Prevalence INTEGER, " +
-                    "Symptoms VARCHAR(1000), " +
+                    "Symptoms VARCHAR(100), " +
                     "CHECK (Prevalence <= 100 AND Prevalence >= 0)" +
                     ")",
             "CREATE TABLE Disease_ClinicalTrail (" +
@@ -133,10 +133,10 @@ public class DatabaseInitializer {
                     "Start DATE," +
                     "End DATE," +
                     "Disease VARCHAR(100)," +
-                    "Implants_Surgeries VARCHAR(500)," +
-                    "Allergies VARCHAR(500)," +
-                    "Medication VARCHAR(500)," +
-                    "Lifestyle VARCHAR(500)," +
+                    "Implants_Surgeries VARCHAR(50)," +
+                    "Allergies VARCHAR(50)," +
+                    "Medication VARCHAR(50)," +
+                    "Lifestyle VARCHAR(50)," +
                     "PRIMARY KEY (PatientID, Start, Disease)," +
                     "FOREIGN KEY (PatientID) REFERENCES Patient(ID)" +
                     "ON DELETE CASCADE" +
