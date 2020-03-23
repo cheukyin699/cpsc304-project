@@ -11,7 +11,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLFeatureNotSupportedException;
 
 @Component
 public class DatabaseConnectionHandler implements DataSource {
@@ -81,47 +80,47 @@ public class DatabaseConnectionHandler implements DataSource {
     }
 
     @Override
-    public Connection getConnection() throws SQLException {
+    public Connection getConnection() {
         return connection;
     }
 
     @Override
-    public Connection getConnection(String s, String s1) throws SQLException {
+    public Connection getConnection(String s, String s1) {
         return connection;
     }
 
     @Override
-    public <T> T unwrap(Class<T> aClass) throws SQLException {
+    public <T> T unwrap(Class<T> aClass) {
         return null;
     }
 
     @Override
-    public boolean isWrapperFor(Class<?> aClass) throws SQLException {
+    public boolean isWrapperFor(Class<?> aClass) {
         return false;
     }
 
     @Override
-    public PrintWriter getLogWriter() throws SQLException {
+    public PrintWriter getLogWriter() {
         return null;
     }
 
     @Override
-    public void setLogWriter(PrintWriter printWriter) throws SQLException {
+    public void setLogWriter(PrintWriter printWriter) {
 
     }
 
     @Override
-    public void setLoginTimeout(int i) throws SQLException {
+    public void setLoginTimeout(int i) {
 
     }
 
     @Override
-    public int getLoginTimeout() throws SQLException {
+    public int getLoginTimeout() {
         return 0;
     }
 
     @Override
-    public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+    public java.util.logging.Logger getParentLogger() {
         return (java.util.logging.Logger) logger;
     }
 

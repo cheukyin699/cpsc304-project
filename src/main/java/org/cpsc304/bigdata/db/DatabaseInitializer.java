@@ -13,17 +13,7 @@ import java.sql.SQLException;
  */
 public class DatabaseInitializer {
 
-    private static final String TABLES[] = {
-            "User_Dept", "User_Info", "Physician", "Researcher",
-            "Disease", "DeficiencyDisease", "HereditaryDisease", "HPattern", "PhysiologicalDisease", "InfectiousDisease",
-            "InfectiousOrganism", "Strain",
-            "Patient", "MedicalRecord",
-            "SuffersFrom",
-            "Treatment", "ClinicalTrial",
-            "WorkOn", "DiagnosticTest", "DiagnosedBy",
-            "Disease_ClinicalTrail", "ClinicalTrail_Treatment"
-    };
-    private static final String DROP_TABLES[] = {
+    private static final String[] DROP_TABLES = {
             "ClinicalTrail_Treatment", "Disease_ClinicalTrail",
             "DiagnosedBy", "DiagnosticTest", "WorkOn",
             "ClinicalTrial", "Treatment",
@@ -34,7 +24,7 @@ public class DatabaseInitializer {
             "Researcher", "Physician", "User_Info", "User_Dept"
 
     };
-    private static final String CREATE_TABLES[] = {
+    private static final String[] CREATE_TABLES = {
             "CREATE TABLE User_Dept (" +
                     "Speciality VARCHAR(20) PRIMARY KEY," +
                     "Department VARCHAR(20)" +
@@ -201,32 +191,32 @@ public class DatabaseInitializer {
                     ")"
     };
 
-    private static final String TUPLE_USER_INFO[] = {
-            "INSERT INTO User_Info VALUES(\'A\', \'A\', \'0\', \'Molecular Oncology\')",
-            "INSERT INTO User_Info VALUES(\'hbtaussig\', \'Helen Brooke Taussig\', \'123456789\', \'Molecular Oncology\')",
-            "INSERT INTO User_Info VALUES(\'zjanzekovic\', \'Zora Janzekovic\', \'111111111\', \'Dentistry\')",
-            "INSERT INTO User_Info VALUES(\'vapgar\',\'Virginia Apgar\', \'qwerty\', \'Dentistry\')",
-            "INSERT INTO User_Info VALUES(\'jhopps\', \'John Hopkins\', \'11dtg\', \'Molecular Oncology\')"
+    private static final String[] TUPLE_USER_INFO = {
+            "INSERT INTO User_Info VALUES('A', 'A', '0', 'Molecular Oncology')",
+            "INSERT INTO User_Info VALUES('hbtaussig', 'Helen Brooke Taussig', '123456789', 'Molecular Oncology')",
+            "INSERT INTO User_Info VALUES('zjanzekovic', 'Zora Janzekovic', '111111111', 'Dentistry')",
+            "INSERT INTO User_Info VALUES('vapgar','Virginia Apgar', 'qwerty', 'Dentistry')",
+            "INSERT INTO User_Info VALUES('jhopps', 'John Hopkins', '11dtg', 'Molecular Oncology')"
     };
 
-    private static final String TUPLE_USER_DEPT[] = {
-            "INSERT INTO User_Dept VALUES(\'Molecular Oncology\', \'Cancer Studies\')",
-            "INSERT INTO User_Dept VALUES(\'Dentistry\', \'Dentistry\')"
+    private static final String[] TUPLE_USER_DEPT = {
+            "INSERT INTO User_Dept VALUES('Molecular Oncology', 'Cancer Studies')",
+            "INSERT INTO User_Dept VALUES('Dentistry', 'Dentistry')"
     };
 
-    private static final String TUPLE_PHYSICIAN[] = {
-            "INSERT INTO Physician VALUES(\'hbtaussig\', \'John Hopkins Hospital\' )",
-            "INSERT INTO Physician VALUES(\'zjanzekovic\', \'General Hospital Maribor\' )"
+    private static final String[] TUPLE_PHYSICIAN = {
+            "INSERT INTO Physician VALUES('hbtaussig', 'John Hopkins Hospital' )",
+            "INSERT INTO Physician VALUES('zjanzekovic', 'General Hospital Maribor' )"
     };
 
-    private static final String TUPLE_RESEARCHER[] = {
-            "INSERT INTO Researcher VALUES(\'jhopps\', \'Johns Hopkins Hospital\', \'32\')",
-            "INSERT INTO Researcher VALUES(\'vapgar\', \'University of British Columbia\', \'2\')"
+    private static final String[] TUPLE_RESEARCHER = {
+            "INSERT INTO Researcher VALUES('jhopps', 'Johns Hopkins Hospital', '32')",
+            "INSERT INTO Researcher VALUES('vapgar', 'University of British Columbia', '2')"
     };
 
-    private static final String TUPLE_DISEASE[] = {
-            "INSERT INTO Disease VALUES(\'Iron deficiency\', \'50\', \'Unusual tiredness paleness shortness of breath\')",
-            "INSERT INTO Disease VALUES(\'Glaucoma\', \'20\', \'Blind spots in sides or central vision in both eyes\')"
+    private static final String[] TUPLE_DISEASE = {
+            "INSERT INTO Disease VALUES('Iron deficiency', '50', 'Unusual tiredness paleness shortness of breath')",
+            "INSERT INTO Disease VALUES('Glaucoma', '20', 'Blind spots in sides or central vision in both eyes')"
     };
 
     private static Logger logger = LoggerFactory.getLogger(DatabaseInitializer.class);
@@ -238,47 +228,37 @@ public class DatabaseInitializer {
     }
 
     private static void initTables(final Connection connection) {
-        //deleteExistingTables(connection);
         dropExistingTables(connection);
         createTables(connection);
     }
 
     private static void dropExistingTables(final Connection connection){
+        logger.info("Dropping existing tables multiple times...");
         String tableName = "";
-        for (final String table : DROP_TABLES) {
-            try {
-                tableName = table;
-                PreparedStatement statement = connection.prepareStatement("DROP TABLE " + table);
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                logger.warn(tableName + ": " + e.getMessage().replace("\n", ""));
-            }
-        }
-    }
-
-    private static void deleteExistingTables(final Connection connection) {
-        String tableName = "";
-        for (final String table : TABLES) {
-            try {
-                tableName = table;
-                PreparedStatement statement = connection.prepareStatement("DELETE FROM " + table);
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                logger.warn(tableName + ": " + e.getMessage().replace("\n", ""));
+        boolean droppedATable = true;
+        while (droppedATable) {
+            droppedATable = false;
+            for (final String table : DROP_TABLES) {
+                try {
+                    tableName = table;
+                    PreparedStatement statement = connection.prepareStatement("DROP TABLE " + table);
+                    statement.executeUpdate();
+                    droppedATable = true;
+                } catch (SQLException e) {
+                    logger.debug(tableName + ": " + e.getMessage().replace("\n", ""));
+                }
             }
         }
     }
 
     private static void createTables(final Connection connection) {
+        logger.info("Creating tables...");
         String tableName = "";
         for (final String stmt : CREATE_TABLES) {
             try {
                 tableName = stmt.split(" ")[2];
                 PreparedStatement statement = connection.prepareStatement(stmt);
                 statement.executeUpdate();
-                if(tableName == "Disease"){
-                    logger.warn(tableName + "!!!! is created");
-                }
             } catch (SQLException e) {
                 logger.warn(tableName + ": " + e.getMessage().replace("\n", ""));
             }
@@ -286,6 +266,7 @@ public class DatabaseInitializer {
     }
 
     private static void populateTables(final Connection connection) {
+        logger.info("Populating tables...");
         populateTableHelper(connection, TUPLE_USER_DEPT);
         populateTableHelper(connection, TUPLE_USER_INFO);
         populateTableHelper(connection, TUPLE_PHYSICIAN);

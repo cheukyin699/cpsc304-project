@@ -27,7 +27,6 @@ public class ApplicationMain extends WebSecurityConfigurerAdapter implements Web
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        System.out.println("Adding resource handlers");
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
     }
