@@ -1,6 +1,7 @@
 package org.cpsc304.bigdata.db.dao;
 
 import org.cpsc304.bigdata.db.DatabaseConnectionHandler;
+import org.cpsc304.bigdata.model.Physician;
 import org.cpsc304.bigdata.model.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +28,41 @@ public class UserDAOImpl implements UserDAO {
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1, username);
             final ResultSet set = statement.executeQuery();
-            set.next();
-            return new UserInfo(
-                    username,
-                    set.getString("Name"),
-                    set.getString("Password"),
-                    set.getString("Speciality"),
-                    set.getString("Department"));
+            if (set.next()) {
+                return new UserInfo(
+                        username,
+                        set.getString("Name"),
+                        set.getString("Password"),
+                        set.getString("Speciality"),
+                        set.getString("Department"));
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Physician findPhysicianFromUsername(final String username) {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT * FROM User_Info NATURAL JOIN User_Dept, Physician WHERE Username = ?";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            statement.setString(1, username);
+            final ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                return new Physician(
+                        username,
+                        set.getString("Name"),
+                        set.getString("Password"),
+                        set.getString("Speciality"),
+                        set.getString("Department"),
+                        set.getString("Hospital"));
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             logger.warn(e.getMessage());
             return null;
