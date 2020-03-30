@@ -68,4 +68,17 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
     }
+
+    @Override
+    public void deleteUser(String username) {
+        final Connection connection = handler.getConnection();
+        final String q = "DELETE FROM User_Info WHERE Username = ?";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            statement.setString(1, username);
+            logger.debug("Deleted {} objects", statement.executeUpdate());
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+        }
+    }
 }

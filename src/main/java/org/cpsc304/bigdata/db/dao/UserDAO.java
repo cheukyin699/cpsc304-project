@@ -8,4 +8,6 @@ import org.springframework.stereotype.Component;
 public interface UserDAO {
     UserInfo findUserFromUsername(final String username);
     Physician findPhysicianFromUsername(final String username);
+
+    void deleteUser(final String username);
 }
