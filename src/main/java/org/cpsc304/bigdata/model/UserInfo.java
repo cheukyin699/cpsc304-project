@@ -1,17 +1,17 @@
 package org.cpsc304.bigdata.model;
 
-public class user_info {
+public class UserInfo {
 
     private String username;
     private String name;
     private String password;
-    private user_dept speDept;
+    private UserDept speDept;
 
-    public user_info (String username, String name, String password, String specialty, String dept){
+    public UserInfo(String username, String name, String password, String specialty, String dept){
         this.username = username;
         this.name = name;
         this.password = password;
-        speDept = new user_dept(specialty,dept);
+        speDept = new UserDept(specialty,dept);
     }
 
     public String getName() {

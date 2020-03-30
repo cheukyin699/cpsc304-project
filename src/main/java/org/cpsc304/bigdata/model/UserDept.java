@@ -1,11 +1,11 @@
 package org.cpsc304.bigdata.model;
 
 
-public class user_dept {
+public class UserDept {
     private String specialty;
     private String department;
 
-    public user_dept(String specialty, String department){
+    public UserDept(String specialty, String department){
         this.specialty = specialty;
         this.department = department;
     }

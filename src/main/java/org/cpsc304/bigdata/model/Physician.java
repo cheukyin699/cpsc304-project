@@ -1,14 +1,14 @@
 package org.cpsc304.bigdata.model;
 
-public class physician extends user_info {
+public class Physician extends UserInfo {
 
     private String hospital;
 
-    public physician(String username, String name, String password, String specialty, String dept) {
+    public Physician(String username, String name, String password, String specialty, String dept) {
         super(username, name, password, specialty, dept);
     }
 
-    public physician(String username, String name, String password, String specialty, String dept, String hospital) {
+    public Physician(String username, String name, String password, String specialty, String dept, String hospital) {
         super(username, name, password, specialty, dept);
         this.hospital = hospital;
     }
