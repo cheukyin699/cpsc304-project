@@ -1,17 +1,19 @@
-package org.cpsc304.bigdata.model;
+package org.cpsc304.bigdata.model.People;
 
-public class user_info {
+public abstract class user {
 
     private String username;
     private String name;
     private String password;
-    private user_dept speDept;
+    private String specialty;
+    private String department;
 
-    public user_info (String username, String name, String password, String specialty, String dept){
+    public user(String username, String name, String password, String specialty, String dept){
         this.username = username;
         this.name = name;
         this.password = password;
-        speDept = new user_dept(specialty,dept);
+        this.specialty = specialty;
+        this.department = dept;
     }
 
     public String getName() {
@@ -27,10 +29,10 @@ public class user_info {
     }
 
     public String getDept() {
-        return speDept.getDepartment();
+        return department;
     }
 
     public String getSpe() {
-        return speDept.getSpecialty();
+        return specialty;
     }
 }
