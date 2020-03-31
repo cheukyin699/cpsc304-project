@@ -1,6 +1,6 @@
 package org.cpsc304.bigdata.model.People;
 
-public class patient {
+public class Patient {
     private String id;
     private String patientName;
     private String address;
@@ -9,7 +9,7 @@ public class patient {
     private int sex;
     private String physicianName;
 
-    public patient(String id, String name, String address, String familyHistory, int age, int sex, String physicianName) {
+    public Patient(String id, String name, String address, String familyHistory, int age, int sex, String physicianName) {
         this.id = id;
         this.patientName = name;
         this.address = address;

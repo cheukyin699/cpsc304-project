@@ -8,7 +8,7 @@ public interface PatientDAO {
     void addPatient();
 
     /**
-     * Clears all medical history from a patient. Not sure why you'd want to do that, but
+     * Clears all medical history from a Patient. Not sure why you'd want to do that, but
      * it's there for you just in case you need it.
      */
     void clearMedicalRecords();

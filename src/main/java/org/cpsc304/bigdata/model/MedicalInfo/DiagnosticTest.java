@@ -1,11 +1,11 @@
 package org.cpsc304.bigdata.model.MedicalInfo;
 
-public class diagnosticTest {
+public class DiagnosticTest {
 
     private String testName;
     private int accuracy;
 
-    public diagnosticTest(String testName, int accuracy) {
+    public DiagnosticTest(String testName, int accuracy) {
         this.testName = testName;
         this.accuracy = accuracy;
     }

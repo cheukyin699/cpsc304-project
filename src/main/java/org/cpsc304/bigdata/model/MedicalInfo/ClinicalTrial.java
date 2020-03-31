@@ -1,6 +1,6 @@
 package org.cpsc304.bigdata.model.MedicalInfo;
 
-public class clinicalTrial {
+public class ClinicalTrial {
     private String trialName;
     private float duration;
     private String type;
@@ -8,7 +8,7 @@ public class clinicalTrial {
     private int numParticipants;
     private int isComplete;
 
-    public clinicalTrial(String trialName, float duration, String type, String risk, int numParticipants, int isComplete){
+    public ClinicalTrial(String trialName, float duration, String type, String risk, int numParticipants, int isComplete){
         this.trialName = trialName;
         this.duration = duration;
         this.type = type;

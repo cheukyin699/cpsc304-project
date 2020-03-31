@@ -1,14 +1,14 @@
 package org.cpsc304.bigdata.model.Diseases;
 
-public class infectiousDisease extends disease {
+public class InfectiousDisease extends Disease {
 
     private String transmissionRoute;
 
-    public infectiousDisease(String name, int prevalence, String symptoms) {
+    public InfectiousDisease(String name, int prevalence, String symptoms) {
         super(name, prevalence, symptoms);
     }
 
-    public infectiousDisease(String name, int prevalence, String symptoms, String transmissionRoute) {
+    public InfectiousDisease(String name, int prevalence, String symptoms, String transmissionRoute) {
         super(name, prevalence, symptoms);
         this.transmissionRoute = transmissionRoute;
     }

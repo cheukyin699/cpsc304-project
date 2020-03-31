@@ -1,18 +1,16 @@
 package org.cpsc304.bigdata.model.Diseases;
 
-import org.cpsc304.bigdata.model.Diseases.disease;
-
-public class hereditaryDisease extends disease {
+public class HereditaryDisease extends Disease {
 
     private String heritancePattern;
     private String gene;
     private int genderAffected;
 
-    public hereditaryDisease(String name, int prevalence, String symptoms) {
+    public HereditaryDisease(String name, int prevalence, String symptoms) {
         super(name, prevalence, symptoms);
     }
 
-    public hereditaryDisease(String name, int prevalence, String symptoms, String heritancePattern, String gene, int genderAffected) {
+    public HereditaryDisease(String name, int prevalence, String symptoms, String heritancePattern, String gene, int genderAffected) {
         super(name, prevalence, symptoms);
         this.heritancePattern = heritancePattern;
         this.gene = gene;

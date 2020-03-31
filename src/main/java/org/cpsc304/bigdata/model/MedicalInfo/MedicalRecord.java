@@ -2,7 +2,7 @@ package org.cpsc304.bigdata.model.MedicalInfo;
 
 import java.util.Date;
 
-public class medicalRecord {
+public class MedicalRecord {
 
     private String patientId;
     private Date startDate;
@@ -13,7 +13,7 @@ public class medicalRecord {
     private String med;
     private String lifeStyle;
 
-    public medicalRecord(String patientId, Date start, Date end, String disease, String implants_sur, String allergies, String med, String lifeStyle) {
+    public MedicalRecord(String patientId, Date start, Date end, String disease, String implants_sur, String allergies, String med, String lifeStyle) {
         this.patientId = patientId;
         this.startDate = start;
         this.endDate = end;

@@ -1,6 +1,6 @@
 package org.cpsc304.bigdata.model.MedicalInfo;
 
-public class treatment {
+public class Treatment {
     private String treatmentName;
     private float efficiency;
     private int cost;
@@ -8,7 +8,7 @@ public class treatment {
     private String risks;
 
 
-    public treatment(String treatmentName, float efficiency, int cost, String equipment, String risks){
+    public Treatment(String treatmentName, float efficiency, int cost, String equipment, String risks){
         this.treatmentName = treatmentName;
         this.efficiency = efficiency;
         this.cost = cost;

@@ -5,7 +5,7 @@ public interface DiseaseDAO {
     void linkDiseaseToClinicalTrial();
 
     /**
-     * Converts a given disease into a more specific type of disease.
+     * Converts a given Disease into a more specific type of Disease.
      */
     void toDeficiencyDisease();
     void toHereditaryDisease();

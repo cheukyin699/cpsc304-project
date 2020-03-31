@@ -1,11 +1,11 @@
 package org.cpsc304.bigdata.model.Diseases;
 
-public class organismStrain {
+public class OrganismStrain {
     private String strainName;
     private String familyName;
     private String acronym;
 
-    public organismStrain(String strainName, String familyName, String acronym) {
+    public OrganismStrain(String strainName, String familyName, String acronym) {
         this.strainName = strainName;
         this.familyName = familyName;
         this.acronym = acronym;
