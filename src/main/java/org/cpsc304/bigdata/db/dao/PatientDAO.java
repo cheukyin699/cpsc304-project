@@ -1,12 +1,10 @@
 package org.cpsc304.bigdata.db.dao;
 
-import org.cpsc304.bigdata.model.UserInfo;
-
 import java.util.List;
 
 public interface PatientDAO {
     void findPatientById(final String Id);
-    List<UserInfo> findAssociatedMedicalRecords();
+    List<String> findAssociatedMedicalRecords();
     void addPatient();
 
     /**

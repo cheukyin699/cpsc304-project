@@ -1,7 +1,7 @@
 package org.cpsc304.bigdata.db.dao;
 
-import org.cpsc304.bigdata.model.Physician;
-import org.cpsc304.bigdata.model.UserInfo;
+import org.cpsc304.bigdata.model.People.Physician;
+import org.cpsc304.bigdata.model.People.UserInfo;
 import org.springframework.stereotype.Component;
 
 @Component
