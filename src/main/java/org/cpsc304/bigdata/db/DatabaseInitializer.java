@@ -20,133 +20,109 @@ public class DatabaseInitializer {
             "SuffersFrom",
             "MedicalRecord", "Patient",
             "Strain", "InfectiousOrganism",
-            "InfectiousDisease", "PhysiologicalDisease", "HereditaryDisease", "HPattern", "DeficiencyDisease",
+            "InfectiousDisease", "PhysiologicalDisease",
             "Researcher", "Physician", "User_Info", "User_Dept"
 
     };
     private static final String[] CREATE_TABLES = {
             "CREATE TABLE User_Dept (" +
-                    "Speciality VARCHAR(20) PRIMARY KEY," +
-                    "Department VARCHAR(20)" +
+                    "Speciality VARCHAR2(20) PRIMARY KEY," +
+                    "Department VARCHAR2(20)" +
                     ")",
             "CREATE TABLE User_Info (" +
-                    "Username VARCHAR(15) PRIMARY KEY," +
-                    "Name VARCHAR(20)," +
-                    "Password VARCHAR(15) NOT NULL," +
-                    "Speciality VARCHAR(20)," +
+                    "Username VARCHAR2(15) PRIMARY KEY," +
+                    "Name VARCHAR2(20)," +
+                    "Password VARCHAR2(15) NOT NULL," +
+                    "Speciality VARCHAR2(20)," +
                     "FOREIGN KEY (Speciality) REFERENCES User_Dept(Speciality)" +
                     "ON DELETE SET NULL" +
                     ")",
             "CREATE TABLE Physician (" +
-                    "Username VARCHAR(15) PRIMARY KEY," +
-                    "Hospital VARCHAR(30)," +
+                    "Username VARCHAR2(15) PRIMARY KEY," +
+                    "Hospital VARCHAR2(30)," +
                     "FOREIGN KEY (Username) REFERENCES User_Info(Username)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Researcher (" +
-                    "Username VARCHAR(15) PRIMARY KEY," +
-                    "Institute VARCHAR(30)," +
-                    "NumOfPublications NUMBER(3, 0)," +
+                    "Username VARCHAR2(15) PRIMARY KEY," +
+                    "Institute VARCHAR2(30)," +
                     "FOREIGN KEY (Username) REFERENCES User_Info(Username)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE ClinicalTrial (" +
-                    "TrialName VARCHAR(50) PRIMARY KEY," +
-                    "Duration_Years NUMBER(3, 0)," +
-                    "Type VARCHAR(50)," +
-                    "Risks VARCHAR(50)," +
+                    "TrialName VARCHAR2(50) PRIMARY KEY," +
+                    "Type VARCHAR2(50)," +
                     "Num_Participants NUMBER(3, 0)," +
                     "IsComplete NUMBER(3, 0)," +
                     "CHECK (IsComplete >= 0 AND IsComplete <= 1)" +
                     ")",
             "CREATE TABLE Disease (" +
-                    "Name VARCHAR(30) PRIMARY KEY, " +
+                    "Name VARCHAR2(30) PRIMARY KEY, " +
                     "Prevalence NUMBER(3, 0), " +
-                    "Symptoms VARCHAR(60), " +
+                    "Symptoms VARCHAR2(60), " +
                     "CHECK (Prevalence <= 100 AND Prevalence >= 0)" +
                     ")",
             "CREATE TABLE Disease_ClinicalTrial (" +
-                    "DName VARCHAR(30)," +
-                    "CTName VARCHAR (50), " +
+                    "DName VARCHAR2(30)," +
+                    "CTName VARCHAR2 (50), " +
                     "PRIMARY KEY (DName, CTName), " +
                     "FOREIGN KEY (DName) REFERENCES Disease(Name), " +
                     "FOREIGN KEY (CTName) REFERENCES ClinicalTrial(TrialName)" +
                     "ON DELETE CASCADE" +
                     ")",
-            "CREATE TABLE DeficiencyDisease (" +
-                    "Name VARCHAR(30) PRIMARY KEY," +
-                    "DietaryElements VARCHAR(20)," +
-                    "FOREIGN KEY (Name) REFERENCES Disease(Name)" +
-                    "ON DELETE CASCADE" +
-                    ")",
-            "CREATE TABLE HPattern (" +
-                    "Pattern VARCHAR(20) PRIMARY KEY," +
-                    "GenderAffected NUMBER(3, 0)," +
-                    "CHECK (GenderAffected < 5 AND GenderAffected >= 0)" +
-                    ")",
-            "CREATE TABLE HereditaryDisease (" +
-                    "Name VARCHAR(30) PRIMARY KEY," +
-                    "HeritancePattern VARCHAR(20)," +
-                    "Genes VARCHAR(20)," +
-                    "FOREIGN KEY (HeritancePattern) REFERENCES HPattern(Pattern)" +
-                    "ON DELETE SET NULL" +
-                    ")",
             "CREATE TABLE PhysiologicalDisease (" +
-                    "Name VARCHAR(30) PRIMARY KEY," +
-                    "AssociatedArea VARCHAR(30)," +
+                    "Name VARCHAR2(30) PRIMARY KEY," +
+                    "AssociatedArea VARCHAR2(30)," +
                     "FOREIGN KEY (Name) REFERENCES Disease(Name)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE InfectiousDisease (" +
-                    "Name VARCHAR(30) PRIMARY KEY," +
-                    "TransmissionRoute VARCHAR(15)," +
+                    "Name VARCHAR2(30) PRIMARY KEY," +
+                    "TransmissionRoute VARCHAR2(15)," +
                     "FOREIGN KEY (Name) REFERENCES Disease(Name)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE InfectiousOrganism (" +
-                    "FamilyName VARCHAR(20) PRIMARY KEY," +
-                    "ID_Name VARCHAR(20) UNIQUE," +
-                    "CommonName VARCHAR(20)," +
+                    "FamilyName VARCHAR2(20) PRIMARY KEY," +
+                    "ID_Name VARCHAR2(20) UNIQUE," +
+                    "CommonName VARCHAR2(20)," +
                     "FOREIGN KEY (ID_Name) REFERENCES InfectiousDisease(Name)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Strain (" +
-                    "StrainName VARCHAR(20)," +
-                    "FamilyName VARCHAR(20)," +
-                    "Acronym VARCHAR(10)," +
+                    "StrainName VARCHAR2(20)," +
+                    "FamilyName VARCHAR2(20)," +
+                    "Acronym VARCHAR2(20)," +
                     "PRIMARY KEY (StrainName, FamilyName)," +
                     "FOREIGN KEY (FamilyName) REFERENCES InfectiousOrganism(FamilyName)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Patient (" +
-                    "ID VARCHAR(20) PRIMARY KEY," +
-                    "Name VARCHAR(20)," +
-                    "Address VARCHAR(50)," +
-                    "Family_History VARCHAR(60)," +
+                    "ID VARCHAR2(20) PRIMARY KEY," +
+                    "Name VARCHAR2(20)," +
+                    "Family_History VARCHAR2(60)," +
                     "Age NUMBER(3, 0)," +
                     "Sex NUMBER(3, 0)," +
-                    "P_Username VARCHAR(20) NOT NULL," +
+                    "P_Username VARCHAR2(20) NOT NULL," +
                     "FOREIGN KEY (P_Username) REFERENCES Physician(Username)," +
                     "CHECK (Sex <= 1 AND Sex >= 0)" +
                     ")",
             "CREATE TABLE MedicalRecord (" +
-                    "PatientID VARCHAR(20)," +
+                    "PatientID VARCHAR2(20)," +
                     "Start_date DATE," +
                     "End_date DATE," +
-                    "Disease VARCHAR(100)," +
-                    "Implants_Surgeries VARCHAR(50)," +
-                    "Allergies VARCHAR(50)," +
-                    "Medication VARCHAR(50)," +
-                    "Lifestyle VARCHAR(50)," +
+                    "Disease VARCHAR2(100)," +
+                    "Implants_Surgeries VARCHAR2(50)," +
+                    "Allergies VARCHAR2(50)," +
+                    "Medication VARCHAR2(50)," +
                     "PRIMARY KEY (PatientID, Start_date, Disease)," +
                     "FOREIGN KEY (PatientID) REFERENCES Patient(ID)" +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE SuffersFrom (" +
-                    "P_ID VARCHAR(20)," +
-                    "D_Name VARCHAR(100)," +
+                    "P_ID VARCHAR2(20)," +
+                    "D_Name VARCHAR2(100)," +
                     "Duration NUMBER(3, 0)," +
-                    "SeverityIndex FLOAT," +
                     "PRIMARY KEY (P_ID, D_Name)," +
                     "FOREIGN KEY (P_ID) REFERENCES Patient(ID)" +
                     "ON DELETE CASCADE," +
@@ -154,15 +130,14 @@ public class DatabaseInitializer {
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Treatment (" +
-                    "TreatmentName VARCHAR(20) PRIMARY KEY," +
+                    "TreatmentName VARCHAR2(20) PRIMARY KEY," +
                     "Efficiency FLOAT," +
-                    "Cost NUMBER(3, 0)," +
-                    "Equipment VARCHAR(20)," +
-                    "Risks VARCHAR(100)" +
+                    "Equipment VARCHAR2(20)," +
+                    "Risks VARCHAR2(60)" +
                     ")",
             "CREATE TABLE ClinicalTrial_Treatment (" +
-                    "CTName VARCHAR(100)," +
-                    "TName VARCHAR(20)," +
+                    "CTName VARCHAR2(100)," +
+                    "TName VARCHAR2(20)," +
                     "PRIMARY KEY(CTName, TName)," +
                     "FOREIGN KEY(CTName) REFERENCES ClinicalTrial(TrialName)" +
                     "ON DELETE CASCADE," +
@@ -170,8 +145,8 @@ public class DatabaseInitializer {
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE WorkOn (" +
-                    "R_Username VARCHAR(20)," +
-                    "CT_Name VARCHAR(20)," +
+                    "R_Username VARCHAR2(20)," +
+                    "CT_Name VARCHAR2(20)," +
                     "PRIMARY KEY (R_Username, CT_Name)," +
                     "FOREIGN KEY (R_Username) REFERENCES Researcher(Username)" +
                     "ON DELETE CASCADE," +
@@ -179,13 +154,13 @@ public class DatabaseInitializer {
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE DiagnosticTest (" +
-                    "DT_Name VARCHAR(20) PRIMARY KEY," +
+                    "DT_Name VARCHAR2(20) PRIMARY KEY," +
                     "Accuracy FLOAT" +
                     ")",
             "CREATE TABLE DiagnosedBy (" +
-                    "DT_Name VARCHAR(20)," +
-                    "D_Name VARCHAR(30)," +
-                    "Target VARCHAR(20)," +
+                    "DT_Name VARCHAR2(20)," +
+                    "D_Name VARCHAR2(30)," +
+                    "Target VARCHAR2(20)," +
                     "PRIMARY KEY (DT_Name, D_Name)," +
                     "FOREIGN KEY (DT_Name) REFERENCES DiagnosticTest(DT_Name)" +
                     "ON DELETE CASCADE," +
@@ -215,43 +190,19 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_RESEARCHER = {
-            "INSERT INTO Researcher VALUES('jhopps', 'Johns Hopkins Hospital', '32')",
-            "INSERT INTO Researcher VALUES('vapgar', 'University of British Columbia', '2')",
-            "INSERT INTO Researcher VALUES('aheale', 'University of Washington', '10')"
+            "INSERT INTO Researcher VALUES('jhopps', 'Johns Hopkins Hospital')",
+            "INSERT INTO Researcher VALUES('vapgar', 'University of British Columbia')",
+            "INSERT INTO Researcher VALUES('aheale', 'University of Washington')"
     };
 
     private static final String[] TUPLE_DISEASE = {
-            "INSERT INTO Disease VALUES('Iron deficiency', '15', 'Unusual tiredness paleness shortness of breath')",
             "INSERT INTO Disease VALUES('Glaucoma', '9', 'Blind spots in sides or central vision in both eyes')",
-            "INSERT INTO Disease VALUES('Pellagra', '3', 'Diarrhea, abdominal pain, weakness')",
             "INSERT INTO Disease VALUES('Avian influenza', '25', 'dry cough, fever, sore throat, headache, runny nose')",
             "INSERT INTO Disease VALUES('AIDS', '3', 'Swollen lymph nodes, fever, fatigue, rash')",
-            "INSERT INTO Disease VALUES('Scurvy', '4', 'Anemia, bleeding, exhaustion')",
-            "INSERT INTO Disease VALUES('Sickle cell anemia', '2', 'Pain, fatigue, spleen and liver congestion, dactylitis')",
-            "INSERT INTO Disease VALUES('Hemophilia', '4', 'blood in urine and stool, excessive bleeding, bruises')",
-            "INSERT INTO Disease VALUES('Lebers optic neuropathy', '1', 'Blurring and clouding of vision')",
             "INSERT INTO Disease VALUES('Diabetes', '12', 'Thirst, hunger, frequent urination, weight loss')",
             "INSERT INTO Disease VALUES('Asthma', '7', 'Tight chest, short breath, wheezing')",
             "INSERT INTO Disease VALUES('Dengue fever', '5', 'High fever, headache, muscle pain')",
 
-    };
-
-    private static final String[] TUPLE_DEFICIENCY_DISEASE = {
-            "INSERT INTO DeficiencyDisease VALUES('Iron deficiency', 'Iron')",
-            "INSERT INTO DeficiencyDisease VALUES('Pellagra', 'Niacin')",
-            "INSERT INTO DeficiencyDisease VALUES('Scurvy', 'Ascorbic acid')"
-    };
-
-    private static final String[] TUPLE_HEREDITARY_DISEASE = {
-            "INSERT INTO HereditaryDisease VALUES ('Sickle cell anemia', 'Autosomal recessive', 'Hemoglobin-Beta gene')",
-            "INSERT INTO HereditaryDisease VALUES ('Hemophilia', 'X-linked recessive', 'F8 gene')",
-            "INSERT INTO HereditaryDisease VALUES ('Lebers optic neuropathy', 'Mitochondrial', 'MT-ND1 gene')"
-    };
-
-    private static final String[] TUPLE_HPATTERN = {
-            "INSERT INTO HPattern VALUES ('Mitochondrial', '0')",
-            "INSERT INTO HPattern VALUES ('Autosomal recessive','0')",
-            "INSERT INTO HPattern VALUES ('X-linked recessive', '3')"
     };
 
     private static final String[] TUPLE_PHYSIOLOGICAL_DISEASE = {
@@ -279,24 +230,24 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_PATIENT = {
-            "INSERT INTO Patient VALUES('1', 'John Smith', '1020 Queens Ave. Vancouver'," +
+            "INSERT INTO Patient VALUES('1', 'John Smith'," +
                     " 'Mother: Meniere’s | Grandmother: Cardiac arrest', '31', '0', 'hbtaussig')",
-            "INSERT INTO Patient VALUES('2', 'Bob Baker', '756 Kings Dr. Burnaby', NULL, '20', '0', 'zjanzekovic')",
-            "INSERT INTO Patient VALUES('3', 'Ann Brown', '123 Lake St. North Vancouver'," +
+            "INSERT INTO Patient VALUES('2', 'Bob Baker', NULL, '20', '0', 'zjanzekovic')",
+            "INSERT INTO Patient VALUES('3', 'Ann Brown'," +
                     " 'Father: cystic fibrosis | Brother: follicular lymphoma', '20', '0', 'zjanzekovic')"
     };
 
     private static final String[] TUPLE_MEDICAL_RECORD = {
-            "INSERT INTO MedicalRecord VALUES('1', '1999-04-23', '1999-05-08', 'Pneumonia', NULL, 'tetracycline, tree nuts'" +
-                    "'Ciprofloxacin', 'active, vegan, high stress')",
+            "INSERT INTO MedicalRecord VALUES('1', '1999-04-23', '1999-05-08', 'Pneumonia', NULL, 'tetracycline, tree nuts'," +
+                    "'Ciprofloxacin')",
             "INSERT INTO MedicalRecord VALUES('2', '2012-11-01', '2012-11-08', 'Glaucoma', 'Argon laser trabeculoplasty'," +
-                    " 'penicillin', 'morphine', 'sedentary, alcoholic')",
+                    " 'penicillin', 'morphine')",
     };
 
     private static final String[] TUPLE_SUFFERS_FROM = {
-            "INSERT INTO SuffersFrom VALUES('1', 'Iron deficiency', 496, 0.12)",
-            "INSERT INTO SuffersFrom VALUES('1', 'Avian influenza', 20, 0.21)",
-            "INSERT INTO SuffersFrom VALUES('2', 'Glaucoma', 670, 0.35)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Iron deficiency', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Avian influenza', 20)",
+            "INSERT INTO SuffersFrom VALUES('2', 'Glaucoma', 670)",
     };
 
     private static final String[] TUPLE_WORK_ON = {
@@ -320,28 +271,22 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_TREATMENT = {
-            "INSERT INTO Treatment VALUES('Hemodialysis', 0.76, 30000, 'Dialysis machine', " +
+            "INSERT INTO Treatment VALUES('Hemodialysis', 0.76, 'Dialysis machine', " +
                     "'hypotension, anemia, blood clot, infection')",
-            "INSERT INTO Treatment VALUES('Alpelisib', 0.67, 15500, NULL, 'severe hypersensitivity, anaphylaxis, anaphylactic shock')",
-            "INSERT INTO Treatment VALUES('Implantable cardioverter defibrillator', 36000, 'surgery room, pacemaker', " +
+            "INSERT INTO Treatment VALUES('Alpelisib', 0.67, NULL, 'severe hypersensitivity, anaphylaxis, anaphylactic shock')",
+            "INSERT INTO Treatment VALUES('Implantable cardioverter defibrillator', 'surgery room, pacemaker', " +
                     "'infection, allergic reaction, bleeding')",
-            "INSERT INTO Treatment VALUES('Ferrous sulfate', 30, NULL, " +
+            "INSERT INTO Treatment VALUES('Ferrous sulfate', NULL, " +
                     "'constipation, diarrhea, GI irritation')"
     };
 
     private static final String[] TUPLE_CLINICAL_TRIAL = {
             "INSERT INTO ClinicalTrial VALUES('Lactoferrin versus Ferrous Sulfate in Iron-deficiency During Pregnancy',"+
-                    "'0.9', 'Randomized Parallel assignment, no masking', " +
-                    "'Diarrhea, fatigue, chills, loss of appetite', '98', " +
-                    "'1')",
+                    "'Randomized Parallel assignment, no masking', '98', '1')",
             "INSERT INTO ClinicalTrial VALUES('Alpelisib SOLAR-1 Phase 3'," +
-                    "'5', 'Phase III randomized double-blind, triple masking', " +
-                    "'Severe hypersensitivity, anaphylaxis, anaphylactic shock', '572', " +
-                    "'0')",
+                    "'Phase III randomized double-blind, triple masking', + '18', '0')",
             "INSERT INTO ClinicalTrial VALUES('Cerebral Blood Flow During Hemodialysis'," +
-                    "'5', 'Single group assignment, no masking', " +
-                    "'hypotension, anemia, blood clot, infection', '15', " +
-                    "'1')"
+                    " 'Single group assignment, no masking', '15', '1')"
     };
 
     private static final String[] TUPLE_CLINICAL_TRIAL_TREATMENT = {
@@ -407,8 +352,8 @@ public class DatabaseInitializer {
         logger.info("Populating tables...");
 
         String[][] tables = new String[][] {
-                TUPLE_USER_DEPT,TUPLE_USER_INFO, TUPLE_PHYSICIAN, TUPLE_RESEARCHER, TUPLE_DISEASE, TUPLE_DEFICIENCY_DISEASE,
-                TUPLE_HPATTERN, TUPLE_HEREDITARY_DISEASE, TUPLE_PHYSIOLOGICAL_DISEASE, TUPLE_INFECTIOUS_DISEASE,
+                TUPLE_USER_DEPT,TUPLE_USER_INFO, TUPLE_PHYSICIAN, TUPLE_RESEARCHER, TUPLE_DISEASE,
+                TUPLE_PHYSIOLOGICAL_DISEASE, TUPLE_INFECTIOUS_DISEASE,
                 TUPLE_INFECTIOUS_ORGANISM, TUPLE_STRAIN, TUPLE_PATIENT, TUPLE_MEDICAL_RECORD, TUPLE_SUFFERS_FROM, TUPLE_WORK_ON,
                 TUPLE_DIAGNOSTIC_TEST, TUPLE_DIAGNOSED_BY, TUPLE_TREATMENT, TUPLE_CLINICAL_TRIAL, TUPLE_CLINICAL_TRIAL_TREATMENT,
                 TUPLE_DISEASE_CLINICAL_TRIAL
