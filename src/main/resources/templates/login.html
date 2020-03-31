@@ -1,26 +1,86 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<title>Login</title>-->
+<!--<script th:src="@{/js/bootstrap.min.js}"></script>-->
+<!--<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">-->
+
+<!--</head>-->
+
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Disorders Prognosis</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
-    <div class="container">
-        <form action="POST">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
-                <small id="usernameHelp" class="form-text text-muted">Your username you signed up with.</small>
-            </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
-                <small id="passwordHelp" class="form-text text-muted">Never share your password with others.</small>
-            </div>
-        </form>
+<style>
+
+    body{
+      background-image: url("https://2019.igem.org/wiki/images/e/e8/T--british_columbia--full_homepage_noseagull_resized.jpg");
+      background-repeat: no-repeat;
+      background-position: right;
+      background-size: cover;
+    }
+
+    nav{
+      opacity: 0.8;
+      font-size: 1.1em;
+    }
+
+    .container{
+      width: 100%;
+      height: 100%;
+    }
+
+    .btn{
+      width: 20%;
+      height: 20%;
+      border-color: #E6E6FA;
+    }
+
+    .btn:hover{
+      background-color: #E6E6FA;
+    }
+</style>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Big Data</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#"></a>
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="#"></a>
+            <a class="nav-item nav-link active" href="login.html">Login <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#"></a>
+            <a class="nav-item nav-link" href="query.html">Query</a>
+            <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true" >Query</a> -->
+            <a class="nav-item nav-link" href="#"></a>
+            <a class="nav-item nav-link" href="#">About us</a>
+        </div>
     </div>
+</nav>
+<div class="container">
+    <form action="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+            <small id="usernameHelp" class="form-text text-muted">Your username you signed up with.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
+            <small id="passwordHelp" class="form-text text-muted">Never share your password with others.</small>
+        </div>
+    </form>
+    <button class="btn" type="button" onclick="window.location.href = 'query.html'">Login</button>
+</div>
 </body>
 </html>
