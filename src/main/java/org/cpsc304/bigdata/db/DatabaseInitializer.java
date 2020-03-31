@@ -405,28 +405,18 @@ public class DatabaseInitializer {
 
     private static void populateTables(final Connection connection) {
         logger.info("Populating tables...");
-        populateTableHelper(connection, TUPLE_USER_DEPT);
-        populateTableHelper(connection, TUPLE_USER_INFO);
-        populateTableHelper(connection, TUPLE_PHYSICIAN);
-        populateTableHelper(connection, TUPLE_RESEARCHER);
-        populateTableHelper(connection, TUPLE_DISEASE);
-        populateTableHelper(connection, TUPLE_DEFICIENCY_DISEASE);
-        populateTableHelper(connection, TUPLE_HPATTERN);
-        populateTableHelper(connection, TUPLE_HEREDITARY_DISEASE);
-        populateTableHelper(connection, TUPLE_PHYSIOLOGICAL_DISEASE);
-        populateTableHelper(connection, TUPLE_INFECTIOUS_DISEASE);
-        populateTableHelper(connection, TUPLE_INFECTIOUS_ORGANISM);
-        populateTableHelper(connection, TUPLE_STRAIN);
-        populateTableHelper(connection, TUPLE_PATIENT);
-        populateTableHelper(connection, TUPLE_MEDICAL_RECORD);
-        populateTableHelper(connection, TUPLE_SUFFERS_FROM);
-        populateTableHelper(connection, TUPLE_WORK_ON);
-        populateTableHelper(connection, TUPLE_DIAGNOSTIC_TEST );
-        populateTableHelper(connection, TUPLE_DIAGNOSED_BY);
-        populateTableHelper(connection, TUPLE_TREATMENT);
-        populateTableHelper(connection, TUPLE_CLINICAL_TRIAL);
-        populateTableHelper(connection, TUPLE_CLINICAL_TRIAL_TREATMENT);
-        populateTableHelper(connection, TUPLE_DISEASE_CLINICAL_TRIAL);
+
+        String[][] tables = new String[][] {
+                TUPLE_USER_DEPT,TUPLE_USER_INFO, TUPLE_PHYSICIAN, TUPLE_RESEARCHER, TUPLE_DISEASE, TUPLE_DEFICIENCY_DISEASE,
+                TUPLE_HPATTERN, TUPLE_HEREDITARY_DISEASE, TUPLE_PHYSIOLOGICAL_DISEASE, TUPLE_INFECTIOUS_DISEASE,
+                TUPLE_INFECTIOUS_ORGANISM, TUPLE_STRAIN, TUPLE_PATIENT, TUPLE_MEDICAL_RECORD, TUPLE_SUFFERS_FROM, TUPLE_WORK_ON,
+                TUPLE_DIAGNOSTIC_TEST, TUPLE_DIAGNOSED_BY, TUPLE_TREATMENT, TUPLE_CLINICAL_TRIAL, TUPLE_CLINICAL_TRIAL_TREATMENT,
+                TUPLE_DISEASE_CLINICAL_TRIAL
+        };
+
+        for (String[] table: tables) {
+            populateTableHelper(connection, table);
+        }
     }
 
 
