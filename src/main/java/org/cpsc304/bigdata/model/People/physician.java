@@ -1,6 +1,6 @@
-package org.cpsc304.bigdata.model;
+package org.cpsc304.bigdata.model.People;
 
-public class physician extends user_info {
+public class physician extends user {
 
     private String hospital;
 
