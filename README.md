@@ -1,6 +1,6 @@
 # Genetic Disorders Prognosis Diagnosis
 
-[![Build Status](https://travis-ci.com/cheukyin699/wii-remote-tt.svg?branch=master)](https://travis-ci.com/cheukyin699/wii-remote-tt)
+[![Build Status](https://travis-ci.com/cheukyin699/cpsc304-project.svg?branch=master)](https://travis-ci.com/cheukyin699/cpsc304-project)
 
 ## Setup
 
