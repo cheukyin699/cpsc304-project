@@ -1,5 +1,17 @@
 package org.cpsc304.bigdata.db.dao;
 
+import org.cpsc304.bigdata.db.DatabaseConnectionHandler;
+import org.cpsc304.bigdata.model.Diseases.Disease;
+import org.cpsc304.bigdata.model.MedicalInfo.Treatment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class DiseaseTreatmentDAOImpl {
 
     @Autowired
