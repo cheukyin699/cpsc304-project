@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Disorders Prognosis</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 
@@ -52,65 +53,79 @@
       background-color: #9F9A9F;
     }
 
+
+
+
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Big Data</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link" href="login.html">Login</a>
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true" >Query</a>
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link active" href="team.html">About us <span class="sr-only">(current)</span></a>
+    <div class="container">
+        <a class="navbar-brand" href="/">Big Data</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#"></a>
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link" href="#"></a>
+                <a class="nav-item nav-link" th:href="@{/login}">Login</a>
+                <a class="nav-item nav-link" href="#"></a>
+                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Query</a>
+                <a class="nav-item nav-link" href="#"></a>
+                <a class="nav-item nav-link active" href="team.html">About us <span class="sr-only">(current)</span></a>
+            </div>
         </div>
     </div>
 </nav>
 
 <div class="container">
-<h2 style="padding-top: 2%;">Our team</h2>
-<div class="team">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Cheuk Yin Ng</h5>
-      <p class="card-text">cheukyin.ng@alumni.ubc.ca</p>
+    <h2 style="padding-top: 2%;">Our team</h2>
+    <div class="team">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Cheuk Yin Ng</h5>
+                <p class="card-text">cheukyin.ng@alumni.ubc.ca</p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Sarah Ng</h5>
+                <p class="card-text">sarah-n@live.ca</p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Emilia (Xinyi) Chen</h5>
+                <p class="card-text">emiliac0717@gmail.com</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Sarah Ng</h5>
-      <p class="card-text">sarah-n@live.ca</p>
+    <h2 style="padding-top: 2%;"> Project Introduction</h2>
+    <div class="project">
+        <p>The domain we are going to model is genetic disorders. We want to design a database to keep track of the
+            related information on genetic disorders
+            for physicians to use for diagnostic purposes. The aspects of genetic diseases that we will be modeling will
+            be about the diagnostic features and
+            methods of those diseases. This includes the type of diseases, medical diagnostic tests, inheritance
+            pattern, symptoms, and markers for diagnosis
+            and prognosis. There will be a number of different diseases and subtypes of each disease. Some of them may
+            share the same diagnostic tests, but
+            depending on the disease, different biological markers are associated. </p>
+        <p>We anticipate two different types of users - physicians who will be able to use the database as a diagnostic
+            tool for genetic disorders and researchers
+            who will be able to insert new disorders or modify attributes of existing disorders. Physicians will be able
+            to query presenting signs and symptoms to
+            determine which diagnostic tests to perform, and then query the test results to receive a list of possible
+            diagnoses. Researchers will be able to modify
+            the information in the database to update details of diseases as new diagnostic markers, treatment options,
+            and subtypes are identified.</p>
+
     </div>
-  </div>
-
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Emilia (Xinyi) Chen</h5>
-      <p class="card-text">emiliac0717@gmail.com</p>
-    </div>
-  </div>
-</div>
-
-<h2 style="padding-top: 2%;"> Project Introduction</h2>
-<div class="project">
-  <p>The domain we are going to model is genetic disorders. We want to design a database to keep track of the related information on genetic disorders
-     for physicians to use for diagnostic purposes. The aspects of genetic diseases that we will be modeling will be about the diagnostic features and
-     methods of those diseases. This includes the type of diseases, medical diagnostic tests, inheritance pattern, symptoms, and markers for diagnosis
-     and prognosis. There will be a number of different diseases and subtypes of each disease. Some of them may share the same diagnostic tests, but
-     depending on the disease, different biological markers are associated. </p>
-  <p>We anticipate two different types of users - physicians who will be able to use the database as a diagnostic tool for genetic disorders and researchers
-     who will be able to insert new disorders or modify attributes of existing disorders. Physicians will be able to query presenting signs and symptoms to
-    determine which diagnostic tests to perform, and then query the test results to receive a list of possible diagnoses. Researchers will be able to modify
-    the information in the database to update details of diseases as new diagnostic markers, treatment options, and subtypes are identified.</p>
-
-</div>
 
 
 </div>

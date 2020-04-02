@@ -2,67 +2,57 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Disorders Prognosis</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 </head>
 
 
 <style>
-    body{
+    body {
       background-image: url("https://2019.igem.org/wiki/images/e/e8/T--british_columbia--full_homepage_noseagull_resized.jpg");
       background-repeat: no-repeat;
       background-position: right;
       background-size: cover;
     }
 
-    nav{
+    nav {
       opacity: 0.8;
       font-size: 1.1em;
     }
 
-    .container{
-      width: 100%;
-      height: 100%;
-    }
-
-    .welcome_content{
+    .welcome_content {
       padding-top: 2%;
       text-align: center;
     }
 
-    .welcome_content div{
+    .welcome_content div {
       padding-bottom: 5%;
     }
 
-    .btn{
-      width: 30%;
-      height: 20%;
-      border-color: rgba(230, 230, 250, 0.5);;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background-color: rgba(230, 230, 250, 0.5);
-    }
 
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Big Data</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link" href="login.html">Login</a>
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true" >Query</a>
-            <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link" href="team.html">About us</a>
+    <div class="container">
+        <a class="navbar-brand" href="/">Big Data</a>
+        <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#"></a>
+                <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#"></a>
+                <a class="nav-item nav-link" th:href="@{/login}">Login</a>
+                <a class="nav-item nav-link" href="#"></a>
+                <a aria-disabled="true" class="nav-item nav-link disabled" href="#" tabindex="-1">Query</a>
+                <a class="nav-item nav-link" href="#"></a>
+                <a class="nav-item nav-link" href="team.html">About us</a>
+            </div>
         </div>
     </div>
 </nav>
@@ -75,12 +65,8 @@
             <p> April 2020 (c) </p>
         </div>
 
-        <div class="db">
-            Oracle database version: <span th:text="${version}"></span>
-        </div>
         <div class="btns">
-            <button class="btn" type="button" id="btn" onclick="window.location.href = 'login.html'">Sign In</button>
-            <button class="btn" type="button" id="btn" onclick="window.location.href = 'login.html'">Sign Up</button>
+            <a class="btn btn-primary" id="btn" th:href="@{/login}" type="button">Sign In</a>
         </div>
     </div>
 </div>
