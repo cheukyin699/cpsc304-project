@@ -25,9 +25,6 @@ public class TestController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap map) {
-//        map.addAttribute("version", dbHandler.getVersion());
-        map.addAttribute("user", userDAO.findUserFromUsername("hbtaussig"));
-        logger.info(patientDAO.findOldestPatientsPerPhysicians().toString());
         return "index";
     }
 }

@@ -36,7 +36,7 @@ public class DatabaseConnectionHandler implements DataSource {
                 logger.error("Could not connect to oracle with " + user + " and " + pwd);
             } else {
                 logger.info("Connected to remote oracle database");
-//                DatabaseInitializer.initDatabase(connection);
+                DatabaseInitializer.initDatabase(connection);
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());

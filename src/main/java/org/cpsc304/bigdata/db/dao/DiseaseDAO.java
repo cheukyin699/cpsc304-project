@@ -13,6 +13,7 @@ public interface DiseaseDAO {
     List<Disease> findDiseaseBySymptom(final String symptom);
 
     void linkDiseaseToClinicalTrial(Disease disease, ClinicalTrial clinicalTrial);
+    void deleteDisease(final String name);
 
     /**
      * Converts a given Disease into a more specific type of Disease.

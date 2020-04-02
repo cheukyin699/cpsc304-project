@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--<head>-->
 <!--<meta charset="UTF-8">-->
 <!--<title>Login</title>-->
@@ -12,8 +12,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Disorders Prognosis</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/query.js}"></script>
 </head>
 
 <style>
@@ -114,11 +116,11 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#"></a>
-                <a class="nav-item nav-link" href="index.html">Home</a>
+                <a class="nav-item nav-link" th:href="@{/}">Home</a>
                 <a class="nav-item nav-link" href="#"></a>
-                <a class="nav-item nav-link" href="login.html">Login</a>
+                <a class="nav-item nav-link" th:href="@{/login}">Login</a>
                 <a class="nav-item nav-link" href="#"></a>
-                <a class="nav-item nav-link active" href="query.html">Query<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" th:href="@{/query}">Query<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="#"></a>
                 <a class="nav-item nav-link" href="team.html">About us</a>
             </div>
@@ -151,35 +153,35 @@
 
         <div class="card" style="width: 100%">
             <div class="card-body" style='height: 80vh;'>
-                <form class="form-inline" action="/action_page.php">
+                <div class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Disease Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input id="disease-name" type="text" class="form-control">
+                    </div>
+                    <button id="get-disease" type="button" class="btn btn-secondary" style="margin-bottom: 2%;">
+                        Search
+                    </button>
+                    <button type="button" class="btn btn-secondary">Add</button>
+
+                    <div class="form-group" style="padding-bottom: 2%;">
+                        <label>Clinical Trial Name:</label>
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary" id="#disease_search" style="margin-bottom: 2%;">
                         Search
                     </button>
-                    <button type="button" class="btn btn-secondary" id="#disease_add">Add</button>
-
-                    <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Clinical Trial Name:</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <button type="button" class="btn btn-secondary" id="#disease_search" style="margin-bottom: 2%;">
-                        Search
-                    </button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Disease Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                         <label>Clinical Trial Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary" id="#disease_search" style="margin-bottom: 2%;">
                         Add
                     </button>
-                </form>
-                <table class="table">
+                </div>
+                <table class="table" id="disease-table">
                     <thead>
                     <tr>
                         <th scope="col">Disease Name</th>
@@ -254,14 +256,14 @@
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Clinical Trial Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary" id="#clinical_trail_search">Search</button>
                     <button type="button" class="btn btn-secondary" id="#clinical_trail_add">Add</button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Disease Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary" id="#clinicalTrail_search"
                             style="margin-bottom: 2%;">Search
@@ -269,9 +271,9 @@
 
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Clinical Trial Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                         <label>Disease Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary" id="#clinicalTrail_search"
                             style="margin-bottom: 2%;">Add
@@ -352,14 +354,14 @@
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Treatment Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
                     <button type="button" class="btn btn-secondary">Add</button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Disease Name:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
                 </form>
@@ -426,7 +428,7 @@
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary">Search</button>
                     <button type="button" class="btn btn-secondary">Add</button>
@@ -517,7 +519,7 @@
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <button type="button" class="btn btn-secondary">Search</button>
                     <button type="button" class="btn btn-secondary">Add</button>

@@ -35,20 +35,20 @@ public class DatabaseInitializer {
                     "Name VARCHAR2(50)," +
                     "Password VARCHAR2(30) NOT NULL," +
                     "Speciality VARCHAR2(30)," +
-                    "FOREIGN KEY (Speciality) REFERENCES User_Dept(Speciality)" +
+                    "FOREIGN KEY (Speciality) REFERENCES User_Dept(Speciality) " +
                     "ON DELETE SET NULL" +
                     ")",
             "CREATE TABLE Physician (" +
                     "Username VARCHAR2(30) PRIMARY KEY," +
                     "Hospital VARCHAR2(30)," +
-                    "FOREIGN KEY (Username) REFERENCES User_Info(Username)" +
+                    "FOREIGN KEY (Username) REFERENCES User_Info(Username) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Researcher (" +
                     "Username VARCHAR2(15) PRIMARY KEY," +
                     "Institute VARCHAR2(30)," +
                     "NumOfPublications INTEGER," +
-                    "FOREIGN KEY (Username) REFERENCES User_Info(Username)" +
+                    "FOREIGN KEY (Username) REFERENCES User_Info(Username) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE ClinicalTrial (" +
@@ -64,41 +64,47 @@ public class DatabaseInitializer {
                     "Symptoms VARCHAR2(100), " +
                     "CHECK (Prevalence <= 100 AND Prevalence >= 0)" +
                     ")",
+            "CREATE TABLE Treatment (" +
+                    "TreatmentName VARCHAR2(100) PRIMARY KEY," +
+                    "Efficiency FLOAT," +
+                    "Equipment VARCHAR2(100)," +
+                    "Risks VARCHAR2(100)" +
+                    ")",
             "CREATE TABLE Disease_Treatment (" +
                     "DName VARCHAR2(30), " +
-                    "TName VARCHAR2(100)" +
-                    "PRIMARY KEY (Dname, Tname)," +
-                    "FOREIGN KEY Dname REFERENCES Disease(Name)" +
+                    "TName VARCHAR2(100)," +
+                    "PRIMARY KEY (DName, TName)," +
+                    "FOREIGN KEY (DName) REFERENCES Disease(Name) " +
                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY Tname REFERENCES Treatment(TreatmentName)" +
+                    "FOREIGN KEY (TName) REFERENCES Treatment(TreatmentName) " +
                     "ON DELETE CASCADE" +
                     ")",
              "CREATE TABLE Disease_ClinicalTrial (" +
                     "DName VARCHAR2(50)," +
                     "CTName VARCHAR2 (200)," +
                     "PRIMARY KEY (DName, CTName)," +
-                    "FOREIGN KEY (DName) REFERENCES Disease(Name)" +
-                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY (CTName) REFERENCES ClinicalTrial(TrialName)" +
+                    "FOREIGN KEY (DName) REFERENCES Disease(Name) " +
+                    "ON DELETE CASCADE," +
+                    "FOREIGN KEY (CTName) REFERENCES ClinicalTrial(TrialName) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE PhysiologicalDisease (" +
                     "Name VARCHAR2(30) PRIMARY KEY," +
                     "AssociatedArea VARCHAR2(30)," +
-                    "FOREIGN KEY (Name) REFERENCES Disease(Name)" +
+                    "FOREIGN KEY (Name) REFERENCES Disease(Name) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE InfectiousDisease (" +
                     "Name VARCHAR2(30) PRIMARY KEY," +
                     "TransmissionRoute VARCHAR2(15)," +
-                    "FOREIGN KEY (Name) REFERENCES Disease(Name)" +
+                    "FOREIGN KEY (Name) REFERENCES Disease(Name) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE InfectiousOrganism (" +
                     "FamilyName VARCHAR2(50) PRIMARY KEY," +
                     "ID_Name VARCHAR2(50) UNIQUE," +
                     "CommonName VARCHAR2(50)," +
-                    "FOREIGN KEY (ID_Name) REFERENCES InfectiousDisease(Name)" +
+                    "FOREIGN KEY (ID_Name) REFERENCES InfectiousDisease(Name) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Strain (" +
@@ -106,7 +112,7 @@ public class DatabaseInitializer {
                     "FamilyName VARCHAR2(20)," +
                     "Acronym VARCHAR2(20)," +
                     "PRIMARY KEY (StrainName, FamilyName)," +
-                    "FOREIGN KEY (FamilyName) REFERENCES InfectiousOrganism(FamilyName)" +
+                    "FOREIGN KEY (FamilyName) REFERENCES InfectiousOrganism(FamilyName) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE Patient (" +
@@ -128,7 +134,7 @@ public class DatabaseInitializer {
                     "Allergies VARCHAR2(50)," +
                     "Medication VARCHAR2(50)," +
                     "PRIMARY KEY (PatientID, Start_date, Disease)," +
-                    "FOREIGN KEY (PatientID) REFERENCES Patient(ID)" +
+                    "FOREIGN KEY (PatientID) REFERENCES Patient(ID) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE SuffersFrom (" +
@@ -136,33 +142,27 @@ public class DatabaseInitializer {
                     "D_Name VARCHAR2(100)," +
                     "Duration NUMBER(3, 0)," +
                     "PRIMARY KEY (P_ID, D_Name)," +
-                    "FOREIGN KEY (P_ID) REFERENCES Patient(ID)" +
+                    "FOREIGN KEY (P_ID) REFERENCES Patient(ID) " +
                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name)" +
+                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name) " +
                     "ON DELETE CASCADE" +
-                    ")",
-            "CREATE TABLE Treatment (" +
-                    "TreatmentName VARCHAR2(100) PRIMARY KEY," +
-                    "Efficiency FLOAT," +
-                    "Equipment VARCHAR2(100)," +
-                    "Risks VARCHAR2(100)" +
                     ")",
             "CREATE TABLE ClinicalTrial_Treatment (" +
                     "CTName VARCHAR2(200)," +
                     "TName VARCHAR2(50)," +
                     "PRIMARY KEY(CTName, TName)," +
-                    "FOREIGN KEY(CTName) REFERENCES ClinicalTrial(TrialName)" +
+                    "FOREIGN KEY(CTName) REFERENCES ClinicalTrial(TrialName) " +
                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY(TName) REFERENCES Treatment(TreatmentName)" +
+                    "FOREIGN KEY(TName) REFERENCES Treatment(TreatmentName) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE WorkOn (" +
                     "R_Username VARCHAR2(20)," +
                     "CT_Name VARCHAR2(200)," +
                     "PRIMARY KEY (R_Username, CT_Name)," +
-                    "FOREIGN KEY (R_Username) REFERENCES Researcher(Username)" +
+                    "FOREIGN KEY (R_Username) REFERENCES Researcher(Username) " +
                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY (CT_Name) REFERENCES ClinicalTrial(TrialName)" +
+                    "FOREIGN KEY (CT_Name) REFERENCES ClinicalTrial(TrialName) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE DiagnosticTest (" +
@@ -174,15 +174,15 @@ public class DatabaseInitializer {
                     "D_Name VARCHAR2(30)," +
                     "Target VARCHAR2(20)," +
                     "PRIMARY KEY (DT_Name, D_Name)," +
-                    "FOREIGN KEY (DT_Name) REFERENCES DiagnosticTest(DT_Name)" +
+                    "FOREIGN KEY (DT_Name) REFERENCES DiagnosticTest(DT_Name) " +
                     "ON DELETE CASCADE," +
-                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name)" +
+                    "FOREIGN KEY (D_Name) REFERENCES Disease(Name) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE DeficiencyDisease (" +
                     "Name VARCHAR(30) PRIMARY KEY," +
                     "DietaryElements VARCHAR(20)," +
-                    "FOREIGN KEY (Name) REFERENCES Disease(Name)" +
+                    "FOREIGN KEY (Name) REFERENCES Disease(Name) " +
                     "ON DELETE CASCADE" +
                     ")",
             "CREATE TABLE HPattern (" +
@@ -194,7 +194,9 @@ public class DatabaseInitializer {
                     "Name VARCHAR(30) PRIMARY KEY," +
                     "HeritancePattern VARCHAR(20)," +
                     "Genes VARCHAR(20)," +
-                    "FOREIGN KEY (HeritancePattern) REFERENCES HPattern(Pattern)" +
+                    "FOREIGN KEY (Name) REFERENCES Disease(Name) " +
+                    "ON DELETE CASCADE," +
+                    "FOREIGN KEY (HeritancePattern) REFERENCES HPattern(Pattern) " +
                     "ON DELETE SET NULL" +
                     ")",
     };
@@ -254,6 +256,9 @@ public class DatabaseInitializer {
             "INSERT INTO Disease VALUES('Urinary tract infection', '12', 'Burning urination, abnormal urine, fatigue, fever, back or abdominal pain')",
             "INSERT INTO Disease VALUES('Scurvy', '4', 'Anemia, bleeding, exhaustion')",
             "INSERT INTO Disease VALUES('Pellagra', '3', 'Diarrhea, abdominal pain, weakness')",
+            "INSERT INTO Disease VALUES('Sickle cell anemia', '1', 'Fatigue, Death')",
+            "INSERT INTO Disease VALUES('Hemophilia', '2', 'Blood problems, blood in urine, bleeding')",
+            "INSERT INTO Disease VALUES('Lebers optic neuropathy', '4', 'Vision loss, blindness')",
     };
 
     private static final String[] TUPLE_DEFICIENCY_DISEASE = {

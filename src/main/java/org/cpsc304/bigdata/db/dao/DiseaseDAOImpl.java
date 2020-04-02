@@ -1,9 +1,12 @@
 package org.cpsc304.bigdata.db.dao;
 
 import org.cpsc304.bigdata.db.DatabaseConnectionHandler;
-import org.cpsc304.bigdata.model.Diseases.*;
+import org.cpsc304.bigdata.model.Diseases.DeficiencyDisease;
+import org.cpsc304.bigdata.model.Diseases.Disease;
+import org.cpsc304.bigdata.model.Diseases.HereditaryDisease;
+import org.cpsc304.bigdata.model.Diseases.InfectiousDisease;
+import org.cpsc304.bigdata.model.Diseases.PhysiologicalDisease;
 import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
-import org.cpsc304.bigdata.model.People.Patient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +95,23 @@ public class DiseaseDAOImpl implements DiseaseDAO{
         }
     }
 
-
+    @Override
+    public void deleteDisease(String name) {
+        final Connection connection = handler.getConnection();
+        final String q = "DELETE FROM Disease WHERE Name = ?";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            statement.setString(1, name);
+            final int ups = statement.executeUpdate();
+            if (ups == 0) {
+                logger.warn("{} wasn't deleted properly", name);
+            } else {
+                logger.info("{} removed {} times", name, ups);
+            }
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+        }
+    }
 
 
     @Override
