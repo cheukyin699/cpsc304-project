@@ -8,8 +8,8 @@ public class DeficiencyDisease extends Disease {
         super(name, prevalence, symptoms);
     }
 
-    public DeficiencyDisease(String name, int prevalence, String symptoms, String dietaryElement) {
-        super(name, prevalence, symptoms);
+    public DeficiencyDisease(String name, String dietaryElement) {
+        super(name);
         this.dietaryElement = dietaryElement;
     }
 

@@ -8,8 +8,8 @@ public class PhysiologicalDisease extends Disease {
         super(name, prevalence, symptoms);
     }
 
-    public PhysiologicalDisease(String name, int prevalence, String symptoms, String associatedArea) {
-        super(name, prevalence, symptoms);
+    public PhysiologicalDisease(String name,  String associatedArea) {
+        super(name);
         this.associatedArea = associatedArea;
     }
 

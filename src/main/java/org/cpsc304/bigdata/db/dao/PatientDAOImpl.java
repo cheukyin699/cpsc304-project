@@ -40,8 +40,8 @@ public class PatientDAOImpl implements PatientDAO {
                         Id,
                         set.getString("Name"),
                         set.getString("Family_History"),
-                        Integer.parseInt(set.getString("Age")),
-                        Integer.parseInt(set.getString("Sex")),
+                        set.getInt("Age"),
+                        set.getInt("Sex"),
                         set.getString("P_Username"));
             } else {
                 return null;

@@ -8,8 +8,8 @@ public class InfectiousDisease extends Disease {
         super(name, prevalence, symptoms);
     }
 
-    public InfectiousDisease(String name, int prevalence, String symptoms, String transmissionRoute) {
-        super(name, prevalence, symptoms);
+    public InfectiousDisease(String name, String transmissionRoute) {
+        super(name);
         this.transmissionRoute = transmissionRoute;
     }
 
