@@ -12,14 +12,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DiseaseTreatmentDAOImpl {
+public class DiseaseTreatmentDAOImpl implements DiseaseTreatmentDAO{
 
     @Autowired
     private DatabaseConnectionHandler handler;
     private Logger logger = LoggerFactory.getLogger(DiseaseTreatmentDAOImpl.class);
 
 
-    @override
+    @Override
     public void add(final Disease disease, final Treatment treatment){
         final Connection connection = handler.getConnection();
         final String q1 = "INSERT INTO Disease_ClinicalTrial VALUES (?, ?)";
@@ -36,12 +36,12 @@ public class DiseaseTreatmentDAOImpl {
             // Disease
             statement = connection.prepareStatement(q2);
             statement.setString(1, disease.getName());
-            statement.setString(2, disease.getPrevalence());
-            statement.setInt(3, disease.getSymptoms());
+            statement.setString(2, Integer.toString(disease.getPrevalence()));
+            statement.setString(3, disease.getSymptoms());
             statement.execute();
             // Disease_Treatment
             statement = connection.prepareStatement(q1);
-            statement.setString(1, disease.getTrialName());
+            statement.setString(1, disease.getName());
             statement.setString(2, treatment.getTreatmentName());
             statement.execute();
         } catch (SQLException e) {

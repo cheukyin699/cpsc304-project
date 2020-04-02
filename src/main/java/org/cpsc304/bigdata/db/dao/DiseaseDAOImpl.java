@@ -25,11 +25,11 @@ public class DiseaseDAOImpl implements DiseaseDAO{
     @Override
     public List<Disease> findDiseaseBySymptom(final String symptom) {
         final Connection connection = handler.getConnection();
-        final String q = "SELECT * FROM Disease WHERE Symptoms LIKE %?% OR Symptoms LIKE %?%";
+        final String q = "SELECT * FROM Disease WHERE (Symptoms LIKE ?) OR (Symptoms LIKE ?)";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
-            String lowerCase = symptom.substring(0,1).toUpperCase() + symptom.substring(1);
-            String upperCase = symptom.substring(0,1).toLowerCase() + symptom.substring(1);
+            String lowerCase = "%" + symptom.substring(0,1).toUpperCase() + symptom.substring(1) + "%";
+            String upperCase = "%" + symptom.substring(0,1).toLowerCase() + symptom.substring(1) + "%";
             statement.setString(1,lowerCase);
             statement.setString(2,upperCase);
             final ResultSet set = statement.executeQuery();
