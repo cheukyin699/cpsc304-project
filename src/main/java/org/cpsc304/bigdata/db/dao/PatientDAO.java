@@ -7,14 +7,15 @@ import java.util.List;
 
 public interface PatientDAO {
     Patient findPatientById(final String Id);
-    List<MedicalRecord> findAssociatedMedicalRecords();
+    List<MedicalRecord> findAssociatedMedicalRecords(final String Id);
 
-    void addPatient();
+    //sex must be 0 or 1
+    void addPatient(final String Id, final String name, final String familyHistory, final int age, final int sex);
 
     /**
      * Clears all medical history from a Patient. Not sure why you'd want to do that, but
      * it's there for you just in case you need it.
      */
-    void clearMedicalRecords();
-    int countMedicalRecords();
+    void clearMedicalRecords(final String Id);
+    int countMedicalRecords(final String Id);
 }

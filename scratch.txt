@@ -34,11 +34,12 @@ Add different datas
 Needs a cookie from /login to verify
 POST PUT DELETE
 /disease
-/trial
-/treatment
-/diagnostic-test
-/patient
-/medical-records
+/ClinicalTrial
+/Treatment
+/Diagnostic-test
+/Patient
+/Medical-records
+
 
 FRONT END
 =========

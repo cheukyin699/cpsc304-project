@@ -17,7 +17,7 @@ public class DatabaseInitializer {
             "ClinicalTrial_Treatment", "Disease_ClinicalTrial",
             "ClinicalTrial", "Treatment", "Disease",
             "DiagnosedBy", "DiagnosticTest", "WorkOn",
-            "SuffersFrom",
+            "SuffersFrom", "Disease_Treatment",
             "MedicalRecord", "Patient",
             "Strain", "InfectiousOrganism",
             "InfectiousDisease", "PhysiologicalDisease",
@@ -64,11 +64,21 @@ public class DatabaseInitializer {
                     "Symptoms VARCHAR2(100), " +
                     "CHECK (Prevalence <= 100 AND Prevalence >= 0)" +
                     ")",
-            "CREATE TABLE Disease_ClinicalTrial (" +
+            "CREATE TABLE Disease_Treatment (" +
+                    "DName VARCHAR2(30), " +
+                    "TName VARCHAR2(100)" +
+                    "PRIMARY KEY (Dname, Tname)," +
+                    "FOREIGN KEY Dname REFERENCES Disease(Name)" +
+                    "ON DELETE CASCADE," +
+                    "FOREIGN KEY Tname REFERENCES Treatment(TreatmentName)" +
+                    "ON DELETE CASCADE" +
+                    ")",
+             "CREATE TABLE Disease_ClinicalTrial (" +
                     "DName VARCHAR2(50)," +
-                    "CTName VARCHAR2 (200), " +
-                    "PRIMARY KEY (DName, CTName), " +
-                    "FOREIGN KEY (DName) REFERENCES Disease(Name), " +
+                    "CTName VARCHAR2 (200)," +
+                    "PRIMARY KEY (DName, CTName)," +
+                    "FOREIGN KEY (DName) REFERENCES Disease(Name)" +
+                     "ON DELETE CASCADE," +
                     "FOREIGN KEY (CTName) REFERENCES ClinicalTrial(TrialName)" +
                     "ON DELETE CASCADE" +
                     ")",
@@ -403,6 +413,15 @@ public class DatabaseInitializer {
                     "of an Influenza A Vaccine (FP-01.1) in Healthy Volunteers Following Virus Challenge')"
     };
 
+    private static final String[] TUPLE_DISEASE_TREATMENT = {
+            "INSERT INTO Disease_Treatment VALUES('Iron deficiency', 'Ferrous sulfate')",
+            "INSERT INTO Disease_Treatment VALUES('AIDS', 'Alpelisib')",
+            "INSERT INTO Disease_Treatment VALUES('Kidney disease', 'Hemodialysis')",
+            "INSERT INTO Disease_Treatment VALUES('Avian influenza', 'Vaccine FP-01.1')",
+            "INSERT INTO Disease_Treatment VALUES('Kidney disease', 'Pentoxifylline')"
+    };
+
+
     private static Logger logger = LoggerFactory.getLogger(DatabaseInitializer.class);
 
     public static void initDatabase(final Connection connection) {
@@ -458,7 +477,7 @@ public class DatabaseInitializer {
                 TUPLE_INFECTIOUS_ORGANISM, TUPLE_STRAIN, TUPLE_PATIENT, TUPLE_MEDICAL_RECORD, TUPLE_SUFFERS_FROM,
                 TUPLE_DIAGNOSTIC_TEST, TUPLE_DIAGNOSED_BY, TUPLE_TREATMENT, TUPLE_CLINICAL_TRIAL, TUPLE_CLINICAL_TRIAL_TREATMENT,
                 TUPLE_DISEASE_CLINICAL_TRIAL, TUPLE_WORK_ON, TUPLE_DEFICIENCY_DISEASE,
-                TUPLE_HPATTERN, TUPLE_HEREDITARY_DISEASE
+                TUPLE_HPATTERN, TUPLE_HEREDITARY_DISEASE, TUPLE_DISEASE_TREATMENT
         };
 
         for (String[] table: tables) {
