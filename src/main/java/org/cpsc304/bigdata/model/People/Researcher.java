@@ -1,17 +1,15 @@
 package org.cpsc304.bigdata.model.People;
 
-import org.cpsc304.bigdata.model.People.user;
-
-public class researcher extends user {
+public class Researcher extends UserInfo {
 
     private String institute;
     private int numOfPublication;
 
-    public researcher(String username, String name, String password, String specialty, String dept) {
+    public Researcher(String username, String name, String password, String specialty, String dept) {
         super(username, name, password, specialty, dept);
     }
 
-    public researcher(String username, String name, String password, String specialty, String dept, String institute, int numOfPublication){
+    public Researcher(String username, String name, String password, String specialty, String dept, String institute, int numOfPublication){
         super(username, name, password, specialty, dept);
         this.institute = institute;
         this.numOfPublication = numOfPublication;

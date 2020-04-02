@@ -1,11 +1,11 @@
 package org.cpsc304.bigdata.model.Diseases;
 
-public class infectiousOrganism {
+public class InfectiousOrganism {
     private String familyName;
     private String infectiousDiseaseName;
     private String commonName;
 
-    public infectiousOrganism(String familyName, String infectiousDiseaseName, String commonName) {
+    public InfectiousOrganism(String familyName, String infectiousDiseaseName, String commonName) {
         this.familyName = familyName;
         this.infectiousDiseaseName = infectiousDiseaseName;
         this.commonName = commonName;

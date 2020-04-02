@@ -1,13 +1,16 @@
 package org.cpsc304.bigdata;
 
 import org.cpsc304.bigdata.db.DatabaseConnectionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -20,6 +23,7 @@ public class ApplicationMain extends WebSecurityConfigurerAdapter implements Web
 
     @Autowired
     private DatabaseConnectionHandler handler;
+    private static Logger logger = LoggerFactory.getLogger(ApplicationMain.class);
 
     public static void main(String[] args) {
         SpringApplication.run(ApplicationMain.class, args);
@@ -31,11 +35,20 @@ public class ApplicationMain extends WebSecurityConfigurerAdapter implements Web
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(handler)
-                .usersByUsernameQuery("select username, password, true from User where username = ?");
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        logger.info("Initializing password 'encoder'");
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return encodedPassword.equals(rawPassword.toString());
+            }
+        };
     }
 
     @Override

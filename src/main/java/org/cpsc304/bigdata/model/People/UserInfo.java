@@ -1,6 +1,6 @@
 package org.cpsc304.bigdata.model.People;
 
-public abstract class user {
+public class UserInfo {
 
     private String username;
     private String name;
@@ -8,7 +8,7 @@ public abstract class user {
     private String specialty;
     private String department;
 
-    public user(String username, String name, String password, String specialty, String dept){
+    public UserInfo(String username, String name, String password, String specialty, String dept){
         this.username = username;
         this.name = name;
         this.password = password;

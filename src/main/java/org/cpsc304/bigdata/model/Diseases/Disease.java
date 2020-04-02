@@ -1,14 +1,18 @@
 package org.cpsc304.bigdata.model.Diseases;
 
-public abstract class  disease {
+public class Disease {
     private String name;
     private int prevalence;
     private String symptoms;
 
-    public disease(String name, int prevalence, String symptoms) {
+    public Disease(String name, int prevalence, String symptoms) {
         this.name = name;
         this.prevalence = prevalence;
         this.symptoms = symptoms;
+    }
+
+    public Disease(String name) {
+        this.name = name;
     }
 
     public String getName() {return name; }
