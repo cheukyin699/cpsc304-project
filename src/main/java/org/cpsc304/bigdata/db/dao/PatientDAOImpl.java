@@ -81,14 +81,14 @@ public class PatientDAOImpl implements PatientDAO {
 
 
     @Override
-    public void addPatient(String Id, String name, String familyHistory, int age, int sex) {
+    public void addPatient(final Patient patient) {
         final Connection connection = handler.getConnection();
         final String q = "INSERT INTO Patient VALUES(?, ?, ?, age, sex)";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
-            statement.setString(1, Id);
-            statement.setString(1, name);
-            statement.setString(1, familyHistory);
+            statement.setString(1, patient.getId());
+            statement.setString(2, patient.getpatientName());
+            statement.setString(3, patient.getFamilyHistory());
             final ResultSet set = statement.executeQuery();
         } catch (SQLException e) {
             logger.warn(e.getMessage());

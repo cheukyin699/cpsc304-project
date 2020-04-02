@@ -10,7 +10,7 @@ public interface PatientDAO {
     List<MedicalRecord> findAssociatedMedicalRecords(final String Id);
 
     //sex must be 0 or 1
-    void addPatient(final String Id, final String name, final String familyHistory, final int age, final int sex);
+    void addPatient(final Patient patient);
 
     /**
      * Clears all medical history from a Patient. Not sure why you'd want to do that, but
