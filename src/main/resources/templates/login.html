@@ -8,7 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <form action="POST">
+        <p th:if="${param.logout}">
+            You have successfully logged out!
+        </p>
+
+        <p th:if="${param.error}">
+            Invalid username/password!
+        </p>
+
+        <form th:action="@{/login}" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
@@ -20,6 +28,8 @@
                 <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
                 <small id="passwordHelp" class="form-text text-muted">Never share your password with others.</small>
             </div>
+
+            <input class="btn btn-primary" type="submit" value="Login!" />
         </form>
     </div>
 </body>

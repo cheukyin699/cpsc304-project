@@ -47,6 +47,7 @@ public class DatabaseInitializer {
             "CREATE TABLE Researcher (" +
                     "Username VARCHAR2(15) PRIMARY KEY," +
                     "Institute VARCHAR2(30)," +
+                    "NumOfPublications INTEGER," +
                     "FOREIGN KEY (Username) REFERENCES User_Info(Username)" +
                     "ON DELETE CASCADE" +
                     ")",
@@ -220,11 +221,11 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_RESEARCHER = {
-            "INSERT INTO Researcher VALUES('jhopps', 'Johns Hopkins Hospital')",
-            "INSERT INTO Researcher VALUES('vapgar', 'University of British Columbia')",
-            "INSERT INTO Researcher VALUES('aheale', 'University of Washington')",
-            "INSERT INTO Researcher VALUES('bwane', 'BC Cancer Agency')",
-            "INSERT INTO Researcher VALUES('jchou', 'Stemcell Technologies')",
+            "INSERT INTO Researcher VALUES('jhopps', 'Johns Hopkins Hospital', 1)",
+            "INSERT INTO Researcher VALUES('vapgar', 'University of British Columbia', 1)",
+            "INSERT INTO Researcher VALUES('aheale', 'University of Washington', 2)",
+            "INSERT INTO Researcher VALUES('bwane', 'BC Cancer Agency', 2)",
+            "INSERT INTO Researcher VALUES('jchou', 'Stemcell Technologies', 42)",
 
     };
 
@@ -309,15 +310,15 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_MEDICAL_RECORD = {
-            "INSERT INTO MedicalRecord VALUES('1', '1999-04-23', '1999-05-08', 'Pneumonia', NULL, 'tetracycline, tree nuts'," +
+            "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'tetracycline, tree nuts'," +
                     "'Ciprofloxacin')",
-            "INSERT INTO MedicalRecord VALUES('2', '2012-11-01', '2012-11-08', 'Glaucoma', 'Argon laser trabeculoplasty'," +
+            "INSERT INTO MedicalRecord VALUES('2', date '2012-11-01', date '2012-11-08', 'Glaucoma', 'Argon laser trabeculoplasty'," +
                     " 'penicillin', 'morphine')",
-            "INSERT INTO MedicalRecord VALUES('2', '2015-09-04', '2015-09-15', 'Cardiac arrest', NULL," +
+            "INSERT INTO MedicalRecord VALUES('2', date '2015-09-04', date '2015-09-15', 'Cardiac arrest', NULL," +
                     " NULL, 'morphine')",
-            "INSERT INTO MedicalRecord VALUES('3', '2017-12-12', '2017-12-30', 'Kidney disease', 'dialysis, kidney transplant'," +
+            "INSERT INTO MedicalRecord VALUES('3', date '2017-12-12', date '2017-12-30', 'Kidney disease', 'dialysis, kidney transplant'," +
                     " NULL, 'chloramphenicol')",
-            "INSERT INTO MedicalRecord VALUES('4', '2014-04-16', '2014-04-17', 'Metacarpal fracture', 'cast'," +
+            "INSERT INTO MedicalRecord VALUES('4', date '2014-04-16', date '2014-04-17', 'Metacarpal fracture', 'cast'," +
                     " 'peanuts', NULL)",
     };
 

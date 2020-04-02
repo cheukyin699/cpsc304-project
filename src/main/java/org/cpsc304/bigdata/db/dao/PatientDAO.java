@@ -1,10 +1,14 @@
 package org.cpsc304.bigdata.db.dao;
 
+import org.cpsc304.bigdata.model.MedicalInfo.MedicalRecord;
+import org.cpsc304.bigdata.model.People.Patient;
+
 import java.util.List;
 
 public interface PatientDAO {
-    void findPatientById(final String Id);
-    List<String> findAssociatedMedicalRecords();
+    Patient findPatientById(final String Id);
+    List<MedicalRecord> findAssociatedMedicalRecords();
+
     void addPatient();
 
     /**
@@ -12,5 +16,5 @@ public interface PatientDAO {
      * it's there for you just in case you need it.
      */
     void clearMedicalRecords();
-    void countMedicalRecords();
+    int countMedicalRecords();
 }

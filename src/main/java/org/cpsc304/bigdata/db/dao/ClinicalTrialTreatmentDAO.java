@@ -1,8 +1,11 @@
 package org.cpsc304.bigdata.db.dao;
 
-public interface ClinicalTrialTreatmentDAO {
-    void add();
+import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
+import org.cpsc304.bigdata.model.MedicalInfo.Treatment;
 
-    void findClinicalTrialByName(final String name);
-    void findTreatmentByName(final String name);
+public interface ClinicalTrialTreatmentDAO {
+    void add(final ClinicalTrial trial, final Treatment treatment);
+
+    ClinicalTrial findClinicalTrialByName(final String name);
+    Treatment findTreatmentByName(final String name);
 }
