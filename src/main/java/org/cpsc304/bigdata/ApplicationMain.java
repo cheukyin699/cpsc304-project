@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -36,14 +35,6 @@ public class ApplicationMain extends WebSecurityConfigurerAdapter implements Web
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(handler)
-                .usersByUsernameQuery("SELECT Username, Password from User_Info where Username = ?")
-                .passwordEncoder(passwordEncoder());
-    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         logger.info("Initializing password 'encoder'");
@@ -55,6 +46,7 @@ public class ApplicationMain extends WebSecurityConfigurerAdapter implements Web
 
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                logger.info("Matching {} == {}", rawPassword.toString(), encodedPassword);
                 return encodedPassword.equals(rawPassword.toString());
             }
         };

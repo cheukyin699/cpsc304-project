@@ -71,7 +71,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Researcher findResearcherFromUsername(String username) {
+    public Researcher findResearcherFromUsername(final String username) {
         final Connection connection = handler.getConnection();
         final String q = "SELECT * FROM User_Info NATURAL JOIN User_Dept, Researcher WHERE Username = ?";
         try {
@@ -98,7 +98,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void deleteUser(String username) {
+    public void deleteUser(final String username) {
         final Connection connection = handler.getConnection();
         final String q = "DELETE FROM User_Info WHERE Username = ?";
         try {
