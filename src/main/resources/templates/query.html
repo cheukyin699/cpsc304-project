@@ -30,16 +30,87 @@
       font-size: 1.1em;
     }
 
-    .container{
-      width: 100%;
-      height: 100%;
+    a{
+      list-style: none;
+      color: black;
+      font-size: 1.1em;
     }
 
-  .btn{
+    a:hover{
+      text-decoration: underline;
+      text-decoration-color: rgba(234, 169, 124, 1);
+      color: black;
+    }
+
+    .container{
+      width: 100%;
+    }
+
+    .h2 {
+      text-align: center;
+    }
+
+  .btn {
     width: 20%;
-    height: 20%;
-    background-color: #E6E6FA;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    margin-bottom: 2%;
+    margin-left: 2%;
   }
+
+  .btn:hover {
+    background-color: rgba(230, 230, 250, 0.5);
+    color: black;
+  }
+
+
+  .list-group{
+    width: 100%;
+    height: 100vh;
+    padding-top: 5%;
+    padding-left: 25%;
+    padding-right: 25%;
+    text-align: center;
+  }
+
+  .list-group-item{
+    margin: 1%;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .list-group-item:hover {
+    background-color: rgba(230, 230, 250, 0.5);
+    cursor: pointer;
+  }
+
+
+  .disease {
+    display: flex;
+    padding-bottom: 5%;
+  }
+
+  .clinical_trail{
+    display: flex;
+    padding-bottom: 5%;
+  }
+
+  .patient{
+    display: flex;
+    padding-bottom: 5%;
+  }
+
+  .medical_record{
+    display: flex;
+    padding-bottom: 5%;
+  }
+
+  .other{
+    padding-bottom: 5%;
+  }
+
+
+
+
 </style>
 
 <body>
@@ -55,20 +126,325 @@
             <a class="nav-item nav-link" href="#"></a>
             <a class="nav-item nav-link" href="login.html">Login</a>
             <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link active" href="query.html">Query <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="query.html">Query<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="#"></a>
-            <a class="nav-item nav-link" href="#">About us</a>
+            <a class="nav-item nav-link" href="team.html">About us</a>
         </div>
     </div>
 </nav>
 <div class="container">
-    <ul class="menu">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+  <h2 style="text-align: center; margin-top: 2%;"> Welcome [display the name of the user] </h2>
+
+  <ul class="list-group">
+    <a href="#disease"><li class="list-group-item"> Disease</li> </a>
+    <a href="#clinical_trail"> <li class="list-group-item">Clinical Trail</li></a>
+    <a href="#patient"><li class="list-group-item">Patient </li></a>
+    <a href="#medical_record"><li class="list-group-item">Medical Record </li></a>
+    <a href="#other"><li class="list-group-item">Other</li></a>
+  </ul>
+
+  <h2 id="disease">Disease</h2>
+  <div class="disease">
+
+    <div class="card" style="width: 100%">
+      <div class="card-body" style='height: 80vh;'>
+        <form class="form-inline" action="/action_page.php">
+            <div class="form-group" style="padding-bottom: 2%;">
+              <label>Disease Name:</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <button type="button" class="btn btn-secondary" id ="#disease_search" style="margin-bottom: 2%;">Search</button>
+            <button type="button" class="btn btn-secondary" id ="#disease_add">Add</button>
+        </form>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Disease Name</th>
+              <th scope="col">Prevelence</th>
+              <th scope="col">Symptoms</th>
+              <th scope="col">Other Info</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td><button type="button" class="btn btn-secondary" id ="#disease_edit" style="width: 77%;">Edit</button></td>
+            <td><button type="button" class="btn btn-secondary" id ="#disease_delete" style="width: 60%;">Delete</button></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td><button type="button" class="btn btn-secondary" id ="#disease_edit" style="width: 77%;">Edit</button></td>
+            <td><button type="button" class="btn btn-secondary" id ="#disease_delete" style="width: 60%;">Delete</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td><button type="button" class="btn btn-secondary" id ="#disease_edit" style="width: 77%;">Edit</button></td>
+            <td><button type="button" class="btn btn-secondary" id ="#disease_delete" style="width: 60%;">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="clinical_trail">Clinical Trail</h2>
+<div class="clinical_trail">
+
+  <div class="card" style="width: 100%;">
+    <div class="card-body" style='height: 80vh;'>
+      <form class="form-inline" action="/action_page.php">
+          <div class="form-group" style="padding-bottom: 2%;">
+            <label>Clinical trail Name:</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <button type="button" class="btn btn-secondary" id ="#clinical_trail_search">Search</button>
+          <button type="button" class="btn btn-secondary" id ="#clinical_trail_add">Add</button>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Trail</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Type</th>
+            <th scope="col">Risks</th>
+            <th scope="col">Patients</th>
+            <th scope="col">IsComplete</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#clinical_trail_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#clinical_trail_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#clinical_trail_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#clinical_trail_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#clinical_trail_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#clinical_trail_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
 </div>
+
+
+
+<h2 id="patient">Patient</h2>
+<div class="patient">
+
+  <div class="card" style="width: 100%;">
+    <div class="card-body" style='height: 80vh;'>
+      <form class="form-inline" action="/action_page.php">
+          <div class="form-group" style="padding-bottom: 2%;">
+            <label>Patient ID:</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <button type="button" class="btn btn-secondary" id ="#patient_search">Search</button>
+          <button type="button" class="btn btn-secondary" id ="#patient_add">Add</button>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Physician</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#patient_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#patient_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#patient_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#patient_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#patient_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#patient_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+
+<h2 id="medical_record">Medical Record</h2>
+<div class="medical_record">
+
+  <div class="card" style="width: 100%;">
+    <div class="card-body" style='height: 80vh;'>
+      <form class="form-inline" action="/action_page.php">
+          <div class="form-group" style="padding-bottom: 2%;">
+            <label>Patient ID:</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <button type="button" class="btn btn-secondary" id ="#medical_record_search">Search</button>
+          <button type="button" class="btn btn-secondary" id ="#medical_record_add">Add</button>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            <th scope="col">Disease</th>
+            <th scope="col">Allergies</th>
+            <th scope="col">Medications</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#medical_record_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#medical_record_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#medical_record_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#medical_record_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button type="button" class="btn btn-secondary" id ="#medical_record_edit" style="width: 77%;">Edit</button></td>
+          <td><button type="button" class="btn btn-secondary" id ="#medical_record_delete" style="width: 60%;">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<h2 id="other">Other</h2>
+<div class="other">
+  <div class='btn-group'role="group" aria-label="Basic example" style="width: 70%;">
+    <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Aggregation">Aggregation</button>
+    <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="The patient that has ">Nested Query</button>
+    <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="The patient that has all diseases">Division</button>
+    <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="idkkkk">Random</button>
+  </div>
+
+  <div class="card" style="width: 100%;">
+    <div class="card-body" style='height: 80vh;'>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+</div>
+
 </body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+<script src="/docs/4.0/assets/js/vendor/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
 </html>
