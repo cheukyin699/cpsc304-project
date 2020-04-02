@@ -46,7 +46,6 @@ public class ApplicationMain extends WebSecurityConfigurerAdapter implements Web
 
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                logger.info("Matching {} == {}", rawPassword.toString(), encodedPassword);
                 return encodedPassword.equals(rawPassword.toString());
             }
         };
