@@ -48,4 +48,12 @@ public class DiseaseController {
 
         return Collections.emptyList();
     }
+
+    @PostMapping("/disease/link/{dname}/{tname}")
+    public String linkDiseaseCT(@PathVariable("dname") final String dName,
+                                @PathVariable("tname") final String tName) {
+        logger.info("{}, {}", dName, tName);
+        diseaseDAO.linkDiseaseToClinicalTrial(dName, tName);
+        return "";
+    }
 }

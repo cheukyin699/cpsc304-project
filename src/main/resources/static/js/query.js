@@ -7,7 +7,13 @@ $(document).ready(() => {
     $('#by-ct-disease').on('click', () => {
         const name = $('#ct-disease-name').val();
         $.get('/disease?ct=' + name, populateDisease);
-    })
+    });
+
+    $('#link-disease-bt').on('click', () => {
+        const dName = $('#link-disease-dname').val();
+        const tName = $('#link-disease-tname').val();
+        $.post(`/disease/link/${dName}/${tName}`, alert);
+    });
 });
 
 function populateDisease(data) {

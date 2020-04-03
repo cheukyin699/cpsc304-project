@@ -5,7 +5,6 @@ import org.cpsc304.bigdata.model.Diseases.Disease;
 import org.cpsc304.bigdata.model.Diseases.HereditaryDisease;
 import org.cpsc304.bigdata.model.Diseases.InfectiousDisease;
 import org.cpsc304.bigdata.model.Diseases.PhysiologicalDisease;
-import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public interface DiseaseDAO {
     List<Disease> findDiseaseBySymptom(final String symptom);
     List<Disease> findDiseaseByClinicalTrialName(final String name);
 
-    void linkDiseaseToClinicalTrial(Disease disease, ClinicalTrial clinicalTrial);
+    void linkDiseaseToClinicalTrial(String diseaseName, String trialName);
     void deleteDisease(final String name);
 
     /**

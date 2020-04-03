@@ -6,7 +6,6 @@ import org.cpsc304.bigdata.model.Diseases.Disease;
 import org.cpsc304.bigdata.model.Diseases.HereditaryDisease;
 import org.cpsc304.bigdata.model.Diseases.InfectiousDisease;
 import org.cpsc304.bigdata.model.Diseases.PhysiologicalDisease;
-import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,37 +79,14 @@ public class DiseaseDAOImpl implements DiseaseDAO {
 
 
     @Override
-    public void linkDiseaseToClinicalTrial(final Disease disease, final ClinicalTrial clinicalTrial) {
+    public void linkDiseaseToClinicalTrial(final String diseaseName, final String trialName) {
         final Connection connection = handler.getConnection();
-        final String q1 = "INSERT INTO Disease VALUES(?, ?, ?)";
-        final String q2 = "INSERT INTO ClinicalTrial VALUES(?, ?, ?, ?,)";
-        final String q3 = "INSERT INTO Disease_ClinicalTrial VALUES(?, ?)";
+        final String q = "INSERT INTO Disease_ClinicalTrial VALUES(?, ?)";
 
         try {
-            final PreparedStatement statement = connection.prepareStatement(q1);
-            statement.setString(1, disease.getName());
-            statement.setString(2, Integer.toString(disease.getPrevalence()));
-            statement.setString(3, disease.getSymptoms());
-            statement.executeQuery();
-        } catch (SQLException e) {
-            logger.warn(e.getMessage());
-        }
-
-        try {
-            final PreparedStatement statement = connection.prepareStatement(q2);
-            statement.setString(1, clinicalTrial.getTrialName());
-            statement.setString(2, clinicalTrial.getType());
-            statement.setString(3, Integer.toString(clinicalTrial.getNumParticipants()));
-            statement.setString(4, Integer.toString(clinicalTrial.getIsComplete()));
-            statement.executeQuery();
-        } catch (SQLException e) {
-            logger.warn(e.getMessage());
-        }
-
-        try {
-            final PreparedStatement statement = connection.prepareStatement(q3);
-            statement.setString(1, disease.getName());
-            statement.setString(2, clinicalTrial.getTrialName());
+            final PreparedStatement statement = connection.prepareStatement(q);
+            statement.setString(1, diseaseName);
+            statement.setString(2, trialName);
             statement.executeQuery();
         } catch (SQLException e) {
             logger.warn(e.getMessage());
