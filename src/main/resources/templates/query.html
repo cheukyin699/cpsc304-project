@@ -155,19 +155,18 @@
             <div class="card-body" style='height: 80vh;'>
                 <div class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Disease Name:</label>
+                        <label>Find by symptom:</label>
                         <input id="disease-name" type="text" class="form-control">
                     </div>
                     <button id="get-disease" type="button" class="btn btn-secondary" style="margin-bottom: 2%;">
                         Search
                     </button>
-                    <button type="button" class="btn btn-secondary">Add</button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Clinical Trial Name:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="ct-disease-name" />
                     </div>
-                    <button type="button" class="btn btn-secondary" id="#disease_search" style="margin-bottom: 2%;">
+                    <button type="button" class="btn btn-secondary" id="by-ct-disease" style="margin-bottom: 2%;">
                         Search
                     </button>
 
@@ -188,7 +187,6 @@
                         <th scope="col">Prevelence</th>
                         <th scope="col">Symptoms</th>
                         <th scope="col">Other Info</th>
-                        <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
                     </thead>
@@ -198,11 +196,6 @@
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#disease_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
                         <td>
                             <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
                                 Delete
@@ -215,11 +208,6 @@
                         <td>Thornton</td>
                         <td>@fat</td>
                         <td>
-                            <button type="button" class="btn btn-secondary" id="#disease_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
-                        <td>
                             <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
                                 Delete
                             </button>
@@ -230,11 +218,6 @@
                         <td>Larry</td>
                         <td>the Bird</td>
                         <td>@twitter</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#disease_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
                         <td>
                             <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
                                 Delete

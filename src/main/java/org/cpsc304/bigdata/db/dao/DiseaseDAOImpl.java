@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class DiseaseDAOImpl implements DiseaseDAO{
+public class DiseaseDAOImpl implements DiseaseDAO {
     @Autowired
     private DatabaseConnectionHandler handler;
     private Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
@@ -31,30 +31,52 @@ public class DiseaseDAOImpl implements DiseaseDAO{
         final String q = "SELECT * FROM Disease WHERE (Symptoms LIKE ?) OR (Symptoms LIKE ?)";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
-            String lowerCase = "%" + symptom.substring(0,1).toUpperCase() + symptom.substring(1) + "%";
-            String upperCase = "%" + symptom.substring(0,1).toLowerCase() + symptom.substring(1) + "%";
-            statement.setString(1,lowerCase);
-            statement.setString(2,upperCase);
+            String lowerCase = "%" + symptom.substring(0, 1).toUpperCase() + symptom.substring(1) + "%";
+            String upperCase = "%" + symptom.substring(0, 1).toLowerCase() + symptom.substring(1) + "%";
+            statement.setString(1, lowerCase);
+            statement.setString(2, upperCase);
             final ResultSet set = statement.executeQuery();
             List<Disease> diseases = new ArrayList<>();
             while (set.next()) {
                 diseases.add(
                         new Disease(
-                        set.getString("Name"),
-                        set.getInt("Prevalence"),
-                        set.getString("Symptoms")));
+                                set.getString("Name"),
+                                set.getInt("Prevalence"),
+                                set.getString("Symptoms")));
             }
-            if (diseases.isEmpty()) {
-                return null;
-            } else {
-                return diseases;
-            }
+            return diseases;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
             return null;
         }
     }
 
+    @Override
+    public List<Disease> findDiseaseByClinicalTrialName(String name) {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT * FROM Disease D INNER JOIN Disease_ClinicalTrial T ON " +
+                "D.Name = T.DName WHERE (T.CTName LIKE ?) OR (T.CTName LIKE ?)";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            String lowerCase = "%" + name.substring(0, 1).toUpperCase() + name.substring(1) + "%";
+            String upperCase = "%" + name.substring(0, 1).toLowerCase() + name.substring(1) + "%";
+            statement.setString(1, lowerCase);
+            statement.setString(2, upperCase);
+            final ResultSet set = statement.executeQuery();
+            List<Disease> diseases = new ArrayList<>();
+            while (set.next()) {
+                diseases.add(
+                        new Disease(
+                                set.getString("Name"),
+                                set.getInt("Prevalence"),
+                                set.getString("Symptoms")));
+            }
+            return diseases;
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
 
 
     @Override
