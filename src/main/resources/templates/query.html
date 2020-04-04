@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Disorders Prognosis</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/query.js}"></script>
@@ -152,34 +153,40 @@
     <div class="disease">
 
         <div class="card" style="width: 100%">
-            <div class="card-body" style='height: 80vh;'>
+            <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
+              <h3><small class="text-muted">Search diseases by</small></h3>
                 <div class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Find by symptom:</label>
-                        <input id="disease-name" type="text" class="form-control">
+                        <label>Symptom: </label>
+                        <input id="disease-name" type="text" class="form-control" placeholder="Find by symptom">
                     </div>
                     <button id="get-disease" type="button" class="btn btn-secondary" style="margin-bottom: 2%;">
                         Search
                     </button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Clinical Trial Name:</label>
-                        <input type="text" class="form-control" id="ct-disease-name" />
+                        <label>Clinical Trial: </label>
+                        <input type="text" class="form-control" id="ct-disease-name" placeholder="Find by clinical trial"/>
                     </div>
                     <button type="button" class="btn btn-secondary" id="by-ct-disease" style="margin-bottom: 2%;">
                         Search
                     </button>
+                </div>
 
+
+                <h3><small class="text-muted">Link disease to clinical trail</small></h3>
+                <div class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Disease Name:</label>
-                        <input type="text" class="form-control" id="link-disease-dname">
-                        <label>Clinical Trial Name:</label>
-                        <input type="text" class="form-control" id="link-disease-tname">
+                        <label>Disease Name: </label>
+                        <input type="text" class="form-control" id="link-disease-dname" placeholder="Disease name">
+                        <label>Clinical Trial Name: </label>
+                        <input type="text" class="form-control" id="link-disease-tname" placeholder="Clinical trial name">
                     </div>
                     <button type="button" class="btn btn-secondary" id="link-disease-bt" style="margin-bottom: 2%;">
                         Link
                     </button>
                 </div>
+
                 <table class="table" id="disease-table">
                     <thead>
                     <tr>
@@ -192,37 +199,11 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
-                                Delete
-                            </button>
-                        </td>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -236,81 +217,36 @@
 
         <div class="card" style="width: 100%;">
             <div class="card-body" style='height: 80vh;'>
-                <form class="form-inline" action="/action_page.php">
-                    <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Clinical Trial Name:</label>
-                        <input type="text" class="form-control" id="email">
+                <div class="form-inline" style="padding-bottom: 2%;">
+                    <div class="form-group">
+                        <label>Clinical Trial Name: </label>
+                        <input type="text" class="form-control" id="ct-name">
                     </div>
-                    <button type="button" class="btn btn-secondary" id="#clinical_trail_search">Search</button>
-                    <button type="button" class="btn btn-secondary" id="#clinical_trail_add">Add</button>
+                    <button type="button" class="btn btn-secondary" id="ct-search-by-name">Search</button>
 
-                    <div class="form-group" style="padding-bottom: 2%;">
+                    <div class="form-group">
                         <label>Disease Name:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="ct-search-by-dn">
                     </div>
-                    <button type="button" class="btn btn-secondary" id="#clinicalTrail_search"
-                            style="margin-bottom: 2%;">Search
-                    </button>
-                </form>
-                <table class="table">
+                    <button type="button" class="btn btn-secondary" id="ct-search-by-disease">Search</button>
+                </div>
+                <table class="table" id="clinical_trail_table">
                     <thead>
                     <tr>
                         <th scope="col">Trial</th>
-                        <th scope="col">Duration</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Risks</th>
                         <th scope="col">Patients</th>
                         <th scope="col">IsComplete</th>
-                        <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#clinical_trail_edit"
-                                    style="width: 77%;">Edit
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#clinical_trail_delete"
-                                    style="width: 60%;">Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 60%;">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 60%;">Delete</button>
-                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
