@@ -116,25 +116,27 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
     }
 
     @Override
-    public Treatment findTreatmentByName(String name) {
+    public List<Treatment> findTreatmentByName(String name) {
         final Connection connection = handler.getConnection();
         final String q = "SELECT * FROM Treatment WHERE TreatmentName = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1, name);
             ResultSet set = statement.executeQuery();
+            List<Treatment> treatments = new ArrayList<>();
             if (set.next()) {
-                return new Treatment(
-                        name,
-                        set.getFloat("Efficiency"),
-                        set.getString("Equipment"),
-                        set.getString("Risks"));
+                treatments. add(new Treatment(
+                                        name,
+                                        set.getFloat("Efficiency"),
+                                        set.getString("Equipment"),
+                                        set.getString("Risks")));
             }
+            return treatments;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
         }
 
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
@@ -160,6 +162,61 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
                                 ));
             }
             return clinicalTrails;
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Treatment> findTreatmentByDisease(String dname) {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT * FROM Treatment T INNER JOIN Disease_Treatment DT ON " +
+                "T.TreatmentName = DT.TName WHERE (DT.DName LIKE ?) OR (DT.DName LIKE ?)";
+
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            String lowerCase = "%" + dname.substring(0, 1).toUpperCase() + dname.substring(1) + "%";
+            String upperCase = "%" + dname.substring(0, 1).toLowerCase() + dname.substring(1) + "%";
+            statement.setString(1, lowerCase);
+            statement.setString(2, upperCase);
+            final ResultSet set = statement.executeQuery();
+            List<Treatment> treatments = new ArrayList<>();
+            while (set.next()) {
+                treatments.add(
+                        new Treatment(
+                                set.getString("TreatmentName"),
+                                set.getFloat("Efficiency"),
+                                set.getString("Equipment"),
+                                set.getString("Risks")
+                        ));
+            }
+            return treatments;
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<ClinicalTrial> findAllClinicalTrailName() {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT TrialName FROM ClinicalTrial";
+
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            final ResultSet set = statement.executeQuery();
+            List<ClinicalTrial> clinicalTrials = new ArrayList<>();
+            while (set.next()) {
+                clinicalTrials.add(
+                        new ClinicalTrial(
+                                set.getString("TrialName"),
+                                "",
+                                0,
+                                1
+                        ));
+            }
+            return clinicalTrials;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
             return null;

@@ -8,8 +8,27 @@ $(document).ready(() => {
       const name = $('#ct-search-by-dn').val();
       $.get('/clinicalTrial?dname=' + name, populateClinicalTrial);
   });
+
+  $('#ct-search-all').on('click', () => {
+    $.get('/clinicalTrial', populateJustName);
+  })
 });
 
+
+function populateJustName(data){
+  $('#clinical_trail_table tbody').remove();
+      let rows = "";
+      for (const row of data) {
+          rows += `<tr><td>${row.trialName}</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></tr>`;
+      }
+      rows = `<tbody>${rows}</tbody>`;
+      $('#clinical_trail_table').append(rows);
+
+}
 
 function populateClinicalTrial(data){
     $('#clinical_trail_table tbody').remove();

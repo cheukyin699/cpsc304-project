@@ -31,7 +31,6 @@
 
     nav{
       opacity: 0.8;
-      font-size: 1.1em;
     }
 
     a{
@@ -218,6 +217,7 @@
 
         <div class="card" style="width: 100%;">
             <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
+              <button type="button" class="btn btn-secondary" id="ct-search-all">Show all trials</button>
               <h3><small class="text-muted">Search clinical trial by</small></h3>
                 <div class="form-inline" style="padding-bottom: 2%;">
                     <div class="form-group">
@@ -266,17 +266,17 @@
                 <form class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Treatment:</label>
-                        <input type="text" class="form-control" id="email" placeholder="Treatment name">
+                        <input type="text" class="form-control" id="tname" placeholder="Treatment name">
                     </div>
-                    <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
+                    <button type="button" class="btn btn-secondary" id="t-search-by-name" style="margin-bottom: 2%;">Search</button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Disease:</label>
-                        <input type="text" class="form-control" id="email" placeholder="Disease name">
+                        <input type="text" class="form-control" id="treatment-dname" placeholder="Disease name">
                     </div>
-                    <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
+                    <button type="button" class="btn btn-secondary" id="t-search-by-dn" style="margin-bottom: 2%;">Search</button>
                 </form>
-                <table class="table">
+                <table class="table" id="treatment-table">
                     <thead>
                     <tr>
                         <th scope="col">Treatment Name</th>
@@ -305,8 +305,8 @@
     <div class="patient">
 
         <div class="card" style="width: 100%;">
-            <div class="card-body" style='height: 80vh;'>
-                <form class="form-inline" action="/action_page.php">
+            <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
+                <form class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
                         <input type="text" class="form-control" id="email">
@@ -315,14 +315,14 @@
                     <button type="button" class="btn btn-secondary">Add</button>
                 </form>
 
-                <form class="form-inline" action="/action_page.php">
+                <form class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label> Oldest patient grouped by physician </label>
                     </div>
                     <button type="button" class="btn btn-secondary">Search</button>
                 </form>
 
-                <form class="form-inline" action="/action_page.php">
+                <form class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label> Patient with all diseases </label>
                     </div>
@@ -345,12 +345,12 @@
                     <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
                                 Edit
@@ -359,12 +359,12 @@
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
                                 Edit
@@ -373,12 +373,12 @@
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
                                 Edit
@@ -420,33 +420,33 @@
                     <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
                         </td>

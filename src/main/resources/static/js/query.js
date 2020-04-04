@@ -16,6 +16,16 @@ $(document).ready(() => {
         $.post(`/disease/link/${dName}/${tName}`, alert);
     });
 
+    $('#t-search-by-name').on('click', ()=> {
+       const tname = $('#tname').val();
+       $.get('/treatment?tname=' + tname, populateTreatment);
+    });
+
+    $('#t-search-by-dn').on('click', ()=> {
+      const dname = $('#treatment-dname').val();
+      $.get('/treatment?dname=' +dname, populateTreatment);
+    });
+
 });
 
 function populateDisease(data) {
@@ -38,4 +48,18 @@ function deleteDisease(name) {
             $('#get-disease').click();
         }
     });
+}
+
+function populateTreatment(data) {
+  $('#treatment-table tbody').remove();
+  let rows = "";
+  for(const row of data){
+    rows += `<tr><td>${row.treatmentName}</td>
+                 <td>${row.efficiency}</td>
+                 <td>${row.equipment}</td>
+                 <td>${row.risks}</td>
+                 <td><a class="btn btn-info" href="https://en.wikipedia.org/wiki/${row.treatmentName}"> More Info</a></td></tr>`;
+  }
+  rows = `<tbody>${rows}</tbody>`;
+  $('#treatment-table').append(rows);
 }

@@ -11,7 +11,10 @@ public interface ClinicalTrialTreatmentDAO {
     void delete(final String ctname);
 
     List<ClinicalTrial> findClinicalTrialByName(final String name);
-    Treatment findTreatmentByName(final String name);
+    List<Treatment> findTreatmentByName(final String name);
 
     List<ClinicalTrial> findClinicalTrailByDisease(final String dname);
+    List<Treatment> findTreatmentByDisease(final String dname);
+
+    List<ClinicalTrial> findAllClinicalTrailName();
 }
