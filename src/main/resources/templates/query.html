@@ -17,6 +17,7 @@
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/query.js}"></script>
+    <script type="text/javascript" th:src="@{/js/clinicalTrialQuery.js}"></script>
 </head>
 
 <style>
@@ -216,17 +217,18 @@
     <div class="clinical_trail">
 
         <div class="card" style="width: 100%;">
-            <div class="card-body" style='height: 80vh;'>
+            <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
+              <h3><small class="text-muted">Search clinical trial by</small></h3>
                 <div class="form-inline" style="padding-bottom: 2%;">
                     <div class="form-group">
-                        <label>Clinical Trial Name: </label>
-                        <input type="text" class="form-control" id="ct-name">
+                        <label>Clinical Trial: </label>
+                        <input type="text" class="form-control" id="ct-name" placeholder="Clinical trial name">
                     </div>
                     <button type="button" class="btn btn-secondary" id="ct-search-by-name">Search</button>
 
                     <div class="form-group">
-                        <label>Disease Name:</label>
-                        <input type="text" class="form-control" id="ct-search-by-dn">
+                        <label>Disease:</label>
+                        <input type="text" class="form-control" id="ct-search-by-dn" placeholder="Disease name">
                     </div>
                     <button type="button" class="btn btn-secondary" id="ct-search-by-disease">Search</button>
                 </div>
@@ -242,7 +244,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row"></th>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -259,18 +261,18 @@
     <div class="treatment">
 
         <div class="card" style="width: 100%">
-            <div class="card-body" style='height: 80vh;'>
-                <form class="form-inline" action="/action_page.php">
+            <div class="card-body" style='height: 80vh; overflow-y: scroll'>
+              <h3><small class="text-muted">Search treatment by</small></h3>
+                <form class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Treatment Name:</label>
-                        <input type="text" class="form-control" id="email">
+                        <label>Treatment:</label>
+                        <input type="text" class="form-control" id="email" placeholder="Treatment name">
                     </div>
                     <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
-                    <button type="button" class="btn btn-secondary">Add</button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Disease Name:</label>
-                        <input type="text" class="form-control" id="email">
+                        <label>Disease:</label>
+                        <input type="text" class="form-control" id="email" placeholder="Disease name">
                     </div>
                     <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
                 </form>
@@ -281,46 +283,16 @@
                         <th scope="col">Efficiency</th>
                         <th scope="col">Equipment</th>
                         <th scope="col">Risks</th>
-                        <th scope="col">Edit</th>
                         <th scope="col">See more</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 60%;">More</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 60%;">More</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 60%;">More</button>
-                        </td>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>

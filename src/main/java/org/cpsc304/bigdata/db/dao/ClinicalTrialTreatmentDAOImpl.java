@@ -77,20 +77,37 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
     @Override
     public List<ClinicalTrial> findClinicalTrialByName(String name) {
         final Connection connection = handler.getConnection();
-        final String q = "SELECT * FROM ClinicalTrial WHERE TrialName = ?";
+        final String q = "SELECT * FROM ClinicalTrial WHERE TrialName LIKE ?";
         try {
-            PreparedStatement statement = connection.prepareStatement(q);
-            statement.setString(1, name);
-            ResultSet set = statement.executeQuery();
-            List<ClinicalTrial> clinicalTrials = new ArrayList<>();
-            if (set.next()) {
-                clinicalTrials.add(new ClinicalTrial(
-                                        name,
-                                        set.getString("Type"),
-                                        set.getInt("Num_Participants"),
-                                        set.getInt("IsComplete")));
-                return clinicalTrials;
+            if(!name.equals("")){
+                PreparedStatement statement = connection.prepareStatement(q);
+                String name2 = "%" + name + "%";
+                statement.setString(1, name2);
+                ResultSet set = statement.executeQuery();
+                List<ClinicalTrial> clinicalTrials = new ArrayList<>();
+                if (set.next()) {
+                    clinicalTrials.add(new ClinicalTrial(
+                            set.getString("TrialName"),
+                            set.getString("Type"),
+                            set.getInt("Num_Participants"),
+                            set.getInt("IsComplete")));
+                    return clinicalTrials;
+                }
+            }else{
+                final String p = "SELECT * FROM ClinicalTrial";
+                PreparedStatement statement = connection.prepareStatement(p);
+                ResultSet set = statement.executeQuery();
+                List<ClinicalTrial> clinicalTrials = new ArrayList<>();
+                if (set.next()) {
+                    clinicalTrials.add(new ClinicalTrial(
+                            set.getString("TrialName"),
+                            set.getString("Type"),
+                            set.getInt("Num_Participants"),
+                            set.getInt("IsComplete")));
+                    return clinicalTrials;
+                }
             }
+
         } catch (SQLException e) {
             logger.warn(e.getMessage());
         }
