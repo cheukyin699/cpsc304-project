@@ -217,7 +217,7 @@
 
         <div class="card" style="width: 100%;">
             <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
-              <button type="button" class="btn btn-secondary" id="ct-search-all">Show all trials</button>
+
               <h3><small class="text-muted">Search clinical trial by</small></h3>
                 <div class="form-inline" style="padding-bottom: 2%;">
                     <div class="form-group">
@@ -232,12 +232,26 @@
                     </div>
                     <button type="button" class="btn btn-secondary" id="ct-search-by-disease">Search</button>
                 </div>
+
+                <h3><small class="text-muted">See clinical trial by</small></h3>
+                <div class="form-inline" style="padding-bottom: 2%;">
+                    <div class="form-group">
+                        <label>Filter by: </label>
+                        <select class="form-control" id="ct-field">
+                          <option value="TrialName">Trial</option>
+                          <option value="Type">Type</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="ct-filter-by">Apply</button>
+                </div>
+
+
                 <table class="table" id="clinical_trail_table">
                     <thead>
                     <tr>
                         <th scope="col">Trial</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Patients</th>
+                        <th scope="col">Number of Patients</th>
                         <th scope="col">IsComplete</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -276,6 +290,21 @@
                     </div>
                     <button type="button" class="btn btn-secondary" id="t-search-by-dn" style="margin-bottom: 2%;">Search</button>
                 </form>
+
+
+                <h3><small class="text-muted">Crossreference treatment with</small></h3>
+                <form class="form-inline">
+                    <div class="form-group" style="padding-bottom: 2%;">
+                        <label>Category:</label>
+                        <select class="form-control" id="cross-field">
+                          <option value="Disease">Disease</option>
+                          <option value="ClinicalTrial">Clinical trial</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="t-cross" style="margin-bottom: 2%;">Search</button>
+
+                </form>
+
                 <table class="table" id="treatment-table">
                     <thead>
                     <tr>

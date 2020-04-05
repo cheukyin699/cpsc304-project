@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -22,7 +23,8 @@ public class ClinicalTrialController {
     @GetMapping("/clinicalTrial")
     public List<ClinicalTrial> getClinicalTrial(
             @RequestParam(value = "ctname", required = false) final String ctname,
-            @RequestParam(value = "dname", required = false) final String dname){
+            @RequestParam(value = "dname", required = false) final String dname,
+            @RequestParam(value = "field", required = false) final String field){
 
         if (ctname != null){
             return clinicalTrialTreatmentDAO.findClinicalTrialByName(ctname);
@@ -31,7 +33,12 @@ public class ClinicalTrialController {
             return clinicalTrialTreatmentDAO.findClinicalTrailByDisease(dname);
         }
 
+        if(field != null) {
+            return clinicalTrialTreatmentDAO.filterby(field);
+        }
+
         return clinicalTrialTreatmentDAO.findAllClinicalTrailName();
+
     }
 
     @DeleteMapping("/clinicalTrial/{ctname}")

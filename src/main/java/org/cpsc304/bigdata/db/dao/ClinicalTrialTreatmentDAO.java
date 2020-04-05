@@ -1,8 +1,10 @@
 package org.cpsc304.bigdata.db.dao;
 
+import org.cpsc304.bigdata.model.Diseases.Disease;
 import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
 import org.cpsc304.bigdata.model.MedicalInfo.Treatment;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -17,4 +19,10 @@ public interface ClinicalTrialTreatmentDAO {
     List<Treatment> findTreatmentByDisease(final String dname);
 
     List<ClinicalTrial> findAllClinicalTrailName();
+    List<ClinicalTrial> filterby(final String field);
+
+    HashMap<String,Disease> crossReferenceDisease();
+    HashMap<String,ClinicalTrial> crossReferenceClinicalTrial();
+
+
 }

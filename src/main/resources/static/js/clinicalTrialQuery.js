@@ -11,7 +11,13 @@ $(document).ready(() => {
 
   $('#ct-search-all').on('click', () => {
     $.get('/clinicalTrial', populateJustName);
-  })
+  });
+
+  $('#ct-filter-by').on('click', () => {
+    const field = $('#ct-field').val();
+    $.get('/clinicalTrial?field=' + field, populateJustName)
+  });
+
 });
 
 
@@ -20,7 +26,7 @@ function populateJustName(data){
       let rows = "";
       for (const row of data) {
           rows += `<tr><td>${row.trialName}</td>
-                       <td></td>
+                       <td>${row.type}</td>
                        <td></td>
                        <td></td>
                        <td></tr>`;
@@ -29,6 +35,7 @@ function populateJustName(data){
       $('#clinical_trail_table').append(rows);
 
 }
+
 
 function populateClinicalTrial(data){
     $('#clinical_trail_table tbody').remove();

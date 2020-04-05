@@ -1,5 +1,6 @@
 package org.cpsc304.bigdata.db.dao;
 
+import oracle.jdbc.proxy.annotation.Pre;
 import org.cpsc304.bigdata.db.DatabaseConnectionHandler;
 import org.cpsc304.bigdata.model.Diseases.Disease;
 import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
@@ -15,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -198,6 +200,8 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
         }
     }
 
+
+
     @Override
     public List<ClinicalTrial> findAllClinicalTrailName() {
         final Connection connection = handler.getConnection();
@@ -209,8 +213,7 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
             List<ClinicalTrial> clinicalTrials = new ArrayList<>();
             while (set.next()) {
                 clinicalTrials.add(
-                        new ClinicalTrial(
-                                set.getString("TrialName"),
+                        new ClinicalTrial(set.getString("TrialName"),
                                 "",
                                 0,
                                 1
@@ -221,5 +224,103 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
             logger.warn(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public List<ClinicalTrial> filterby(String field) {
+        final Connection connection = handler.getConnection();
+        if(field.equalsIgnoreCase("TrialName")){
+            final String q = "SELECT TrialName FROM ClinicalTrial";
+            try {
+                final PreparedStatement statement = connection.prepareStatement(q);
+                final ResultSet set = statement.executeQuery();
+                List<ClinicalTrial> clinicalTrials = new ArrayList<>();
+                while (set.next()) {
+                    clinicalTrials.add(
+                            new ClinicalTrial(set.getString("TrialName"),
+                                    "",
+                                    0,
+                                    1
+                            ));
+                }
+                return clinicalTrials;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+         }else {
+            final String p = "SELECT Type FROM ClinicalTrial";
+            try {
+                final PreparedStatement statement = connection.prepareStatement(p);
+                final ResultSet set = statement.executeQuery();
+                List<ClinicalTrial> clinicalTrials = new ArrayList<>();
+                while (set.next()) {
+                    clinicalTrials.add(
+                            new ClinicalTrial("",
+                                    set.getString("Type"),
+                                    0,
+                                    1
+                            ));
+                }
+                return clinicalTrials;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public HashMap<String, Disease> crossReferenceDisease() {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT * FROM Treatment T INNER JOIN Disease_Treatment DT ON DT.TName = T.TreatmentName " +
+                         "INNER JOIN Disease D ON D.Name = DT.DName";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            final ResultSet set = statement.executeQuery();
+            HashMap<String, Disease> combo = new HashMap<>();
+            while (set.next()){
+                String t = set.getString("TreatmentName");
+                Disease d = new Disease(set.getString("Name"),
+                                        set.getInt("Prevalence"),
+                                        set.getString("Symptoms"));
+                combo.put(t,d);
+            }
+            return combo;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+
+
+    }
+
+    @Override
+    public HashMap<String, ClinicalTrial> crossReferenceClinicalTrial() {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT * FROM Treatment T INNER JOIN ClinicalTrial_Treatment CT ON CT.TName = T.TreatmentName " +
+                "INNER JOIN ClinicalTrial C ON C.TrialName = CT.CTName";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            final ResultSet set = statement.executeQuery();
+            HashMap<String, ClinicalTrial> combo = new HashMap<>();
+            while (set.next()){
+                String t = set.getString("TreatmentName");
+                ClinicalTrial d = new ClinicalTrial(set.getString("TrialName"),
+                        set.getString("Type"),
+                        set.getInt("Num_Participants"),
+                        set.getInt("isComplete"));
+                combo.put(t,d);
+            }
+            return combo;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
     }
 }
