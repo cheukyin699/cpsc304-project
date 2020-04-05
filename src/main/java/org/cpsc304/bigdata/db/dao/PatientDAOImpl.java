@@ -85,37 +85,56 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
-    public Map<Physician, Patient> findOldestPatientsPerPhysicians() {
-        HashMap<Physician, Patient> m = new HashMap<>();
+    public List<Patient> findOldestPatientsPerPhysicians() {
+        List<Patient> patients = new ArrayList<>();
+        //HashMap<Physician, Patient> patients = new HashMap<>();
         final Connection connection = handler.getConnection();
-        final String q = "SELECT P.ID, P.Name, P.Family_History, P.Age, P.Sex, U.Username FROM Patient P INNER JOIN Physician U" +
-                " ON P.P_Username = U.Username WHERE P.Age >= ALL " +
-                "(SELECT pp.Age FROM Patient pp INNER JOIN Physician ppp ON pp.P_Username = U.Username)";
+        final String q = "SELECT * " +
+                        "FROM Patient p1 " +
+                        "WHERE p1.age = (SELECT MAX(p2.age) " +
+                                        "FROM Patient p2 INNER JOIN Physician u " +
+                                        "ON (p2.p_username = u.username AND p1.p_username = p2.p_username) " +
+                                        "GROUP BY u.username)";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
             final ResultSet set = statement.executeQuery();
+            String sex;
             while (set.next()) {
-                final Physician physician = userDAO.findPhysicianFromUsername(set.getString("Username"));
-                final Patient patient = new Patient(
+                // final Physician physician = userDAO.findPhysicianFromUsername(set.getString("Username"));
+                sex = (set.getInt("Sex") == 0) ? "Male" : "Female";
+                patients.add(new Patient(
                         set.getString("ID"),
                         set.getString("Name"),
                         set.getString("Family_History"),
                         set.getInt("Age"),
-                        //TODO: sex will return an integer 0 or 1, change this to a string before passing in
-                        set.getString("Sex"),
-                        set.getString("P_Username")
+                        sex,
+                        set.getString("P_Username"))
                 );
 
-                if (physician != null) {
-                    m.put(physician, patient);
-                } else {
-                    logger.warn("Could not find physician '{}'", set.getString("Username"));
-                }
+//                if (physician != null) {
+//                    m.put(physician, patient);
+//                } else {
+//                    logger.warn("Could not find physician '{}'", set.getString("Username"));
+//                }
             }
+            return patients;
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public void deletePatient(final String id) {
+        final Connection connection = handler.getConnection();
+        final String q = "DELETE FROM Patient WHERE ID = ?";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            statement.setString(1, id);
+            statement.executeQuery();
         } catch (SQLException e) {
             logger.warn(e.getMessage());
         }
-        return m;
     }
 
 

@@ -36,6 +36,15 @@ $(document).ready(() => {
         $.get(`/patient/count/${patientid}`, countRecords);
     });
 
+    $('#display-oldest-by-physician').on('click', () => {
+        $.get('/patient/oldest', populatePatients);
+    });
+
+    $('#delete-patient').on('click', () => {
+        const patientid = $('#id-for-patient').val();
+        deletePatient(patientid);
+    });
+
 
 });
 
@@ -88,4 +97,14 @@ function refresh() {
 
 function countRecords(count) {
    $('#recordCount').val(count);
+}
+
+function deletePatient(id) {
+    $.ajax({
+        url:`/patient/${id}`,
+        type: 'DELETE',
+        success: () => {
+            $('#search-by-patient-id').click();
+        }
+    });
 }

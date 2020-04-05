@@ -319,21 +319,25 @@ public class DatabaseInitializer {
                     " 'Mother: Meniere’s, Grandmother: Cardiac arrest', '31', '0', 'hbtaussig')",
             "INSERT INTO Patient VALUES('2', 'Bob Baker', NULL, '20', '0', 'zjanzekovic')",
             "INSERT INTO Patient VALUES('3', 'Ann Brown'," +
-                    " 'Father: cystic fibrosis, Brother: follicular lymphoma', '53', '1', 'czhou')",
-            "INSERT INTO Patient VALUES('4', 'Julian Park', 'Aunt: Parkinsons', '19', '1', 'sdudrick')",
-            "INSERT INTO Patient VALUES('5', 'Chris Lim', 'Uncle: melanoma, Grandfather: Alzheimers', '38', '0', 'czhou')",
+                    " 'Father: Cystic fibrosis, Brother: Follicular lymphoma', '53', '1', 'czhou')",
+            "INSERT INTO Patient VALUES('4', 'Julian Park', 'Aunt: Parkinsons', '19', '0', 'sdudrick')",
+            "INSERT INTO Patient VALUES('5', 'Chris Lim', 'Uncle: Melanoma, Grandfather: Alzheimers', '38', '0', 'czhou')",
+            "INSERT INTO Patient VALUES('6', 'Jamie Robinson', 'Mother: Sickle cell anemia', '89', '1', 'czhou')",
+            "INSERT INTO Patient VALUES('7', 'Chrissy Ngo', null, '34', '1', 'sdudrick')",
+            "INSERT INTO Patient VALUES('8', 'Lucia Kim', 'Father: Asthma', '38', '0', 'zjanzekovic')",
+            "INSERT INTO Patient VALUES('9', 'Stu Dent', NULL, '38', '0', 'zjanzekovic')"
     };
 
     private static final String[] TUPLE_MEDICAL_RECORD = {
-            "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'Tetracycline, tree nuts'," +
+            "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'Tetracycline, Tree nuts'," +
                     "'Ciprofloxacin')",
             "INSERT INTO MedicalRecord VALUES('2', date '2012-11-01', date '2012-11-08', 'Glaucoma', 'Argon laser trabeculoplasty'," +
                     " 'penicillin', 'morphine')",
             "INSERT INTO MedicalRecord VALUES('2', date '2015-09-04', date '2015-09-15', 'Cardiac arrest', NULL," +
                     " NULL, 'morphine')",
-            "INSERT INTO MedicalRecord VALUES('3', date '2017-12-12', date '2017-12-30', 'Kidney disease', 'dialysis, kidney transplant'," +
+            "INSERT INTO MedicalRecord VALUES('3', date '2017-12-12', date '2017-12-30', 'Kidney disease', 'Dialysis, Kidney transplant'," +
                     " NULL, 'chloramphenicol')",
-            "INSERT INTO MedicalRecord VALUES('4', date '2014-04-16', date '2014-04-17', 'Metacarpal fracture', 'cast'," +
+            "INSERT INTO MedicalRecord VALUES('4', date '2014-04-16', date '2014-04-17', 'Metacarpal fracture', 'Cast'," +
                     " 'peanuts', NULL)",
     };
 

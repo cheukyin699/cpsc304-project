@@ -39,5 +39,15 @@ public class PatientController {
         return patientDAO.countMedicalRecords(pid);
     }
 
+    @GetMapping("/patient/oldest")
+    public List<Patient> oldestPatientByPhysician() {
+        return patientDAO.findOldestPatientsPerPhysicians();
+    }
 
+    @DeleteMapping("/patient/{id}")
+    public String deleteDisease(@PathVariable("id") final String id) {
+        logger.info("{}", id);
+        patientDAO.deletePatient(id);
+        return "ok";
+    }
 }
