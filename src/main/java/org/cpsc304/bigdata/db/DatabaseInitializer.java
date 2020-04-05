@@ -319,29 +319,49 @@ public class DatabaseInitializer {
                     " 'Mother: Meniere’s, Grandmother: Cardiac arrest', '31', '0', 'hbtaussig')",
             "INSERT INTO Patient VALUES('2', 'Bob Baker', NULL, '20', '0', 'zjanzekovic')",
             "INSERT INTO Patient VALUES('3', 'Ann Brown'," +
-                    " 'Father: cystic fibrosis, Brother: follicular lymphoma', '53', '0', 'czhou')",
+                    " 'Father: Cystic fibrosis, Brother: Follicular lymphoma', '53', '1', 'czhou')",
             "INSERT INTO Patient VALUES('4', 'Julian Park', 'Aunt: Parkinsons', '19', '0', 'sdudrick')",
-            "INSERT INTO Patient VALUES('5', 'Chris Lim', 'Uncle: melanoma, Grandfather: Alzheimers', '38', '0', 'czhou')",
+            "INSERT INTO Patient VALUES('5', 'Chris Lim', 'Uncle: Melanoma, Grandfather: Alzheimers', '38', '0', 'czhou')",
+            "INSERT INTO Patient VALUES('6', 'Jamie Robinson', 'Mother: Sickle cell anemia', '89', '1', 'czhou')",
+            "INSERT INTO Patient VALUES('7', 'Chrissy Ngo', null, '34', '1', 'sdudrick')",
+            "INSERT INTO Patient VALUES('8', 'Lucia Kim', 'Father: Asthma', '38', '0', 'zjanzekovic')",
+            "INSERT INTO Patient VALUES('9', 'Stu Dent', NULL, '38', '0', 'zjanzekovic')"
     };
 
     private static final String[] TUPLE_MEDICAL_RECORD = {
-            "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'tetracycline, tree nuts'," +
+            "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'Tetracycline, Tree nuts'," +
                     "'Ciprofloxacin')",
             "INSERT INTO MedicalRecord VALUES('2', date '2012-11-01', date '2012-11-08', 'Glaucoma', 'Argon laser trabeculoplasty'," +
                     " 'penicillin', 'morphine')",
             "INSERT INTO MedicalRecord VALUES('2', date '2015-09-04', date '2015-09-15', 'Cardiac arrest', NULL," +
                     " NULL, 'morphine')",
-            "INSERT INTO MedicalRecord VALUES('3', date '2017-12-12', date '2017-12-30', 'Kidney disease', 'dialysis, kidney transplant'," +
+            "INSERT INTO MedicalRecord VALUES('3', date '2017-12-12', date '2017-12-30', 'Kidney disease', 'Dialysis, Kidney transplant'," +
                     " NULL, 'chloramphenicol')",
-            "INSERT INTO MedicalRecord VALUES('4', date '2014-04-16', date '2014-04-17', 'Metacarpal fracture', 'cast'," +
+            "INSERT INTO MedicalRecord VALUES('4', date '2014-04-16', date '2014-04-17', 'Metacarpal fracture', 'Cast'," +
                     " 'peanuts', NULL)",
     };
 
     private static final String[] TUPLE_SUFFERS_FROM = {
-            "INSERT INTO SuffersFrom VALUES('1', 'Iron deficiency', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Glaucoma', 496)",
             "INSERT INTO SuffersFrom VALUES('1', 'Avian influenza', 20)",
-            "INSERT INTO SuffersFrom VALUES('2', 'Glaucoma', 670)",
-            "INSERT INTO SuffersFrom VALUES('3', 'Urinary tract infection', 9)",
+            "INSERT INTO SuffersFrom VALUES('1', 'AIDS', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Diabetes', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Asthma', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Dengue fever', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Iron deficiency', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Kidney disease', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Elephantiasis', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Follicular lymphoma', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Cholera', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Urinary tract infection', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Scurvy', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Pellagra', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Sickle cell anemia', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Hemophilia', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Lebers optic neuropathy', 496)",
+
+            "INSERT INTO SuffersFrom VALUES('2', 'Hemophilia', 670)",
+            "INSERT INTO SuffersFrom VALUES('3', 'Lebers optic neuropathy', 9)",
             "INSERT INTO SuffersFrom VALUES('5', 'Avian influenza', 5)"
 
     };

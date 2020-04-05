@@ -16,7 +16,6 @@
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/query.js}"></script>
-    <script type="text/javascript" th:src="@{/js/clinicalTrialQuery.js}"></script>
 </head>
 
 <style>
@@ -30,6 +29,7 @@
 
     nav{
       opacity: 0.8;
+      font-size: 1.1em;
     }
 
     a{
@@ -128,14 +128,14 @@
     </div>
 </nav>
 <div class="container">
-    <h2 style="text-align: center; margin-top: 2%;"> Welcome </h2>
+    <h2 style="text-align: center; margin-top: 2%;"> Welcome [display the name of the user] </h2>
 
     <ul class="list-group">
         <a href="#disease">
             <li class="list-group-item"> Disease</li>
         </a>
         <a href="#clinical_trail">
-            <li class="list-group-item">Clinical Trail</li>
+            <li class="list-group-item">Clinical Trial</li>
         </a>
         <a href="#treatment">
             <li class="list-group-item">Treatment</li>
@@ -152,57 +152,34 @@
     <div class="disease">
 
         <div class="card" style="width: 100%">
-            <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
-              <h3><small class="text-muted">Search diseases by</small></h3>
+            <div class="card-body" style='height: 80vh;'>
                 <div class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Symptom: </label>
-                        <input id="disease-name" type="text" class="form-control" placeholder="Find by symptom">
+                        <label>Find by symptom:</label>
+                        <input id="disease-name" type="text" class="form-control">
                     </div>
                     <button id="get-disease" type="button" class="btn btn-secondary" style="margin-bottom: 2%;">
                         Search
                     </button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Clinical Trial: </label>
-                        <input type="text" class="form-control" id="ct-disease-name" placeholder="Find by clinical trial"/>
+                        <label>Clinical Trial Name:</label>
+                        <input type="text" class="form-control" id="ct-disease-name" />
                     </div>
                     <button type="button" class="btn btn-secondary" id="by-ct-disease" style="margin-bottom: 2%;">
                         Search
                     </button>
-                </div>
 
-                <div class="form-inline">
-                  <div class="form-group" style="padding-bottom: 2%;">
-                    <label>Find diseases that have more than</label>
-                    <select class="form-control" id="cross-number">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
-                    <select class="form-control" id="cross-disease">
-                      <option value="Treatment">Treatment</option>
-                      <option value="ClinicalTrial">ClinicalTrial</option>
-                    </select>
-                    <button type="button" class="btn btn-secondary" id="cross-ct-t" style="margin-bottom: 2%;"> Search</button>
-                </div>
-              </div>
-
-
-                <h3><small class="text-muted">Link disease to clinical trail</small></h3>
-                <div class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Disease Name: </label>
-                        <input type="text" class="form-control" id="link-disease-dname" placeholder="Disease name">
-                        <label>Clinical Trial Name: </label>
-                        <input type="text" class="form-control" id="link-disease-tname" placeholder="Clinical trial name">
+                        <label>Disease Name:</label>
+                        <input type="text" class="form-control" id="link-disease-dname">
+                        <label>Clinical Trial Name:</label>
+                        <input type="text" class="form-control" id="link-disease-tname">
                     </div>
                     <button type="button" class="btn btn-secondary" id="link-disease-bt" style="margin-bottom: 2%;">
                         Link
                     </button>
                 </div>
-
                 <table class="table" id="disease-table">
                     <thead>
                     <tr>
@@ -215,11 +192,37 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" id="#disease_delete" style="width: 60%;">
+                                Delete
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -232,53 +235,82 @@
     <div class="clinical_trail">
 
         <div class="card" style="width: 100%;">
-            <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
-
-              <h3><small class="text-muted">Search clinical trial by</small></h3>
-                <div class="form-inline" style="padding-bottom: 2%;">
-                    <div class="form-group">
-                        <label>Clinical Trial: </label>
-                        <input type="text" class="form-control" id="ct-name" placeholder="Clinical trial name">
+            <div class="card-body" style='height: 80vh;'>
+                <form class="form-inline" action="/action_page.php">
+                    <div class="form-group" style="padding-bottom: 2%;">
+                        <label>Clinical Trial Name:</label>
+                        <input type="text" class="form-control" id="email">
                     </div>
-                    <button type="button" class="btn btn-secondary" id="ct-search-by-name">Search</button>
+                    <button type="button" class="btn btn-secondary" id="#clinical_trail_search">Search</button>
+                    <button type="button" class="btn btn-secondary" id="#clinical_trail_add">Add</button>
 
-                    <div class="form-group">
-                        <label>Disease:</label>
-                        <input type="text" class="form-control" id="ct-search-by-dn" placeholder="Disease name">
+                    <div class="form-group" style="padding-bottom: 2%;">
+                        <label>Disease Name:</label>
+                        <input type="text" class="form-control" id="email">
                     </div>
-                    <button type="button" class="btn btn-secondary" id="ct-search-by-disease">Search</button>
-                </div>
-
-                <h3><small class="text-muted">See clinical trial by</small></h3>
-                <div class="form-inline" style="padding-bottom: 2%;">
-                    <div class="form-group">
-                        <label>Filter by: </label>
-                        <select class="form-control" id="ct-field">
-                          <option value="TrialName">Trial</option>
-                          <option value="Type">Type</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-secondary" id="ct-filter-by">Apply</button>
-                </div>
-
-
-                <table class="table" id="clinical_trail_table">
+                    <button type="button" class="btn btn-secondary" id="#clinicalTrail_search"
+                            style="margin-bottom: 2%;">Search
+                    </button>
+                </form>
+                <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">Trial</th>
+                        <th scope="col">Duration</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Number of Patients</th>
+                        <th scope="col">Risks</th>
+                        <th scope="col">Patients</th>
                         <th scope="col">IsComplete</th>
+                        <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" id="#clinical_trail_edit"
+                                    style="width: 77%;">Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" id="#clinical_trail_delete"
+                                    style="width: 60%;">Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 60%;">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 60%;">Delete</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -291,39 +323,68 @@
     <div class="treatment">
 
         <div class="card" style="width: 100%">
-            <div class="card-body" style='height: 80vh; overflow-y: scroll'>
-              <h3><small class="text-muted">Search treatment by</small></h3>
-                <form class="form-inline">
+            <div class="card-body" style='height: 80vh;'>
+                <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Treatment:</label>
-                        <input type="text" class="form-control" id="tname" placeholder="Treatment name">
+                        <label>Treatment Name:</label>
+                        <input type="text" class="form-control" id="email">
                     </div>
-                    <button type="button" class="btn btn-secondary" id="t-search-by-name" style="margin-bottom: 2%;">Search</button>
+                    <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
+                    <button type="button" class="btn btn-secondary">Add</button>
 
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Disease:</label>
-                        <input type="text" class="form-control" id="treatment-dname" placeholder="Disease name">
+                        <label>Disease Name:</label>
+                        <input type="text" class="form-control" id="email">
                     </div>
-                    <button type="button" class="btn btn-secondary" id="t-search-by-dn" style="margin-bottom: 2%;">Search</button>
+                    <button type="button" class="btn btn-secondary" style="margin-bottom: 2%;">Search</button>
                 </form>
-
-                <table class="table" id="treatment-table">
+                <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">Treatment Name</th>
                         <th scope="col">Efficiency</th>
                         <th scope="col">Equipment</th>
                         <th scope="col">Risks</th>
+                        <th scope="col">Edit</th>
                         <th scope="col">See more</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 60%;">More</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 60%;">More</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" style="width: 60%;">More</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -336,85 +397,59 @@
     <div class="patient">
 
         <div class="card" style="width: 100%;">
-            <div class="card-body" style='height: 80vh; overflow-y: scroll;'>
-                <form class="form-inline">
+            <div class="card-body" style='height: 80vh;'>
+                <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="id-for-patient">
                     </div>
-                    <button type="button" class="btn btn-secondary">Search</button>
-                    <button type="button" class="btn btn-secondary">Add</button>
+                    <button type="button" class="btn btn-secondary" id = "select-patient"
+                            style="margin-bottom: 2%;">Select</button>
+                    <button type="button" class="btn btn-secondary" id = "delete-patient"
+                            style="margin-bottom: 2%;">Delete patient</button>
+                    <button type="button" class="btn btn-secondary" id = "count-record-bt"
+                            style="margin-bottom: 2%;">Medical Records Count</button>
+                    <label style="margin-left: 5%; margin-bottom: 2%;">Record Count:</label>
+                    <output id="recordCount" style="margin-left: 2%; margin-bottom: 2%;;"></output>
                 </form>
 
-                <form class="form-inline">
+                <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label> Oldest patient grouped by physician </label>
+                        <label> Oldest patients grouped by each physician </label>
                     </div>
-                    <button type="button" class="btn btn-secondary">Search</button>
+                    <button type="button" class="btn btn-secondary" id = "display-oldest-by-physician"
+                            style="margin-bottom: 2%; margin-left: 3%;">Display
+                    </button>
                 </form>
 
-                <form class="form-inline">
+                <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label> Patient with all diseases </label>
                     </div>
-                    <button type="button" class="btn btn-secondary">Search</button>
+                    <button type="button" class="btn btn-secondary" id = "find-patient-all-diseases" style="margin-bottom: 2%; margin-left: 3%;">
+                        Search
+                    </button>
                 </form>
 
-                <table class="table">
+                <table class="table" id="patient-table">
                     <thead>
                     <tr>
                         <th scope="col">Patient ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">Family History</th>
                         <th scope="col">Age</th>
                         <th scope="col">Gender</th>
                         <th scope="col">Physician</th>
-                        <th scope="col">#MedicalRecord</th>
-                        <th scope="col">Edit</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row"></th>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -428,59 +463,52 @@
 
         <div class="card" style="width: 100%;">
             <div class="card-body" style='height: 80vh;'>
+
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="patient-id">
                     </div>
-                    <button type="button" class="btn btn-secondary">Search</button>
-                    <button type="button" class="btn btn-secondary">Add</button>
+                    <button type="button" class="btn btn-secondary" id = "search-by-patient-id" style="margin-bottom: 2%;">
+                        Search
+                    </button>
                 </form>
-                <table class="table">
+
+                <form class="form-inline" action="/action_page.php">
+                    <div class="form-group" style="padding-bottom: 2%;">
+                        <label>Record Start Date (YYYY-MM-DD):</label>
+                        <input type="text" class="form-control" id="start_date">
+                    </div>
+                    <div class="form-group" style="padding-bottom: 2%;">
+                        <label>Medication to add:</label>
+                        <input type="text" class="form-control" id="new-medication">
+                    </div>
+                    <button type="button" class="btn btn-secondary" id = "edit-medications" style="margin-bottom: 2%;">
+                        Edit Records
+                    </button>
+                </form>
+
+                <table class="table" id="medical_record_table">
                     <thead>
                     <tr>
-                        <th scope="col">Patient ID</th>
+                        <th scope="col">Patient Id</th>
                         <th scope="col">Start</th>
                         <th scope="col">End</th>
                         <th scope="col">Disease</th>
+                        <th scope="col">Implants/Surgeries</th>
                         <th scope="col">Allergies</th>
                         <th scope="col">Medications</th>
-                        <th scope="col">Edit</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row"></th>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" style="width: 77%;">Edit</button>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
