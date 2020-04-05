@@ -35,13 +35,7 @@ public class TreatmentController {
         if(dname != null){
             return clinicalTrialTreatmentDAO.findTreatmentByDisease(dname);
         }
-        if(table != null){
-            if(table.equalsIgnoreCase("Disease")){
-                return clinicalTrialTreatmentDAO.crossReferenceDisease();
-            }else if (table.equalsIgnoreCase("ClinicalTrial")){
-                return clinicalTrialTreatmentDAO.crossReferenceClinicalTrial();
-            }
-        }
+
 
         return Collections.emptyList();
     }

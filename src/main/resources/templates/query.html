@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Disorders Prognosis</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/query.js}"></script>
@@ -173,6 +172,23 @@
                     </button>
                 </div>
 
+                <div class="form-inline">
+                  <div class="form-group" style="padding-bottom: 2%;">
+                    <label>Find diseases that have more than</label>
+                    <select class="form-control" id="cross-number">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                    <select class="form-control" id="cross-disease">
+                      <option value="Treatment">Treatment</option>
+                      <option value="ClinicalTrial">ClinicalTrial</option>
+                    </select>
+                    <button type="button" class="btn btn-secondary" id="cross-ct-t" style="margin-bottom: 2%;"> Search</button>
+                </div>
+              </div>
+
 
                 <h3><small class="text-muted">Link disease to clinical trail</small></h3>
                 <div class="form-inline">
@@ -191,7 +207,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Disease Name</th>
-                        <th scope="col">Prevelence</th>
+                        <th scope="col">Prevalence</th>
                         <th scope="col">Symptoms</th>
                         <th scope="col">Other Info</th>
                         <th scope="col">Delete</th>
@@ -289,20 +305,6 @@
                         <input type="text" class="form-control" id="treatment-dname" placeholder="Disease name">
                     </div>
                     <button type="button" class="btn btn-secondary" id="t-search-by-dn" style="margin-bottom: 2%;">Search</button>
-                </form>
-
-
-                <h3><small class="text-muted">Crossreference treatment with</small></h3>
-                <form class="form-inline">
-                    <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Category:</label>
-                        <select class="form-control" id="cross-field">
-                          <option value="Disease">Disease</option>
-                          <option value="ClinicalTrial">Clinical trial</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-secondary" id="t-cross" style="margin-bottom: 2%;">Search</button>
-
                 </form>
 
                 <table class="table" id="treatment-table">

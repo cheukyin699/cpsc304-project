@@ -21,8 +21,5 @@ public interface ClinicalTrialTreatmentDAO {
     List<ClinicalTrial> findAllClinicalTrailName();
     List<ClinicalTrial> filterby(final String field);
 
-    HashMap<String,Disease> crossReferenceDisease();
-    HashMap<String,ClinicalTrial> crossReferenceClinicalTrial();
-
 
 }

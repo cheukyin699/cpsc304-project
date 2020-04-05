@@ -11,6 +11,7 @@ import java.util.List;
 public interface DiseaseDAO {
     List<Disease> findDiseaseBySymptom(final String symptom);
     List<Disease> findDiseaseByClinicalTrialName(final String name);
+    List<Disease> findDiseaseByPara(final String table, final String number);
 
     void linkDiseaseToClinicalTrial(String diseaseName, String trialName);
     void deleteDisease(final String name);

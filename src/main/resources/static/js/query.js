@@ -26,10 +26,12 @@ $(document).ready(() => {
       $.get('/treatment?dname=' +dname, populateTreatment);
     });
 
-    $('#t-cross').on('click', () => {
-      const table = $('#cross-field').val();
-      $.get('/treatment?table=' + table, populateTable);
-    })
+
+    $('#cross-ct-t').on('click', () => {
+      const table = $('#cross-disease').val();
+      const number = $('#cross-number').val();
+      $.get('/disease?table='+ table +'&number='+ number, populateDisease);
+    });
 
 
 });
@@ -66,20 +68,6 @@ function populateTreatment(data) {
                  <td>${row.risks}</td>
                  <td><a class="btn btn-info" href="https://en.wikipedia.org/wiki/${row.treatmentName}"> More Info</a></td></tr>`;
   }
-  rows = `<tbody>${rows}</tbody>`;
-  $('#treatment-table').append(rows);
-}
-
-function populateTable(data) {
-  $('#treatment-table tbody').remove();
-  $('#treatment-table thead').remove();
-  let heads = `<thead><tr>
-      <th scope="col">Treatment Name</th>
-      <th scope="col">Disease/Clnical Trial</th>
-      <th scope="col">Symptoms/Type</th></thead>`;
-  $('#treatment-table').append(heads);
-  let rows = "";
-
   rows = `<tbody>${rows}</tbody>`;
   $('#treatment-table').append(rows);
 }
