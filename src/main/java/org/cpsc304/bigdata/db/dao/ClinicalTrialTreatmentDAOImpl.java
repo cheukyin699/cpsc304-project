@@ -193,7 +193,7 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
             return treatments;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 
