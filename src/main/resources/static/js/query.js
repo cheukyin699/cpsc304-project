@@ -27,6 +27,9 @@ $(document).ready(() => {
         $.post(`/medical_record/edit/${patientid}/${medications}/${start_date}`, refresh);
     });
 
+    $('#display-oldest-by-physician').on('click', () => {
+        $.get('/medical_record?patientid=' + patientid, populateMedicalRecord);
+    });
 
 });
 

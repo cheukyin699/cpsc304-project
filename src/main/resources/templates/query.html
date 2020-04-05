@@ -401,17 +401,20 @@
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="id-for-patient">
                     </div>
-                    <button type="button" class="btn btn-secondary">Search</button>
+                    <button type="button" class="btn btn-secondary">
+                        Search</button>
                     <button type="button" class="btn btn-secondary">Add</button>
                 </form>
 
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label> Oldest patient grouped by physician </label>
+                        <label> Oldest patients grouped by each physician </label>
                     </div>
-                    <button type="button" class="btn btn-secondary">Search</button>
+                    <button type="button" class="btn btn-secondary" id = "display-oldest-by-physician" style="margin-bottom: 2%;">
+                        Display
+                    </button>
                 </form>
 
                 <form class="form-inline" action="/action_page.php">
