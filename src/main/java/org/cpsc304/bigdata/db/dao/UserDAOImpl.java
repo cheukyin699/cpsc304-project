@@ -48,7 +48,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public Physician findPhysicianFromUsername(final String username) {
         final Connection connection = handler.getConnection();
-        final String q = "SELECT * FROM User_Info NATURAL JOIN User_Dept NATURAL JOIN Physician WHERE Username = ?";
+        final String q = "SELECT * FROM (User_Info NATURAL JOIN User_Dept) NATURAL JOIN Physician WHERE Username = ?";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1, username);

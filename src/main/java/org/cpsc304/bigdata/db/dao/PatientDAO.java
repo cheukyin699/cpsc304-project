@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 public interface PatientDAO {
-    Patient findPatientById(final String Id);
+    List<Patient> findPatientById(final String Id);
     List<MedicalRecord> findAssociatedMedicalRecords(final String Id);
-    Map<Physician, Patient> findOldestPatientsPerPhysicians();
+    List<Patient> findOldestPatientsPerPhysicians();
+    List<Patient> findPatientsAllDiseases();
 
-    //sex must be 0 or 1
+
     void addPatient(final Patient patient);
+    void deletePatient(final String id);
 
     /**
      * Clears all medical history from a Patient. Not sure why you'd want to do that, but
