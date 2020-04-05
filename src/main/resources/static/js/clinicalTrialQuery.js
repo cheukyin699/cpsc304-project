@@ -9,9 +9,7 @@ $(document).ready(() => {
       $.get('/clinicalTrial?dname=' + name, populateClinicalTrial);
   });
 
-  $('#ct-search-all').on('click', () => {
-    $.get('/clinicalTrial', populateJustName);
-  });
+
 
   $('#ct-filter-by').on('click', () => {
     const field = $('#ct-field').val();
@@ -20,21 +18,6 @@ $(document).ready(() => {
 
 });
 
-
-function populateJustName(data){
-  $('#clinical_trail_table tbody').remove();
-      let rows = "";
-      for (const row of data) {
-          rows += `<tr><td>${row.trialName}</td>
-                       <td>${row.type}</td>
-                       <td></td>
-                       <td></td>
-                       <td></tr>`;
-      }
-      rows = `<tbody>${rows}</tbody>`;
-      $('#clinical_trail_table').append(rows);
-
-}
 
 
 function populateClinicalTrial(data){
