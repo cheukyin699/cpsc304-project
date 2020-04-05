@@ -1,10 +1,8 @@
 package org.cpsc304.bigdata.db.dao;
 
-import org.cpsc304.bigdata.model.Diseases.Disease;
 import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
 import org.cpsc304.bigdata.model.MedicalInfo.Treatment;
 
-import java.util.HashMap;
 import java.util.List;
 
 

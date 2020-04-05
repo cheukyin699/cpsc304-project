@@ -1,8 +1,6 @@
 package org.cpsc304.bigdata.db.dao;
 
-import oracle.jdbc.proxy.annotation.Pre;
 import org.cpsc304.bigdata.db.DatabaseConnectionHandler;
-import org.cpsc304.bigdata.model.Diseases.Disease;
 import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
 import org.cpsc304.bigdata.model.MedicalInfo.Treatment;
 import org.slf4j.Logger;
@@ -16,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 

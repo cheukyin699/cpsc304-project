@@ -1,19 +1,15 @@
 package org.cpsc304.bigdata.controller;
 
 
-import javafx.util.Pair;
+
 import org.cpsc304.bigdata.db.dao.ClinicalTrialTreatmentDAO;
-import org.cpsc304.bigdata.model.MedicalInfo.ClinicalTrial;
-import org.cpsc304.bigdata.model.MedicalInfo.Treatment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.Collections;
-import java.util.List;
 
 @Controller
 @RestController
