@@ -28,25 +28,27 @@ public class PatientDAOImpl implements PatientDAO {
     private Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 
     @Override
-    public Patient findPatientById(final String Id) {
+    public List<Patient> findPatientById(final String Id) {
         final Connection connection = handler.getConnection();
         final String q = "SELECT * FROM Patient WHERE ID = ?";
+        List patients = new ArrayList<>();
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1,Id);
             final ResultSet set = statement.executeQuery();
+            String sex;
             if (set.next()) {
-                return new Patient(
+                sex = (set.getInt("Sex") == 0) ? "Male" : "Female";
+                patients.add(new Patient(
                         Id,
                         set.getString("Name"),
                         set.getString("Family_History"),
                         set.getInt("Age"),
-                        //TODO - sex holds integer, convert to string before passing in
-                        set.getString("Sex"),
-                        set.getString("P_Username"));
-            } else {
-                return null;
+                        sex,
+                        set.getString("P_Username"))
+                );
             }
+            return patients;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
             return null;

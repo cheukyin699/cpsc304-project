@@ -40,24 +40,22 @@ $(document).ready(() => {
         $.get('/patient/oldest', populatePatients);
     });
 
+    $('#select-patient').on('click', () => {
+        const patientid = $('#id-for-patient').val();
+        $.get('/patient?id=' + patientid, populatePatients);
+    });
+
     $('#delete-patient').on('click', () => {
         const patientid = $('#id-for-patient').val();
         deletePatient(patientid);
     });
 
 
+
+
 });
 
-function populatePatients(data) {
-    $('#patient-table tbody').remove();
-    let rows = "";
-    for (const row of data) {
-        rows += `<tr><td>${row.id}</td><td>${row.patientName}</td><td>${row.familyHistory}</td>
-        <td>${row.age}</td><td>${row.sex}</td><td>${row.physicianName}</td></tr>`;
-    }
-    rows = `<tbody>${rows}</tbody>`;
-    $('#patient-table').append(rows);
-}
+
 
 
 function populateDisease(data) {
@@ -99,12 +97,24 @@ function countRecords(count) {
    $('#recordCount').val(count);
 }
 
+function populatePatients(data) {
+    $('#patient-table tbody').remove();
+    let rows = "";
+    for (const row of data) {
+        rows += `<tr><td>${row.id}</td><td>${row.patientName}</td><td>${row.familyHistory}</td>
+        <td>${row.age}</td><td>${row.sex}</td><td>${row.physicianName}</td></tr>`;
+    }
+    rows = `<tbody>${rows}</tbody>`;
+    $('#patient-table').append(rows);
+}
+
 function deletePatient(id) {
     $.ajax({
         url:`/patient/${id}`,
         type: 'DELETE',
         success: () => {
             $('#search-by-patient-id').click();
+            $('#select-patient').click();
         }
     });
 }

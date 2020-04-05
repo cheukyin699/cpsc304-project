@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface PatientDAO {
-    Patient findPatientById(final String Id);
+    List<Patient> findPatientById(final String Id);
     List<MedicalRecord> findAssociatedMedicalRecords(final String Id);
     List<Patient> findOldestPatientsPerPhysicians();
     List<Patient> findPatientsAllDiseases();

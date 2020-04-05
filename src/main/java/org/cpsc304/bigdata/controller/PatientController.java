@@ -29,8 +29,15 @@ public class PatientController {
 
 
     @GetMapping("/patient")
-    public List<Patient> patientsWithAllDisease() {
-        return patientDAO.findPatientsAllDiseases();
+    public List<Patient> patientsWithAllDisease(
+            @RequestParam(value = "id", required = false) final String id) {
+
+        if (id != null) {
+            return patientDAO.findPatientById(id);
+        } else {
+            return patientDAO.findPatientsAllDiseases();
+        }
+
     }
 
     @GetMapping("/patient/count/{patientid}")
@@ -43,6 +50,7 @@ public class PatientController {
     public List<Patient> oldestPatientByPhysician() {
         return patientDAO.findOldestPatientsPerPhysicians();
     }
+
 
     @DeleteMapping("/patient/{id}")
     public String deleteDisease(@PathVariable("id") final String id) {
