@@ -319,8 +319,8 @@ public class DatabaseInitializer {
                     " 'Mother: Meniere’s, Grandmother: Cardiac arrest', '31', '0', 'hbtaussig')",
             "INSERT INTO Patient VALUES('2', 'Bob Baker', NULL, '20', '0', 'zjanzekovic')",
             "INSERT INTO Patient VALUES('3', 'Ann Brown'," +
-                    " 'Father: cystic fibrosis, Brother: follicular lymphoma', '53', '0', 'czhou')",
-            "INSERT INTO Patient VALUES('4', 'Julian Park', 'Aunt: Parkinsons', '19', '0', 'sdudrick')",
+                    " 'Father: cystic fibrosis, Brother: follicular lymphoma', '53', '1', 'czhou')",
+            "INSERT INTO Patient VALUES('4', 'Julian Park', 'Aunt: Parkinsons', '19', '1', 'sdudrick')",
             "INSERT INTO Patient VALUES('5', 'Chris Lim', 'Uncle: melanoma, Grandfather: Alzheimers', '38', '0', 'czhou')",
     };
 
@@ -338,10 +338,26 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_SUFFERS_FROM = {
-            "INSERT INTO SuffersFrom VALUES('1', 'Iron deficiency', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Glaucoma', 496)",
             "INSERT INTO SuffersFrom VALUES('1', 'Avian influenza', 20)",
-            "INSERT INTO SuffersFrom VALUES('2', 'Glaucoma', 670)",
-            "INSERT INTO SuffersFrom VALUES('3', 'Urinary tract infection', 9)",
+            "INSERT INTO SuffersFrom VALUES('1', 'AIDS', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Diabetes', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Asthma', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Dengue fever', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Iron deficiency', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Kidney disease', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Elephantiasis', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Follicular lymphoma', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Cholera', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Urinary tract infection', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Scurvy', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Pellagra', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Sickle cell anemia', 496)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Hemophilia', 20)",
+            "INSERT INTO SuffersFrom VALUES('1', 'Lebers optic neuropathy', 496)",
+
+            "INSERT INTO SuffersFrom VALUES('2', 'Hemophilia', 670)",
+            "INSERT INTO SuffersFrom VALUES('3', 'Lebers optic neuropathy', 9)",
             "INSERT INTO SuffersFrom VALUES('5', 'Avian influenza', 5)"
 
     };

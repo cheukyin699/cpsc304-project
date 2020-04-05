@@ -403,17 +403,20 @@
                         <label>Patient ID:</label>
                         <input type="text" class="form-control" id="id-for-patient">
                     </div>
-                    <button type="button" class="btn btn-secondary">
-                        Search</button>
-                    <button type="button" class="btn btn-secondary">Add</button>
+<!--                    <button type="button" class="btn btn-secondary" id = "placeholder"-->
+<!--                            style="margin-bottom: 2%;">Search</button>-->
+                    <button type="button" class="btn btn-secondary" id = "count-record-bt"
+                            style="margin-bottom: 2%;">Medical Records Count</button>
+                    <label style="margin-left: 5%; margin-bottom: 2%;">Record Count:</label>
+                    <output id="recordCount" style="margin-left: 2%; margin-bottom: 2%;;"></output>
                 </form>
 
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label> Oldest patients grouped by each physician </label>
                     </div>
-                    <button type="button" class="btn btn-secondary" id = "display-oldest-by-physician" style="margin-bottom: 2%;">
-                        Display
+                    <button type="button" class="btn btn-secondary" id = "display-oldest-by-physician"
+                            style="margin-bottom: 2%; margin-left: 3%;">Display
                     </button>
                 </form>
 
@@ -421,10 +424,12 @@
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label> Patient with all diseases </label>
                     </div>
-                    <button type="button" class="btn btn-secondary">Search</button>
+                    <button type="button" class="btn btn-secondary" id = "find-patient-all-diseases" style="margin-bottom: 2%; margin-left: 3%;">
+                        Search
+                    </button>
                 </form>
 
-                <table class="table">
+                <table class="table" id="patient-table">
                     <thead>
                     <tr>
                         <th scope="col">Patient ID</th>
@@ -433,52 +438,16 @@
                         <th scope="col">Age</th>
                         <th scope="col">Gender</th>
                         <th scope="col">Physician</th>
-                        <th scope="col">#MedicalRecord</th>
-                        <th scope="col">Edit</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>1</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>1</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>1</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary" id="#patient_edit" style="width: 77%;">
-                                Edit
-                            </button>
-                        </td>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>

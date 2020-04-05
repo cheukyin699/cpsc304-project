@@ -11,6 +11,7 @@ public interface PatientDAO {
     Patient findPatientById(final String Id);
     List<MedicalRecord> findAssociatedMedicalRecords(final String Id);
     Map<Physician, Patient> findOldestPatientsPerPhysicians();
+    List<Patient> findPatientsAllDiseases();
 
     //sex must be 0 or 1
     void addPatient(final Patient patient);

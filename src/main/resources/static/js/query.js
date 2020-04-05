@@ -27,12 +27,28 @@ $(document).ready(() => {
         $.post(`/medical_record/edit/${patientid}/${medications}/${start_date}`, refresh);
     });
 
-    $('#display-oldest-by-physician').on('click', () => {
-        $.get('/medical_record?patientid=' + patientid, populateMedicalRecord);
+    $('#find-patient-all-diseases').on('click', () => {
+        $.get('/patient', populatePatients);
     });
+
+    $('#count-record-bt').on('click', () => {
+        const patientid = $('#id-for-patient').val();
+        $.get(`/patient/count/${patientid}`, countRecords);
+    });
+
 
 });
 
+function populatePatients(data) {
+    $('#patient-table tbody').remove();
+    let rows = "";
+    for (const row of data) {
+        rows += `<tr><td>${row.id}</td><td>${row.patientName}</td><td>${row.familyHistory}</td>
+        <td>${row.age}</td><td>${row.sex}</td><td>${row.physicianName}</td></tr>`;
+    }
+    rows = `<tbody>${rows}</tbody>`;
+    $('#patient-table').append(rows);
+}
 
 
 function populateDisease(data) {
@@ -70,4 +86,6 @@ function refresh() {
     $('#search-by-patient-id').click();
 }
 
-
+function countRecords(count) {
+   $('#recordCount').val(count);
+}

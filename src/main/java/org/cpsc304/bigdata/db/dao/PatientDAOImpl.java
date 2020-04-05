@@ -41,7 +41,8 @@ public class PatientDAOImpl implements PatientDAO {
                         set.getString("Name"),
                         set.getString("Family_History"),
                         set.getInt("Age"),
-                        set.getInt("Sex"),
+                        //TODO - sex holds integer, convert to string before passing in
+                        set.getString("Sex"),
                         set.getString("P_Username"));
             } else {
                 return null;
@@ -100,8 +101,9 @@ public class PatientDAOImpl implements PatientDAO {
                         set.getString("Name"),
                         set.getString("Family_History"),
                         set.getInt("Age"),
-                        set.getInt("Sex"),
-                        set.getString("Username")
+                        //TODO: sex will return an integer 0 or 1, change this to a string before passing in
+                        set.getString("Sex"),
+                        set.getString("P_Username")
                 );
 
                 if (physician != null) {
@@ -153,12 +155,49 @@ public class PatientDAOImpl implements PatientDAO {
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1, Id);
             final ResultSet set = statement.executeQuery();
-            return set.getInt(1);
+            int count = 0;
+            if (set.next()) {
+                count = set.getInt(1);
+            }
+            return count;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
             return -1;
         }
     }
 
+    @Override
+    public List<Patient> findPatientsAllDiseases() {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT DISTINCT p.id, p.name, p.family_history, p.age, p.sex, p.p_username " +
+                        "FROM Patient p INNER JOIN SuffersFrom s ON p.id = s.p_id " +
+                        "WHERE NOT EXISTS (SELECT d.name FROM Disease d " +
+                                            "MINUS " +
+                                            "SELECT s2.d_name " +
+                                            "FROM Patient p2 INNER JOIN SuffersFrom s2 ON p2.id = s2.p_id " +
+                                            "WHERE p.id = p2.id)";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            final ResultSet set = statement.executeQuery();
+            List<Patient> patients = new ArrayList<>();
+            String sex;
+            while (set.next()) {
+                    sex = (set.getInt("Sex") == 0) ? "Male": "Female";
 
+                patients.add(new Patient(
+                        set.getString("ID"),
+                        set.getString("Name"),
+                        set.getString("Family_History"),
+                        set.getInt("Age"),
+                        sex,
+                        set.getString("P_Username")
+                    )
+                );
+            }
+            return patients;
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
 }

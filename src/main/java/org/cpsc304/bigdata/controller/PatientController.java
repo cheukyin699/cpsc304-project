@@ -1,7 +1,10 @@
 package org.cpsc304.bigdata.controller;
 
 import org.cpsc304.bigdata.db.dao.DiseaseDAO;
+import org.cpsc304.bigdata.db.dao.MedicalRecordDAO;
+import org.cpsc304.bigdata.db.dao.PatientDAO;
 import org.cpsc304.bigdata.model.Diseases.Disease;
+import org.cpsc304.bigdata.model.People.Patient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,4 +22,22 @@ import java.util.List;
 @Controller
 @RestController
 public class PatientController {
+
+    @Autowired
+    private PatientDAO patientDAO;
+    private Logger logger = LoggerFactory.getLogger(PatientController.class);
+
+
+    @GetMapping("/patient")
+    public List<Patient> patientsWithAllDisease() {
+        return patientDAO.findPatientsAllDiseases();
+    }
+
+    @GetMapping("/patient/count/{patientid}")
+    public int countMedicalRecords(@PathVariable("patientid") final String pid) {
+        logger.info("{}", pid);
+        return patientDAO.countMedicalRecords(pid);
+    }
+
+
 }
