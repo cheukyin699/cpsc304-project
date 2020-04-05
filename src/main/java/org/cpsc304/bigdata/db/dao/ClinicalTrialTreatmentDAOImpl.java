@@ -163,7 +163,7 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
             return clinicalTrails;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 
