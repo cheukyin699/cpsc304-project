@@ -109,7 +109,7 @@ public class DiseaseDAOImpl implements DiseaseDAO {
         } catch (SQLException e) {
             logger.warn(e.getMessage());
         }
-        return null;
+        return Collections.emptyList();
 
     }
 
