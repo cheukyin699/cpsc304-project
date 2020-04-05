@@ -65,8 +65,8 @@ public class PatientDAOImpl implements PatientDAO {
                 medicalRecords.add(
                         new MedicalRecord(
                         Id,
-                        set.getDate("Start_date"),
-                        set.getDate("End_date"),
+                        set.getDate("Start_date").toString(),
+                        set.getDate("End_date").toString(),
                         set.getString("Disease"),
                         set.getString("Implant_Surgeries"),
                         set.getString("Allergies"),
@@ -148,7 +148,7 @@ public class PatientDAOImpl implements PatientDAO {
     @Override
     public int countMedicalRecords(final String Id) {
         final Connection connection = handler.getConnection();
-        final String q = "SELECT COUNT(*) FROM MedicalRecord WHERE ID = ?";
+        final String q = "SELECT COUNT(*) FROM MedicalRecord WHERE PatientID = ?";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1, Id);

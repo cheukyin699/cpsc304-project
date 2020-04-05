@@ -325,7 +325,7 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_MEDICAL_RECORD = {
-            "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'tetracycline, tree nuts'," +
+            "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'Tetracycline, tree nuts'," +
                     "'Ciprofloxacin')",
             "INSERT INTO MedicalRecord VALUES('2', date '2012-11-01', date '2012-11-08', 'Glaucoma', 'Argon laser trabeculoplasty'," +
                     " 'penicillin', 'morphine')",
