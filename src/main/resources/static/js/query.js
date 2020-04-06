@@ -67,8 +67,6 @@ $(document).ready(() => {
 });
 
 
-
-
 function populateDisease(data) {
 	$('#disease-table tbody').remove();
 	let rows = "";
