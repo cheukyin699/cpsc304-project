@@ -127,7 +127,7 @@
             <li class="list-group-item"> Disease</li>
         </a>
         <a href="#clinical_trail">
-            <li class="list-group-item">Clinical Trail</li>
+            <li class="list-group-item">Clinical Trial</li>
         </a>
         <a href="#treatment">
             <li class="list-group-item">Treatment</li>
@@ -166,7 +166,7 @@
 
                 <div class="form-inline">
                   <div class="form-group" style="padding-bottom: 2%;">
-                    <label>Find diseases that have more than</label>
+                    <label>Find diseases that have at least</label>
                     <select class="form-control" id="cross-number">
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -177,12 +177,12 @@
                       <option value="Treatment">Treatment</option>
                       <option value="ClinicalTrial">ClinicalTrial</option>
                     </select>
-                    <button type="button" class="btn btn-secondary" id="cross-ct-t" style="margin-bottom: 2%;"> Search</button>
+                    <button type="button" class="btn btn-secondary" id="cross-ct-t"> Search</button>
                 </div>
               </div>
 
 
-                <h3><small class="text-muted">Link disease to clinical trail</small></h3>
+                <h3><small class="text-muted">Link disease to clinical trial</small></h3>
                 <div class="form-inline">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Disease Name: </label>
@@ -330,7 +330,7 @@
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
-                        <input type="text" class="form-control" id="id-for-patient">
+                        <input type="text" class="form-control" id="id-for-patient" placeholder="Patient ID">
                     </div>
                     <button type="button" class="btn btn-secondary" id="select-patient"
                             style="margin-bottom: 2%;">Select</button>
@@ -394,7 +394,7 @@
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
                         <label>Patient ID:</label>
-                        <input type="text" class="form-control" id="patient-id">
+                        <input type="text" class="form-control" id="patient-id" placeholder="Patient ID">
                     </div>
                     <button type="button" class="btn btn-secondary" id="search-by-patient-id" style="margin-bottom: 2%;">
                         Search
@@ -403,12 +403,12 @@
 
                 <form class="form-inline" action="/action_page.php">
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Record Start Date (YYYY-MM-DD):</label>
-                        <input type="text" class="form-control" id="start_date">
+                        <label>Start Date of Record:</label>
+                        <input type="text" class="form-control" id="start_date" placeholder="(YYYY-MM-DD)">
                     </div>
                     <div class="form-group" style="padding-bottom: 2%;">
-                        <label>Medication to add:</label>
-                        <input type="text" class="form-control" id="new-medication">
+                        <label>Add medications:</label>
+                        <input type="text" class="form-control" id="new-medication" placeholder="New medications">
                     </div>
                     <button type="button" class="btn btn-secondary" id="edit-medications" style="margin-bottom: 2%;">
                         Edit Records

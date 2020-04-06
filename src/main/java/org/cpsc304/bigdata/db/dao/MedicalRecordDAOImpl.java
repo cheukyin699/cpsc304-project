@@ -33,7 +33,6 @@ public class MedicalRecordDAOImpl implements MedicalRecordDAO{
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1, medicalRecord.getPatientId());
 
-            //TODO: check this, date to string may return an error because it may be in the wrong format
             statement.setString(2, medicalRecord.getStartDate().toString());
             statement.setString(3, medicalRecord.getEndDate().toString());
 
