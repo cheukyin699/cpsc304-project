@@ -82,9 +82,6 @@ public class DiseaseDAOImpl implements DiseaseDAO {
     public List<Disease> findDiseaseByPara(final String table, final String number) {
         final Connection connection = handler.getConnection();
         try {
-            logger.info(table);
-            logger.info(number);
-
             final String q;
             final PreparedStatement statement;
             if(table.equalsIgnoreCase("Treatment")){

@@ -33,7 +33,6 @@ public class MedicalRecordController {
                                      @PathVariable("medications") final String medications,
                                      @PathVariable("start_date") final String start) {
 
-        logger.info("{}, {}, {}", pid, start, medications);
         medicalRecordDAO.updateMedications(pid, start, medications);
         return "";
     }
