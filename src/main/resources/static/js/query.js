@@ -48,11 +48,6 @@ $(document).ready(() => {
 		$.get('/patient', populatePatients);
 	});
 
-	$('#count-record-bt').on('click', () => {
-		const patientid = $('#id-for-patient').val();
-		$.get(`/patient/count/${patientid}`, countRecords);
-	});
-
 	$('#display-oldest-by-physician').on('click', () => {
 		$.get('/patient/oldest', populatePatients);
 	});
@@ -60,15 +55,14 @@ $(document).ready(() => {
 	$('#select-patient').on('click', () => {
 		const patientid = $('#id-for-patient').val();
 		$.get('/patient?id=' + patientid, populatePatients);
+		$.get(`/patient/count/${patientid}`, countRecords);
 	});
 
 	$('#delete-patient').on('click', () => {
 		const patientid = $('#id-for-patient').val();
 		deletePatient(patientid);
+		countRecords(0);
 	});
-
-
-
 
 });
 
