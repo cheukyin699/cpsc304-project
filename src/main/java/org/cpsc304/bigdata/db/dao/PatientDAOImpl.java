@@ -28,24 +28,27 @@ public class PatientDAOImpl implements PatientDAO {
     private Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 
     @Override
-    public Patient findPatientById(final String Id) {
+    public List<Patient> findPatientById(final String Id) {
         final Connection connection = handler.getConnection();
         final String q = "SELECT * FROM Patient WHERE ID = ?";
+        List patients = new ArrayList<>();
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1,Id);
             final ResultSet set = statement.executeQuery();
+            String sex;
             if (set.next()) {
-                return new Patient(
+                sex = (set.getInt("Sex") == 0) ? "Male" : "Female";
+                patients.add(new Patient(
                         Id,
                         set.getString("Name"),
                         set.getString("Family_History"),
                         set.getInt("Age"),
-                        set.getInt("Sex"),
-                        set.getString("P_Username"));
-            } else {
-                return null;
+                        sex,
+                        set.getString("P_Username"))
+                );
             }
+            return patients;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
             return null;
@@ -65,8 +68,8 @@ public class PatientDAOImpl implements PatientDAO {
                 medicalRecords.add(
                         new MedicalRecord(
                         Id,
-                        set.getDate("Start_date"),
-                        set.getDate("End_date"),
+                        set.getDate("Start_date").toString(),
+                        set.getDate("End_date").toString(),
                         set.getString("Disease"),
                         set.getString("Implant_Surgeries"),
                         set.getString("Allergies"),
@@ -84,36 +87,56 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
-    public Map<Physician, Patient> findOldestPatientsPerPhysicians() {
-        HashMap<Physician, Patient> m = new HashMap<>();
+    public List<Patient> findOldestPatientsPerPhysicians() {
+        List<Patient> patients = new ArrayList<>();
+        //HashMap<Physician, Patient> patients = new HashMap<>();
         final Connection connection = handler.getConnection();
-        final String q = "SELECT P.ID, P.Name, P.Family_History, P.Age, P.Sex, U.Username FROM Patient P INNER JOIN Physician U" +
-                " ON P.P_Username = U.Username WHERE P.Age >= ALL " +
-                "(SELECT pp.Age FROM Patient pp INNER JOIN Physician ppp ON pp.P_Username = U.Username)";
+        final String q = "SELECT * " +
+                        "FROM Patient p1 " +
+                        "WHERE p1.age = (SELECT MAX(p2.age) " +
+                                        "FROM Patient p2 INNER JOIN Physician u " +
+                                        "ON (p2.p_username = u.username AND p1.p_username = p2.p_username) " +
+                                        "GROUP BY u.username)";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
             final ResultSet set = statement.executeQuery();
+            String sex;
             while (set.next()) {
-                final Physician physician = userDAO.findPhysicianFromUsername(set.getString("Username"));
-                final Patient patient = new Patient(
+                // final Physician physician = userDAO.findPhysicianFromUsername(set.getString("Username"));
+                sex = (set.getInt("Sex") == 0) ? "Male" : "Female";
+                patients.add(new Patient(
                         set.getString("ID"),
                         set.getString("Name"),
                         set.getString("Family_History"),
                         set.getInt("Age"),
-                        set.getInt("Sex"),
-                        set.getString("Username")
+                        sex,
+                        set.getString("P_Username"))
                 );
 
-                if (physician != null) {
-                    m.put(physician, patient);
-                } else {
-                    logger.warn("Could not find physician '{}'", set.getString("Username"));
-                }
+//                if (physician != null) {
+//                    m.put(physician, patient);
+//                } else {
+//                    logger.warn("Could not find physician '{}'", set.getString("Username"));
+//                }
             }
+            return patients;
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public void deletePatient(final String id) {
+        final Connection connection = handler.getConnection();
+        final String q = "DELETE FROM Patient WHERE ID = ?";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            statement.setString(1, id);
+            statement.executeQuery();
         } catch (SQLException e) {
             logger.warn(e.getMessage());
         }
-        return m;
     }
 
 
@@ -148,17 +171,54 @@ public class PatientDAOImpl implements PatientDAO {
     @Override
     public int countMedicalRecords(final String Id) {
         final Connection connection = handler.getConnection();
-        final String q = "SELECT COUNT(*) FROM MedicalRecord WHERE ID = ?";
+        final String q = "SELECT COUNT(*) FROM MedicalRecord WHERE PatientID = ?";
         try {
             final PreparedStatement statement = connection.prepareStatement(q);
             statement.setString(1, Id);
             final ResultSet set = statement.executeQuery();
-            return set.getInt(1);
+            int count = 0;
+            if (set.next()) {
+                count = set.getInt(1);
+            }
+            return count;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
             return -1;
         }
     }
 
+    @Override
+    public List<Patient> findPatientsAllDiseases() {
+        final Connection connection = handler.getConnection();
+        final String q = "SELECT DISTINCT p.id, p.name, p.family_history, p.age, p.sex, p.p_username " +
+                        "FROM Patient p INNER JOIN SuffersFrom s ON p.id = s.p_id " +
+                        "WHERE NOT EXISTS (SELECT d.name FROM Disease d " +
+                                            "MINUS " +
+                                            "SELECT s2.d_name " +
+                                            "FROM Patient p2 INNER JOIN SuffersFrom s2 ON p2.id = s2.p_id " +
+                                            "WHERE p.id = p2.id)";
+        try {
+            final PreparedStatement statement = connection.prepareStatement(q);
+            final ResultSet set = statement.executeQuery();
+            List<Patient> patients = new ArrayList<>();
+            String sex;
+            while (set.next()) {
+                    sex = (set.getInt("Sex") == 0) ? "Male": "Female";
 
+                patients.add(new Patient(
+                        set.getString("ID"),
+                        set.getString("Name"),
+                        set.getString("Family_History"),
+                        set.getInt("Age"),
+                        sex,
+                        set.getString("P_Username")
+                    )
+                );
+            }
+            return patients;
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+            return null;
+        }
+    }
 }
