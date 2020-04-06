@@ -34,12 +34,26 @@ gradlew.bat bootRun # for windows
 ```
 
 If you want, you can use Intellij to run it as well. The plus side is that it
-is easier to set environmental variables this way.
+is easier to set environmental variables this way. Just remember to set up
+environmental variables in the build.
 
 To find out what else you can do, check the tasks:
 
 ```bash
 ./gradlew tasks
 ```
+
+## Testing the project
+
+We place heavy emphasis on security in this team. This is why there is a
+user login system to prevent leakage of user info. All endpoints (except for
+`/js` and `/css` and `/login`) are login-protected. Only registered users can
+use the site to it's fullest capacity. However, this may pose an issue with
+testing. Here are the credentials we use for logging in.
+
+`user: jchou, pass: 54321`
+
+Of course, you can use anyone's username/passwsord combo, all located
+conveniently in the `DatabaseInitializer.java` file.
 
 [run-own-machine]: https://www.students.cs.ubc.ca/~cs-304/resources/jdbc-oracle-resources/jdbc-java-setup.html#running-code-from-own-machine
