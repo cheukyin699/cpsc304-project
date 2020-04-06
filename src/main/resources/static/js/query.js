@@ -16,7 +16,6 @@ $(document).ready(() => {
         $.post(`/disease/link/${dName}/${tName}`, alert);
     });
 
-<<<<<<<<< Temporary merge branch 1
     $('#t-search-by-name').on('click', ()=> {
        const tname = $('#tname').val();
        $.get('/treatment?tname=' + tname, populateTreatment);
@@ -153,5 +152,4 @@ function deletePatient(id) {
             $('#select-patient').click();
         }
     });
->>>>>>>>> Temporary merge branch 2
 }
