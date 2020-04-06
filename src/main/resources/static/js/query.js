@@ -152,5 +152,4 @@ function deletePatient(id) {
             $('#select-patient').click();
         }
     });
->>>>>>>>> Temporary merge branch 2
 }
