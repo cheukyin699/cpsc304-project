@@ -332,13 +332,19 @@ public class DatabaseInitializer {
             "INSERT INTO MedicalRecord VALUES('1', date '1999-04-23', date '1999-05-08', 'Pneumonia', NULL, 'Tetracycline, Tree nuts'," +
                     "'Ciprofloxacin')",
             "INSERT INTO MedicalRecord VALUES('2', date '2012-11-01', date '2012-11-08', 'Glaucoma', 'Argon laser trabeculoplasty'," +
-                    " 'penicillin', 'morphine')",
+                    " 'Penicillin', 'Morphine')",
             "INSERT INTO MedicalRecord VALUES('2', date '2015-09-04', date '2015-09-15', 'Cardiac arrest', NULL," +
-                    " NULL, 'morphine')",
+                    " 'Penicillin', 'Morphine')",
             "INSERT INTO MedicalRecord VALUES('3', date '2017-12-12', date '2017-12-30', 'Kidney disease', 'Dialysis, Kidney transplant'," +
-                    " NULL, 'chloramphenicol')",
+                    " NULL, 'Chloramphenicol')",
             "INSERT INTO MedicalRecord VALUES('4', date '2014-04-16', date '2014-04-17', 'Metacarpal fracture', 'Cast'," +
-                    " 'peanuts', NULL)",
+                    " 'Peanuts', NULL)",
+            "INSERT INTO MedicalRecord VALUES('3', date '2012-01-01', date '2012-01-23', 'Cholera', NULL," +
+                    " NULL,'Doxycycline')",
+            "INSERT INTO MedicalRecord VALUES('2', date '2017-12-12', date '2017-12-17', 'Avian influenza', NULL," +
+                    " 'Penicillin', 'Oseltamivir')",
+            "INSERT INTO MedicalRecord VALUES('6', date '2015-04-16', date '2015-04-22', 'Dengue fever', 'Cast'," +
+                    " 'Amoxicillin, Strawberry', 'Acetaminophen')"
     };
 
     private static final String[] TUPLE_SUFFERS_FROM = {
@@ -393,7 +399,7 @@ public class DatabaseInitializer {
     };
 
     private static final String[] TUPLE_TREATMENT = {
-            "INSERT INTO Treatment VALUES('Hemodialysis', 0.76, 'Dialysis machine', " +
+            "INSERT INTO Treatment VALUES('Hemodialysis', 0.76, 'dialysis machine', " +
                     "'hypotension, anemia, blood clot, infection')",
             "INSERT INTO Treatment VALUES('Alpelisib', 0.67, NULL, 'severe hypersensitivity, anaphylaxis, anaphylactic shock')",
             "INSERT INTO Treatment VALUES('Implantable cardioverter defibrillator', 0.85, 'surgery room, pacemaker', " +
@@ -401,7 +407,11 @@ public class DatabaseInitializer {
             "INSERT INTO Treatment VALUES('Ferrous sulfate', 0.64, NULL, " +
                     "'constipation, diarrhea, GI irritation')",
             "INSERT INTO Treatment VALUES('Pentoxifylline', 0.71, NULL, 'nausea, bloating, diarrhea, dizziness')",
-            "INSERT INTO Treatment VALUES('Vaccine FP-01.1', 0.92, NULL, NULL)"
+            "INSERT INTO Treatment VALUES('Vaccine FP-01.1', 0.92, NULL, NULL)",
+            "INSERT INTO Treatment VALUES('Kidney Transplant', 0.78, 'surgery room, kidney', " +
+                    "'infection, graft vs host')",
+            "INSERT INTO Treatment VALUES('Selzentry', 0.63, null, " +
+                    "'dizziness, stomach pain, constipation, fatigue')"
 
     };
 
@@ -417,6 +427,10 @@ public class DatabaseInitializer {
             "INSERT INTO ClinicalTrial VALUES('Safety, Tolerability, Efficacy and Immunogenicity of an " +
                     "Influenza A Vaccine (FP-01.1) in Healthy Volunteers Following Virus Challenge'," +
                     "'Phase I, II randomized parallel assignment, quadruple masking', + '111', '1')",
+            "INSERT INTO ClinicalTrial VALUES('Albuvirtide and 3BNC117 as Long-Acting Maintenance Therapy in Virologically Suppressed Subjects'," +
+                    " 'Randomized parallel assignment, no masking', '204', '1')",
+            "INSERT INTO ClinicalTrial VALUES('Antigenic Competition in HIV Preventive Vaccines'," +
+                    " 'Phase I, II randomized parallel assignment, quadruple masking', '56', '0')"
     };
 
     private static final String[] TUPLE_CLINICAL_TRIAL_TREATMENT = {
@@ -435,7 +449,11 @@ public class DatabaseInitializer {
             "INSERT INTO Disease_ClinicalTrial VALUES('Kidney disease', 'Cerebral Blood Flow During Hemodialysis')",
             "INSERT INTO Disease_ClinicalTrial VALUES('Kidney disease', 'Pentoxifylline in Diabetic Kidney Disease')",
             "INSERT INTO Disease_ClinicalTrial VALUES('Avian influenza', 'Safety, Tolerability, Efficacy and Immunogenicity " +
-                    "of an Influenza A Vaccine (FP-01.1) in Healthy Volunteers Following Virus Challenge')"
+                    "of an Influenza A Vaccine (FP-01.1) in Healthy Volunteers Following Virus Challenge')",
+            "INSERT INTO Disease_ClinicalTrial VALUES('AIDS', " +
+                    "'Albuvirtide and 3BNC117 as Long-Acting Maintenance Therapy in Virologically Suppressed Subjects')",
+            "INSERT INTO Disease_ClinicalTrial VALUES('AIDS', " +
+                    "'Antigenic Competition in HIV Preventive Vaccines')",
     };
 
     private static final String[] TUPLE_DISEASE_TREATMENT = {
@@ -443,7 +461,10 @@ public class DatabaseInitializer {
             "INSERT INTO Disease_Treatment VALUES('AIDS', 'Alpelisib')",
             "INSERT INTO Disease_Treatment VALUES('Kidney disease', 'Hemodialysis')",
             "INSERT INTO Disease_Treatment VALUES('Avian influenza', 'Vaccine FP-01.1')",
-            "INSERT INTO Disease_Treatment VALUES('Kidney disease', 'Pentoxifylline')"
+            "INSERT INTO Disease_Treatment VALUES('Kidney disease', 'Pentoxifylline')",
+            "INSERT INTO Disease_Treatment VALUES('Kidney disease', 'Kidney Transplant')",
+            "INSERT INTO Disease_Treatment VALUES('AIDS', 'Selzentry')",
+
     };
 
 
