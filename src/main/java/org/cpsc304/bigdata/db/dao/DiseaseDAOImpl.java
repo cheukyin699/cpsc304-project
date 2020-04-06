@@ -47,7 +47,7 @@ public class DiseaseDAOImpl implements DiseaseDAO {
             return diseases;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return Collections.emptyList();
+            return Collections.emptyList();  
         }
     }
 
