@@ -38,12 +38,17 @@ public class DiseaseController {
     @GetMapping("/disease")
     public List<Disease> searchDiseases(
             @RequestParam(value = "symptom", required = false) final String symptom,
-            @RequestParam(value = "ct", required = false) final String trial) {
+            @RequestParam(value = "ct", required = false) final String trial,
+            @RequestParam(value = "table", required = false) final String table,
+            @RequestParam(value = "number", required = false) final String number) {
         if (symptom != null) {
             return diseaseDAO.findDiseaseBySymptom(symptom);
         }
         if (trial != null) {
             return diseaseDAO.findDiseaseByClinicalTrialName(trial);
+        }
+        if(table != null && number != null){
+            return diseaseDAO.findDiseaseByPara(table, number);
         }
 
         return Collections.emptyList();

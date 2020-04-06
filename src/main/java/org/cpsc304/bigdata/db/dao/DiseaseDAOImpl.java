@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -46,7 +47,7 @@ public class DiseaseDAOImpl implements DiseaseDAO {
             return diseases;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();  
         }
     }
 
@@ -73,8 +74,44 @@ public class DiseaseDAOImpl implements DiseaseDAO {
             return diseases;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
+    }
+
+    @Override
+    public List<Disease> findDiseaseByPara(final String table, final String number) {
+        final Connection connection = handler.getConnection();
+        try {
+            logger.info(table);
+            logger.info(number);
+
+            final String q;
+            final PreparedStatement statement;
+            if(table.equalsIgnoreCase("Treatment")){
+                q = "SELECT D.Name, D.Prevalence, D. Symptoms FROM Disease D INNER JOIN Disease_Treatment DT ON D.Name = DT.DName GROUP BY D.Name, D.Prevalence, D. Symptoms HAVING COUNT(*) >= ?";
+                statement = connection.prepareStatement(q);
+                statement.setString(1,number);
+            }else{
+                q = "SELECT D.Name, D.Prevalence, D. Symptoms FROM Disease D INNER JOIN Disease_ClinicalTrial DC ON D.Name = DC.DName GROUP BY D.Name, D.Prevalence, D. Symptoms HAVING COUNT(*) >= ?";
+                statement = connection.prepareStatement(q);
+                statement.setString(1, number);
+            }
+
+            List<Disease> diseases = new ArrayList<>();
+            final ResultSet set = statement.executeQuery();
+            while (set.next()){
+                diseases.add(new Disease(
+                        set.getString("Name"),
+                        set.getInt("Prevalence"),
+                        set.getString("Symptoms")));
+            }
+            return diseases;
+
+        } catch (SQLException e) {
+            logger.warn(e.getMessage());
+        }
+        return Collections.emptyList();
+
     }
 
 
