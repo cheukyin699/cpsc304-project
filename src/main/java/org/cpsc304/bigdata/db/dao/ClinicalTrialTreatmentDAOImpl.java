@@ -163,7 +163,7 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
             return clinicalTrails;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -193,7 +193,7 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
             return treatments;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -219,7 +219,7 @@ public class ClinicalTrialTreatmentDAOImpl implements ClinicalTrialTreatmentDAO 
             return clinicalTrials;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 

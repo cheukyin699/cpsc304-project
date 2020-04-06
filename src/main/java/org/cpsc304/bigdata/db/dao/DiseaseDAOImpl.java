@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -46,7 +47,7 @@ public class DiseaseDAOImpl implements DiseaseDAO {
             return diseases;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -73,7 +74,7 @@ public class DiseaseDAOImpl implements DiseaseDAO {
             return diseases;
         } catch (SQLException e) {
             logger.warn(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -109,7 +110,7 @@ public class DiseaseDAOImpl implements DiseaseDAO {
         } catch (SQLException e) {
             logger.warn(e.getMessage());
         }
-        return null;
+        return Collections.emptyList();
 
     }
 
